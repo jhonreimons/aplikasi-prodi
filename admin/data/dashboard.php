@@ -77,6 +77,9 @@
                          <li>
                               <a href="../data/produk_diadopsi_masyarakat.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
+                         <li>
+                              <a href="../data/dosen_pembimbing_TA.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Pebimbing TA</a>
+                         </li>
                          
                     </ul>
                </div><!-- /.navbar-collapse -->
