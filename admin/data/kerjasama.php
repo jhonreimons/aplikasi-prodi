@@ -34,7 +34,7 @@ $sql1 = mysqli_query($conn, $query1);
 
 <body>
      <!-- Left Panel -->
-     <?php include "../dashboard.php"; ?>
+     <?php include "dashboard.php"; ?>
      <!-- /#left-panel -->
      <!-- Right Panel -->
      <div id="right-panel" class="right-panel">
