@@ -17,7 +17,7 @@ $sql1 = mysqli_query($conn, $query1);
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Seleksi Mahasiswa Baru</title>
+     <title>EKuivalen Waktu</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -85,25 +85,32 @@ $sql1 = mysqli_query($conn, $query1);
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Seleksi Mahasiswa Baru</strong>
+                                        <strong class="card-title">Ekuivalen Waktu</strong>
                                    </div>
                                    <div class="card-body">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                              <thead>
                                                   <tr>
-                                                       <th rowspan="2">Tahun Akademik</th> 
-                                                       <th rowspan="2">Daya Tampung</th> 
-                                                       <th colspan="2">Jumlah Calon Mahasiswa</th>
-                                                       <th colspan="2">Jumlah Mahasiswa Baru</th>
-                                                       <th colspan="2">Jumlah Mahasiswa Aktif</th> </tr>
-                                                       </tr>
+                                                       <th rowspan="3">Nama Dosen(DT)</th> 
+                                                       <th rowspan="3">DTPS</th> 
+                                                       <th colspan="4">(EWMP) pada saat TS dalam satuan kredit </th>
+                                                       <th rowspan="3">Rata-rata per Semester</th> </tr>
+                                                       
                                                        <tr>
-                                                       <th>Pendaftar</th>
-                                                       <th>Lulus Seleksi</th>
-                                                       <th>Reguler</th>
-                                                       <th>Transfer</th>
-                                                       <th>Reguler</th>
-                                                       <th>Transfer</th>
+                                                       <th colspan="3">Pendidikan: Pembelajaran & Pembimbingan</th>
+                                                       
+                                                       <th rowspan="2">Penelitian </th>
+                                                       <th rowspan="2">Jumlah SKS </th>
+                                                       <th rowspan="2">Tugas Tambahan</th>
+
+                                                       
+                                                  </tr>
+                                                  <tr>
+                                                       <th>Pendidikan:</th>
+                                                       <th>Pendidikan: </th>
+                                                       <th>Pendidikan: </th>
+                                                       <th>PkM</th>
+                                                       
                                                   </tr>
                                              </thead>
                                              <tbody>
@@ -116,6 +123,9 @@ $sql1 = mysqli_query($conn, $query1);
                                                    <td>6</td>
                                                    <td>7</td>
                                                    <td>8</td>
+                                                   <td>9</td>
+                                                   <td>10</td>
+                                             
                                                   
                                                    
                                              </tr>

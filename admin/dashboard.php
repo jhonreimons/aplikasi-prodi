@@ -61,9 +61,14 @@
                               <a href="data/karya_ilmiah_sistasi.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
                          <li>
+<<<<<<< HEAD
                               <a href="data/produk_diadopsi_masyarakat.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
                          
+=======
+                              <a href="data/dosen_tidak_tetap.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Tidak Tetap</a>
+                         </li>
+>>>>>>> f0f89725c8fa19ea1063ef9a5213725a49e2609d
                     </ul>
                </div><!-- /.navbar-collapse -->
           </nav>
