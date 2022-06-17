@@ -17,7 +17,7 @@ $sql1 = mysqli_query($conn, $query1);
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Kerjasama</title>
+     <title>Produk Insdustri Yang Di Adopsi </title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -93,8 +93,9 @@ $sql1 = mysqli_query($conn, $query1);
                                                   <tr>
                                                        <th >No.</th>
                                                        <th >Nama Dosen</th>
-                                                       <th >Judul(Jurnal, volume, Tahun, Nomor, Halaman)</th>
-                                                       <th >Jumlah Sitasi</th>
+                                                       <th >Nama Produk Atau Jasa</th>
+                                                       <th >Deskripsi Produk Atau Jasa</th>
+                                                       <th >Deskripsi Produk Atau Jasa</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
@@ -102,6 +103,7 @@ $sql1 = mysqli_query($conn, $query1);
                                                        <td>1</td>
                                                        <td>2</td>
                                                        <td>3</td>
+                                                       <td>4</td>
                                                        <td>4</td>
                                                   </tr>
                                              </tbody>
