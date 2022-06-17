@@ -120,34 +120,43 @@ $sql = mysqli_query($conn, "SELECT * FROM jadwal_kegiatan WHERE tanggal = '$tgl_
                     <!-- Widgets  -->
                     <div class="row">
                          <div class="content">
-                              <div class="card-header">
-                                   <strong class="card-title">Jadwal Hari ini</strong>
-                              </div>
-                              <div class="table-stats order-table ov-h">
-                                   <table class="table " style="color: red;">
-                                        <thead>
-                                             <tr>
-                                                  <th class="serial">No.</th>
-                                                  <th class="avatar">Jam</th>
-                                                  <th>Kegiatan</th>
-                                                  <th>Keterangan</th>
-                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                             <?php $i = 1;
-                                             while ($data = mysqli_fetch_assoc($sql)) : ?>
+                              <div class="card">
+                                   <div class="card-header">
+                                        <strong class="card-title">Pengurusan Divisi Himpunan</strong>
+                                   </div>
+                                   <div class="card-body">
+                                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                             <thead>
                                                   <tr>
-                                                       <td class="serial"><?php echo $i; ?>.</td>
-                                                       <td><?php echo "$data[jam_mulai] - $data[jam_selesai]"; ?> </td>
-                                                       </td>
-                                                       <td><?php echo "$data[nama_kegiatan]"; ?> </td>
-                                                       <td><?php echo "$data[keterangan]"; ?></td>
+                                                       <th>No.</th>
+                                                       <th>Divisi</th>
+                                                       <th>Ketua</th>
+                                                       <th>Tahun Menjabat</th>
+                                                       <th>Tahun Selesai Menjabat</th>
                                                   </tr>
-                                             <?php $i++;
-                                             endwhile; ?>
-                                        </tbody>
-                                   </table>
+                                             </thead>
+                                             <tbody>
+                                                  <?php $i = 1;
+                                                  while ($data1 = mysqli_fetch_assoc($sql1)) :
+                                                  ?>
+                                                       <tr>
+                                                            <td><?php echo $i; ?>.</td>
+                                                            <td><?php echo "Divisi " . $data1['nama_divisi']; ?></td>
+                                                            </td>
+                                                            <td><a href="data_program_kerja.php?id=<?php echo $data1['id_data_divisi']; ?>"><?php echo $data1['nama_ketua']; ?></td>
+                                                            <td><?php echo $data1['tahun_menjabat']; ?><br>
+                                                            </td>
+                                                            <td><?php echo $data1['tahun_selesai']; ?> <br>
+                                                            </td>
+                                                       </tr>
+                                                  <?php $i++;
+                                                  endwhile; ?>
+                                             </tbody>
+                                        </table>
+                                   </div>
+                                   <!-- .animated -->
                               </div><!-- .animated -->
+                         
                          </div><!-- .content -->
                     </div>
                     <!-- .animated -->
