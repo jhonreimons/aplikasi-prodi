@@ -60,6 +60,15 @@
                          <li>
                               <a href="../data/seleksi_mahasiswa_baru.php"> <i class="menu-icon fa fa-bar-chart"></i>Seleksi Mahasiswa Baru</a>
                          </li>
+                         <li>
+                              <a href="../data/mahasiswa_asing.php"> <i class="menu-icon fa fa-bar-chart"></i>Mahasiswa Asing</a>
+                         </li>
+                         <li>
+                              <a href="../data/dosen_tetap.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Tetap</a>
+                         </li>
+                         <li>
+                              <a href="../data/ekuivalen_waktu.php"> <i class="menu-icon fa fa-bar-chart"></i>Ekuivalen Waktu</a>
+                         </li>
                     </ul>
                </div><!-- /.navbar-collapse -->
           </nav>

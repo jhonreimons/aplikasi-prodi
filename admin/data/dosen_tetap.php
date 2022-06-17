@@ -17,7 +17,7 @@ $sql1 = mysqli_query($conn, $query1);
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Seleksi Mahasiswa Baru</title>
+     <title>Dosen Tetap</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -85,26 +85,24 @@ $sql1 = mysqli_query($conn, $query1);
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Seleksi Mahasiswa Baru</strong>
+                                        <strong class="card-title">Dosen Tetap</strong>
                                    </div>
                                    <div class="card-body">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                              <thead>
                                                   <tr>
-                                                       <th rowspan="2">Tahun Akademik</th> 
-                                                       <th rowspan="2">Daya Tampung</th> 
-                                                       <th colspan="2">Jumlah Calon Mahasiswa</th>
-                                                       <th colspan="2">Jumlah Mahasiswa Baru</th>
-                                                       <th colspan="2">Jumlah Mahasiswa Aktif</th> </tr>
-                                                       </tr>
-                                                       <tr>
-                                                       <th>Pendaftar</th>
-                                                       <th>Lulus Seleksi</th>
-                                                       <th>Reguler</th>
-                                                       <th>Transfer</th>
-                                                       <th>Reguler</th>
-                                                       <th>Transfer</th>
-                                                  </tr>
+                                                       <th rowspan="2">Nama Dosen</th>
+                                                       <th rowspan="2">Pendidikan Pasca Sarjana</th>
+                                                       <th rowspan="2">Bidang Keahlian</th>
+                                                       <th rowspan="2">Kesesuaian dengan Kompetensi Inti PS</th>
+                                                       <th rowspan="2">Jabatan Akademik</th>
+                                                       <th rowspan="2">Sertifikat Pendidik Profesional</th>
+                                                       <th rowspan="2">Sertifikat  Kompetensi/ Profesi/  Industri</th>
+                                                       <th rowspan="2">Mata Kuliah yang Diampu pada PS yang Diakreditasi</th>
+                                                       <th rowspan="2">Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</th>
+                                                       <th rowspan="2">Mata Kuliah yang Diampu pada PS Lain</th>
+
+                                             </tr>
                                              </thead>
                                              <tbody>
                                                   <tr>
@@ -116,6 +114,9 @@ $sql1 = mysqli_query($conn, $query1);
                                                    <td>6</td>
                                                    <td>7</td>
                                                    <td>8</td>
+                                                   <td>9</td>
+                                                   <td>10</td>
+                                                  
                                                   
                                                    
                                              </tr>
