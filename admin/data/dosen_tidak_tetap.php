@@ -17,7 +17,7 @@ $sql1 = mysqli_query($conn, $query1);
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>EKuivalen Waktu</title>
+     <title>Dosen Tidak Tetap</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -85,33 +85,23 @@ $sql1 = mysqli_query($conn, $query1);
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Ekuivalen Waktu</strong>
+                                        <strong class="card-title">Dosen Tidak Tetap</strong>
                                    </div>
                                    <div class="card-body">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                              <thead>
                                                   <tr>
-                                                       <th rowspan="3">Nama Dosen(DT)</th> 
-                                                       <th rowspan="3">DTPS</th> 
-                                                       <th colspan="4">(EWMP) pada saat TS dalam satuan kredit </th>
-                                                       <th rowspan="3">Rata-rata per Semester</th> </tr>
+                                                       <th rowspan="2">Nama Dosen</th>
+                                                       <th rowspan="2">Pendidikan Pasca Sarjana</th>
+                                                       <th rowspan="2">Bidang Keahlian</th>
+                                                       <th rowspan="2">Jabatan Akademik</th>
+                                                       <th rowspan="2">Sertifikat Pendidik Profesional</th>
+                                                       <th rowspan="2">Sertifikat  Kompetensi/ Profesi/  Industri</th>
+                                                       <th rowspan="2">Mata Kuliah yang Diampu pada PS yang Diakreditasi</th>
+                                                       <th rowspan="2">Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</th>
                                                        
-                                                       <tr>
-                                                       <th colspan="3">Pendidikan: Pembelajaran & Pembimbingan</th>
-                                                       
-                                                       <th rowspan="2">Penelitian </th>
-                                                       <th rowspan="2">Jumlah SKS </th>
-                                                       <th rowspan="2">Tugas Tambahan</th>
 
-                                                       
-                                                  </tr>
-                                                  <tr>
-                                                       <th>Pendidikan:</th>
-                                                       <th>Pendidikan: </th>
-                                                       <th>Pendidikan: </th>
-                                                       <th>PkM</th>
-                                                       
-                                                  </tr>
+                                             </tr>
                                              </thead>
                                              <tbody>
                                                   <tr>
@@ -123,9 +113,8 @@ $sql1 = mysqli_query($conn, $query1);
                                                    <td>6</td>
                                                    <td>7</td>
                                                    <td>8</td>
-                                                   <td>9</td>
-                                                   <td>10</td>
-                                             
+                                                  
+                                                  
                                                   
                                                    
                                              </tr>

@@ -60,6 +60,9 @@
                          <li>
                               <a href="data/karya_ilmiah_sistasi.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
+                         <li>
+                              <a href="data/dosen_tidak_tetap.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Tidak Tetap</a>
+                         </li>
                     </ul>
                </div><!-- /.navbar-collapse -->
           </nav>
