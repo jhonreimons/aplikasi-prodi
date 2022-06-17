@@ -53,6 +53,13 @@
                          <li>
                               <a href="kpu_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>KPU Himpunan</a>
                          </li>
+                         <li class="menu-title">Tambahan</li>
+                         <li>
+                              <a href="data/kerjasama.php"> <i class="menu-icon fa fa-bar-chart"></i>Kerjasama</a>
+                         </li>
+                         <li>
+                              <a href="data/seleksi_mahasiswa_baru.php"> <i class="menu-icon fa fa-bar-chart"></i>Seleksi Mahasiswa Baru</a>
+                         </li>
                     </ul>
                </div><!-- /.navbar-collapse -->
           </nav>
