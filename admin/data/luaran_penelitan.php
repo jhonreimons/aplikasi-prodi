@@ -1,7 +1,7 @@
 <?php
 
-require "../config.php";
-$query1 =  "SELECT * FROM data_divisi INNER JOIN divisi ON data_divisi.id_divisi = divisi.id_divisi";
+require "../../config.php";
+$query1 =  "SELECT * FROM bph_himpunan";
 $sql1 = mysqli_query($conn, $query1);
 
 
@@ -17,7 +17,7 @@ $sql1 = mysqli_query($conn, $query1);
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Data Divisi Himpunan</title>
+     <title>Kerjasama</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -26,9 +26,9 @@ $sql1 = mysqli_query($conn, $query1);
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-     <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-     <link rel="stylesheet" href="../assets/css/lib/datatable/dataTables.bootstrap.min.css">
-     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="../../assets/css/cs-skin-elastic.css">
+     <link rel="stylesheet" href="../../assets/css/lib/datatable/dataTables.bootstrap.min.css">
+     <link rel="stylesheet" href="../../assets/css/style.css">
      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 
@@ -85,35 +85,25 @@ $sql1 = mysqli_query($conn, $query1);
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Pengurusan Divisi Himpunan</strong>
+                                        <strong class="card-title">Kerjasama</strong>
                                    </div>
                                    <div class="card-body">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                              <thead>
                                                   <tr>
                                                        <th>No.</th>
-                                                       <th>Divisi</th>
-                                                       <th>Ketua</th>
-                                                       <th>Tahun Menjabat</th>
-                                                       <th>Tahun Selesai Menjabat</th>
+                                                       <th>Luaran Peneltian</th> 
+                                                       <th>Tahun</th>
+                                                       <th>Keterangan</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  <?php $i = 1;
-                                                  while ($data1 = mysqli_fetch_assoc($sql1)) :
-                                                  ?>
-                                                       <tr>
-                                                            <td><?php echo $i; ?>.</td>
-                                                            <td><?php echo "Divisi " . $data1['nama_divisi']; ?></td>
-                                                            </td>
-                                                            <td><a href="data_program_kerja.php?id=<?php echo $data1['id_data_divisi']; ?>"><?php echo $data1['nama_ketua']; ?></td>
-                                                            <td><?php echo $data1['tahun_menjabat']; ?><br>
-                                                            </td>
-                                                            <td><?php echo $data1['tahun_selesai']; ?> <br>
-                                                            </td>
-                                                       </tr>
-                                                  <?php $i++;
-                                                  endwhile; ?>
+                                                  <tr>
+                                                  <td>1</td>     
+                                                  <td>2</td> 
+                                                  <td>3</td> 
+                                                  <td>4</td> 
+                                             </tr>
                                              </tbody>
                                         </table>
                                    </div>
@@ -142,17 +132,17 @@ $sql1 = mysqli_query($conn, $query1);
                     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-                    <script src="../assets/js/main.js"></script>
-                    <script src="../assets/js/lib/data-table/datatables.min.js"></script>
-                    <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-                    <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-                    <script src="../assets/js/lib/data-table/jszip.min.js"></script>
-                    <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
-                    <script src="../assets/js/init/datatables-init.js"></script>
+                    <script src="../../assets/js/main.js"></script>
+                    <script src="../../assets/js/lib/data-table/datatables.min.js"></script>
+                    <script src="../../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+                    <script src="../../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+                    <script src="../../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+                    <script src="../../assets/js/lib/data-table/jszip.min.js"></script>
+                    <script src="../../assets/js/lib/data-table/vfs_fonts.js"></script>
+                    <script src="../../assets/js/lib/data-table/buttons.html5.min.js"></script>
+                    <script src="../../assets/js/lib/data-table/buttons.print.min.js"></script>
+                    <script src="../../assets/js/lib/data-table/buttons.colVis.min.js"></script>
+                    <script src="../../assets/js/init/datatables-init.js"></script>
                     <script type="text/javascript">
                          $(document).ready(function() {
                               $('#bootstrap-data-table-export').DataTable();
@@ -165,7 +155,7 @@ $sql1 = mysqli_query($conn, $query1);
                     </script>
                     <script>
                          function myFunction() {
-                              location.replace("buat_data_divisi.php")
+                              location.replace("buat_data_himpunan.php")
                          }
                     </script>
                     <!--Local Stuff-->

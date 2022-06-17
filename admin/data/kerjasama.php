@@ -92,14 +92,14 @@ $sql1 = mysqli_query($conn, $query1);
                                              <thead>
                                                   <tr>
                                                        <th rowspan="2">No.</th>
-                                                       <th rowspan="2">Lembaga Mitra</th> 
+                                                       <th rowspan="2">Lembaga Mitra</th>
                                                        <th colspan="3">Tingkat</th>
-                                                      </tr>
-                                                       <tr>
-                                                            <th>Internasional</th>
-                                                            <th>Internasional</th>
-                                                            <th>Internasional</th>
-                                                       
+                                                  </tr>
+                                                  <tr>
+                                                       <th>Internasional</th>
+                                                       <th>Internasional</th>
+                                                       <th>Internasional</th>
+
                                                        <th rowspan="2">Judul Kegiatan Kerjasama</th>
                                                        <th rowspan="2">Manfaat bagi PS yang Diakreditasi</th>
                                                        <th rowspan="2">Waktu dan durasi</th>
@@ -109,17 +109,17 @@ $sql1 = mysqli_query($conn, $query1);
                                              </thead>
                                              <tbody>
                                                   <tr>
-                                                   <td>1</td>     
-                                                   <td>2</td> 
-                                                   <td>3</td> 
-                                                   <td>4</td> 
-                                                   <td>5</td> 
-                                                   <td>6</td> 
-                                                   <td>7</td>
-                                                   <td>8</td>  
-                                                   <td>9</td> 
-                                                   <td>10</td> 
-                                             </tr>
+                                                       <td>1</td>
+                                                       <td>2</td>
+                                                       <td>3</td>
+                                                       <td>4</td>
+                                                       <td>5</td>
+                                                       <td>6</td>
+                                                       <td>7</td>
+                                                       <td>8</td>
+                                                       <td>9</td>
+                                                       <td>10</td>
+                                                  </tr>
                                              </tbody>
                                         </table>
                                    </div>

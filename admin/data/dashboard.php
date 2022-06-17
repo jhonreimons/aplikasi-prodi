@@ -42,9 +42,6 @@
                          </li>
                          <li class="menu-title">HIMPUNAN MAHASISWA</li>
                          <li>
-                              <a href="../visi_misi.php"> <i class="menu-icon fa fa-bar-chart"></i>Visi Misi</a>
-                         </li>
-                         <li>
                               <a href="../bph_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>BPH Himpunan</a>
                          </li>
                          <li>
@@ -61,6 +58,7 @@
                               <a href="../data/seleksi_mahasiswa_baru.php"> <i class="menu-icon fa fa-bar-chart"></i>Seleksi Mahasiswa Baru</a>
                          </li>
                          <li>
+<<<<<<< HEAD
                               <a href="../data/mahasiswa_asing.php"> <i class="menu-icon fa fa-bar-chart"></i>Mahasiswa Asing</a>
                          </li>
                          <li>
@@ -68,6 +66,12 @@
                          </li>
                          <li>
                               <a href="../data/ekuivalen_waktu.php"> <i class="menu-icon fa fa-bar-chart"></i>Ekuivalen Waktu</a>
+=======
+                              <a href="../data/luaran_penelitan.php"> <i class="menu-icon fa fa-bar-chart"></i>Luaran Peneltian</a>
+                         </li>
+                         <li>
+                              <a href="../data/karya_ilmiah_sistasi.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
+>>>>>>> 67a59a9a02364dcec81c510287b29748c4db4178
                          </li>
                     </ul>
                </div><!-- /.navbar-collapse -->
