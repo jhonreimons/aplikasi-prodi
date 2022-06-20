@@ -75,12 +75,85 @@
                               <a href="../data/karya_ilmiah_sistasi.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
                          <li>
-                              <a href="../data/produk_diadopsi_masyarakat.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
+                              <a href="../data/produk_diadopsi_masyarakat.php"> <i class="menu-icon fa fa-bar-chart"></i>Produk Diadopsi Masyarakat</a>
                          </li>
                          <li>
                               <a href="../data/dosen_pembimbing_TA.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Pebimbing TA</a>
                          </li>
+                         <li>
+                              <a href="../data/dosen_industri.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Industri</a>
+                         </li>
+                         <li>
+                              <a href="../data/pengakuan.php"> <i class="menu-icon fa fa-bar-chart"></i>Pengakuan</a>
+                         </li>
+                         <li>
+                              <a href="../data/penelitian_dtps.php"> <i class="menu-icon fa fa-bar-chart"></i>Penelitian DTPS</a>
+                         </li>
+                         <li>
+                              <a href="../data/pkm_dtps.php"> <i class="menu-icon fa fa-bar-chart"></i>PkM DTPS</a>
+                         </li>
+                         <li>
+                              <a href="../data/luaran_penelitian_bagian1.php"> <i class="menu-icon fa fa-bar-chart"></i>Luaran (Penelitian)PkM Bagian 1</a>
+                         </li>
+                         <li>
+                              <a href="../data/luaran_penelitian_bagian2.php"> <i class="menu-icon fa fa-bar-chart"></i>Luaran (Penelitian)PkM Bagian 2</a>
+                         </li>
+                         <li>
+                              <a href="../data/luaran_penelitian_bagian3.php"> <i class="menu-icon fa fa-bar-chart"></i>Luaran (Penelitian)PkM Bagian 3</a>
+                         </li>
+                         <li>
+                              <a href="../data/luaran_penelitian_bagian4.php"> <i class="menu-icon fa fa-bar-chart"></i>Luaran (Penelitian)PkM Bagian 4</a>
+                         </li>
+                         <li>
+                              <a href="../data/karya_ilmiah_dtps.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilmiah DTPS yang Disitasi</a>
+                         </li>
+                         <li>
+                              <a href="../data/produk_dtps.php"> <i class="menu-icon fa fa-bar-chart"></i>  Produk/Jasa DTPS yang Diadopsi oleh Industri/Masyarakat </a>
+                         </li>
+                         <li>
+                              <a href="../data/penggunaan_dana.php"> <i class="menu-icon fa fa-bar-chart"></i>Penggunaan Dana</a>
+                         </li>
+                         <li>
+                              <a href="../data/kurikulum.php"> <i class="menu-icon fa fa-bar-chart"></i>Kurikulum</a>
+                         </li>
+                         <li>
+                              <a href="../data/integrasi.php"> <i class="menu-icon fa fa-bar-chart"></i>Integrasi</a>
+                         </li>
+                         <li>
+                              <a href="../data/kepuasan_mahasiswa.php"> <i class="menu-icon fa fa-bar-chart"></i>Kepuasan Mahasiswa</a>
+                         </li>
+                         <li>
+                              <a href="../data/dtps_mahasiswa.php"> <i class="menu-icon fa fa-bar-chart"></i>Penelitian DTPS yang Melibatkan Mahasiswa</a>
+                         </li>
+                         <li>
+                              <a href="../data/dtps_tesis.php"> <i class="menu-icon fa fa-bar-chart"></i>Penelitian DTPS yang Menjadi Rujukan Tema Tesis/Disertasi</a>
+                         </li>
+                         <li>
+                              <a href="../data/pkm_mahasiswa.php"> <i class="menu-icon fa fa-bar-chart"></i> PkM DTPS yang Melibatkan Mahasiswa</a>
+                         </li>
+                         <li>
+                              <a href="../data/ipk_lulusan.php"> <i class="menu-icon fa fa-bar-chart"></i> Ipk Lulusan</a>
+                         </li>
+                         <li>
+                              <a href="../data/prestasi_akademik_mahasiswa.php"> <i class="menu-icon fa fa-bar-chart"></i>Prestasi Akademik Mahasiswa</a>
+                         </li>
+                         <li>
+                              <a href="../data/prestasi_non_akademik_mahasiswa.php"> <i class="menu-icon fa fa-bar-chart"></i>Prestasi Non Akademik Mahasiswa</a>
+                         </li>
+                         <li>
+                              <a href="../data/bidang_kerja_lulusan.php"> <i class="menu-icon fa fa-bar-chart"></i>Kesesuaian Bidang Kerja Lulusan</a>
+                         </li>
+                         <li>
+                              <a href="../data/tempat_kerja_lulusan.php"> <i class="menu-icon fa fa-bar-chart"></i>Tempat Kerja Lulusan</a>
+                         </li>
+                         <li>
+                              <a href="../data/kepuasan_pengguna_lulusan.php"> <i class="menu-icon fa fa-bar-chart"></i>Kepuasan Pengguna Lulusan</a>
+                         </li>
+                         <li>
+                              <a href="../data/kepuasan_pengguna.php"> <i class="menu-icon fa fa-bar-chart"></i>Kepuasan Pengguna</a>
+                         </li>
                          
+
                     </ul>
                </div><!-- /.navbar-collapse -->
           </nav>

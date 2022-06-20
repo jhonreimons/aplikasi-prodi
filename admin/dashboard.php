@@ -44,9 +44,7 @@
                          <li>
                               <a href="bph_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>BPH Himpunan</a>
                          </li>
-                         <li>
-                              <a href="divisi_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>Divisi Himpunan</a>
-                         </li>
+                         
                          <li>
                               <a href="kpu_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>KPU Himpunan</a>
                          </li>
@@ -61,14 +59,41 @@
                               <a href="data/karya_ilmiah_sistasi.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
                          <li>
-<<<<<<< HEAD
+
                               <a href="data/produk_diadopsi_masyarakat.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
-                         
-=======
+                          <li>
                               <a href="data/dosen_tidak_tetap.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Tidak Tetap</a>
                          </li>
->>>>>>> f0f89725c8fa19ea1063ef9a5213725a49e2609d
+                         <li>
+                      
+                              <a href="data/dosen_tetap.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Tetap</a>
+                         </li>
+                         <li>
+                      
+                              <a href="data/dosen_industri.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Industri</a>
+                         </li>
+                         <li>
+                      
+                              <a href="data/dosen_pembimbing_TA.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Pembimbing TA</a>
+                         </li>
+                         <li>
+                      
+                              <a href="data/ekuivalen_waktu.php"> <i class="menu-icon fa fa-bar-chart"></i>Ekuivalen Waktu</a>
+                         </li>
+                         <li>
+                      
+                              <a href="data/luaran_penelitian.php"> <i class="menu-icon fa fa-bar-chart"></i>Luaran Penelitian</a>
+                         </li>
+                         <li>
+                      
+                              <a href="data/mahasiswa_asing.php"> <i class="menu-icon fa fa-bar-chart"></i>Mahasiswa Asing</a>
+                         </li>
+                         <li>
+                      
+                              <a href="data/pengakuan.php"> <i class="menu-icon fa fa-bar-chart"></i>Pengakuan</a>
+                         </li>
+
                     </ul>
                </div><!-- /.navbar-collapse -->
           </nav>
