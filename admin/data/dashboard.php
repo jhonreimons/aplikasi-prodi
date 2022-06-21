@@ -152,6 +152,19 @@
                          <li>
                               <a href="../data/kepuasan_pengguna.php"> <i class="menu-icon fa fa-bar-chart"></i>Kepuasan Pengguna</a>
                          </li>
+                         <li>
+                              <a href="../data/publikasi_ilmiah_mahasiswa.php"> <i class="menu-icon fa fa-bar-chart"></i>Pagelaran/Pameran/Presentasi/Publikasi Ilmiah Mahasiswa</a>
+                         </li>
+                         <li>
+                              <a href="../data/waktu_tunggu_lulusan.php"> <i class="menu-icon fa fa-bar-chart"></i>Waktu Tunggu Lulusan</a>
+                         </li>
+                         <li>
+                              <a href="../data/masa_studi_lulusan.php"> <i class="menu-icon fa fa-bar-chart"></i>Masa Studi Lulusan</a>
+                         </li>
+                         <li>
+                              <a href="../data/publikasi_ilmiah_DTPS.php"> <i class="menu-icon fa fa-bar-chart"></i>Publikasi Ilmiah DTPS</a>
+                         </li>
+                        
                          
 
                     </ul>
