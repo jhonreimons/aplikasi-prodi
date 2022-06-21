@@ -160,7 +160,7 @@ $sql2  = mysqli_query($conn, "SELECT * FROM dosen WHERE id_dosen ='$id'");
                                                             </tr>
                                                        </tbody>
                                                   <?php endwhile; ?>
-                                                  <img class="card-img-right col-2" src="../images/Foto Dosen/<?php echo $data1['foto']; ?>" alt="Card image cap">
+                                                  <img class="card-img-right col-2" src="../images/Foto Dosen/<?php echo $data1['foto']; ?>"align="right" alt="Card image cap">
                                              </table>
                                         </div>
                                    </div>
