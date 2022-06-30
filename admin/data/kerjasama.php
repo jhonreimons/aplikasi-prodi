@@ -1,14 +1,3 @@
-<?php
-
-require "../../config.php";
-$query1 =  "SELECT * FROM bph_himpunan";
-$sql1 = mysqli_query($conn, $query1);
-
-
-
-
-?>
-
 <!doctype html>
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="">
@@ -17,7 +6,7 @@ $sql1 = mysqli_query($conn, $query1);
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Kerjasama</title>
+     <title>Kerja Sama</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -62,10 +51,9 @@ $sql1 = mysqli_query($conn, $query1);
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
                                    <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
@@ -93,7 +81,7 @@ $sql1 = mysqli_query($conn, $query1);
                                                   <tr>
                                                        <th rowspan="2">No.</th>
                                                        <th rowspan="2">Lembaga Mitra</th>
-                                                       <th colspan="3">Tingkat</th>
+                                                       <th class="text-center" colspan="3">Tingkat</th>
                                                   </tr>
                                                   <tr>
                                                        <th>Internasional</th>
@@ -108,18 +96,39 @@ $sql1 = mysqli_query($conn, $query1);
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  <tr>
-                                                       <td>1</td>
-                                                       <td>2</td>
-                                                       <td>3</td>
-                                                       <td>4</td>
-                                                       <td>5</td>
-                                                       <td>6</td>
-                                                       <td>7</td>
-                                                       <td>8</td>
-                                                       <td>9</td>
-                                                       <td>10</td>
+                                                  <?php
+                                                       require "../../connect.php";
+                                                       $query = "SELECT * FROM m_kerjsama_prodi
+                                                       INNER JOIN r_tingkat ON  
+                                                       m_kerjsama_prodi.tingkat = r_tingkat.id_tingkat
+                                                       INNER JOIN r_tahun ON m_kerjsama_prodi.waktu = r_tahun.id_tahun AND m_kerjsama_prodi.waktu = r_tahun.id_tahun
+                                                       ";
+                                                       $sql = mysqli_query($connection,$query);
+                                                  ?>
+                                                  <tr> 
+                                                       <?php 
+                                                       $i = 1;
+                                                       while($row = mysqli_fetch_assoc($sql)): ?>
+                                                       <td><?php echo $i++; ?></td>
+                                                       <td><?php echo $row['lembaga_mitra'];; ?></td>
+                                                       <td><?php
+                                                                 if($row['tingkat'] == 'Internasional'){
+                                                                      echo "√";
+                                                                 }
+                                                       ?></td>
+                                                       <td><?php  if($row['tingkat'] == 'Nasional'){
+                                                                      echo "√";
+                                                                 } ?></td>
+                                                       <td><?php if($row['tingkat'] == 'Wilayah/Lokal'){
+                                                                      echo "√";
+                                                                 } ?></td>
+                                                       <td><?php echo $row['judul_kerjasama'] ?></td>
+                                                       <td><?php echo $row['manfaat'];?></td>
+                                                       <td><?php echo $row['tahun']." & ".$row['durasi']."Tahun"; ?></td>
+                                                       <td><?php echo $row['bukti_kerjasama']; ?></td>
+                                                       <td><?php echo $row['tahun']; ?></td>
                                                   </tr>
+                                                  <?php endwhile; ?>
                                              </tbody>
                                         </table>
                                    </div>
@@ -171,7 +180,7 @@ $sql1 = mysqli_query($conn, $query1);
                     </script>
                     <script>
                          function myFunction() {
-                              location.replace("buat_data_himpunan.php")
+                              location.replace("../buat_data/buat_data_kerjasama.php")
                          }
                     </script>
                     <!--Local Stuff-->

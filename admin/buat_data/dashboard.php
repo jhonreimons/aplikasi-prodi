@@ -31,10 +31,10 @@
                          </li>
                          <li class="menu-title">Data Kegiatan</li>
                          <li>
-                              <a href="../jadwal_kegiatan.php"> <i class="menu-icon fa fa-bar-chart"></i>Jadwal Kegiatan</a>
+                              <a href="../data/data_matakuliah.php"> <i class="menu-icon fa fa-bar-chart"></i>Jadwal Kegiatan</a>
                          </li>
                          <li>
-                              <a href="../data_matakuliah.php"> <i class="menu-icon fa fa-area-chart"></i>Matakuliah</a>
+                              <a href="../jadwal_kegiatan.php"> <i class="menu-icon fa fa-bar-chart"></i>Jadwal Kegiatan</a>
                          </li>
                          <li>
                               <a href="../data_penelitian_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Penelitian Dosen</a>

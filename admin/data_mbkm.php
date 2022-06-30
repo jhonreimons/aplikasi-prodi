@@ -1,6 +1,6 @@
 <?php
-require "../config.php";
-$sql = mysqli_query($conn, "SELECT * FROM data_mbkm");
+require "../connect.php";
+$sql = mysqli_query($connection, "SELECT * FROM data_mbkm");
 ?>
 
 <!doctype html>
@@ -108,6 +108,16 @@ $sql = mysqli_query($conn, "SELECT * FROM data_mbkm");
             </div>
         </header>
         <!-- /#header -->
+        <?php
+            if (isset($_GET['aksi'] )== "hapus") : ?>
+                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                    <span class="badge badge-pill badge-success">Success</span>
+                    <span class="ml-4">Data berhasil di hpuas</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
         <!-- Content -->
         <div class="content">
             <!-- Animated -->
@@ -135,6 +145,8 @@ $sql = mysqli_query($conn, "SELECT * FROM data_mbkm");
                                         <th>Semester</th>
                                         <th>Tahun Ajaran</th>
                                         <th>Status</th>
+                                        <th>Edit</th>
+                                        <th>Hapus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -150,6 +162,8 @@ $sql = mysqli_query($conn, "SELECT * FROM data_mbkm");
                                             <td><?php echo "$data[semester]"; ?></td>
                                             <td><?php echo "$data[tahun_ajaran]"; ?></td>
                                             <td><?php echo "$data[status]"; ?></td>
+                                            <td><button class="btn btn-warning"><a href="ubah/update_mbkm.php?id=<?php echo $data['id_mbkm']; ?>">Edit</a></button></td>
+                                            <td><a href="hapus/hapus_mbkm.php?id-mbkm=<?php echo $data['id_mbkm']; ?>"><button class="btn btn-danger">Hapus</a></button></td>
                                         </tr>
                                     <?php $i++;
                                     endwhile; ?>

@@ -1,7 +1,7 @@
 <?php
-require "../config.php";
+require "../connect.php";
 $query1 =  "SELECT * FROM pa2";
-$sql1 = mysqli_query($conn, $query1);
+$sql1 = mysqli_query($connection, $query1);
 ?>
 <!doctype html>
 <!--[if gt IE 8]><!-->
@@ -11,7 +11,7 @@ $sql1 = mysqli_query($conn, $query1);
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Data Proyek Akhir I</title>
+     <title>Data Proyek Akhir II</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -59,8 +59,7 @@ $sql1 = mysqli_query($conn, $query1);
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -102,12 +101,12 @@ $sql1 = mysqli_query($conn, $query1);
                                                             $id_dosen_penguji_1 = $data1['id_dosen_penguji1'];
                                                             $id_dosen_penguji_2 = $data1['id_dosen_penguji2'];
                                                             $query2 =
-                                                                 "SELECT * FROM dosen WHERE id_dosen = '$id_dosen_pembimbing'";
-                                                            $sql2  = mysqli_query($conn, $query2);
+                                                                 "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen_pembimbing'";
+                                                            $sql2  = mysqli_query($connection, $query2);
                                                             $data2 = mysqli_fetch_assoc($sql2);
-                                                            $sql3  = mysqli_query($conn, "SELECT * FROM dosen WHERE id_dosen = '$id_dosen_penguji_1'");
+                                                            $sql3  = mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen_penguji_1'");
                                                             $data3 = mysqli_fetch_assoc($sql3);
-                                                            $sql4  = mysqli_query($conn, "SELECT * FROM dosen WHERE id_dosen = '$id_dosen_penguji_2'");
+                                                            $sql4  = mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen_penguji_2'");
                                                             $data4 = mysqli_fetch_assoc($sql4);
                                                        ?>
                                                             <td><?php echo $i; ?>.</td>

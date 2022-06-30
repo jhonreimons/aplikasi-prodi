@@ -155,7 +155,7 @@ if (isset($_POST['submit'])) {
                                         $sql =  mysqli_query($conn, "SELECT * FROM divisi");
                                         while ($row = mysqli_fetch_assoc($sql)) :
                                         ?>
-                                             <option value="<?php echo $row['id_divisi']; ?>"><?php;
+                                             <option value="<?php echo $row['id_divisi']; ?>"><?php
                                                                                                echo $row['nama_divisi']; ?></option>
                                         <?php endwhile; ?>
                                    </select>

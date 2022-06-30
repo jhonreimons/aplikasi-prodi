@@ -2,11 +2,12 @@
 
 require "../config.php";
 if (isset($_POST['submit'])) {
-     $mahasiswa_aktif = $_POST['mahasiswa_aktif'];
-     $mahasiswa_keluar = $_POST['mahasiswa_keluar'];
-     $tahun_ajaran  = $_POST['tahun_ajaran'];
-     $query = "INSERT INTO jumlah_mahasiswa_aktif(id_jumlah_mahasiswa,mahasiswa_aktif,mahasiswa_do,tahun_ajaran)
-          VALUE('','$mahasiswa_aktif','$mahasiswa_keluar','$tahun_ajaran')";
+     $nama = $_POST['nama'];
+     $tahun = $_POST['tahun'];
+     $nim  = $_POST['nim'];
+     $status  = $_POST['status'];
+     $query = "INSERT INTO mahasiswa_keluar(id_mahasiswa_keluar,nama_mahasiswa,tanggal_keluar,nim,status)
+          VALUE('','$nama','$tahun','$nim','$status')";
      mysqli_query($conn, $query);
 }
 
@@ -113,8 +114,7 @@ if (isset($_POST['submit'])) {
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -145,18 +145,30 @@ if (isset($_POST['submit'])) {
                               <div class="card-body">
                                    <form action="" method="post" novalidate="novalidate">
                                         <div class="form-group">
-                                             <label for="mahasiswa aktif" class="control-label mb-1">Mahasiswa Aktif</label>
-                                             <input id="mahasiswa aktif" name="mahasiswa_aktif" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                             <label for="nama" class="control-label mb-1">Nama</label>
+                                             <input id="nama" name="nama" type="text" class="form-control" aria-required="true" aria-invalid="false">
                                         </div>
                                         <div class="form-group">
-                                             <label for="mahasiswa keluar" class="control-label mb-1">Mahasiswa Keluar (DO)</label>
-                                             <input id="mahasiswa keluar=" name="mahasiswa_keluar" type="number" class="form-control mahasiswa keluar valid" data-val="true" data-val-required="Please enter mahasiswa keluar on card" autocomplete="mahasiswa keluar" aria-required="true" aria-invalid="false" aria-describedby="mahasiswa keluar">
+                                             <label for="nim" class="control-label mb-1">NIM</label>
+                                             <input id="nim" name="nim" type="text" class="form-control mahasiswa keluar valid" data-val="true" data-val-required="Please enter mahasiswa keluar on card" autocomplete="mahasiswa keluar" aria-required="true" aria-invalid="false" aria-describedby="mahasiswa keluar">
                                         </div>
                                         <div class="form-group">
-                                             <label for="tahun ajaran" class="control-label mb-1">Tahun Ajaran</label>
-                                             <input id="tahun ajaran" name="tahun ajaran" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                             <label for="tahun" class="control-label mb-1">Tanggal Keluar</label>
+                                             <input id="tahun" name="tahun" type="date" class="form-control" aria-required="true" aria-invalid="false">
                                         </div>
-
+                                        <div class="form-group">
+                                             <label for="status" class="control-label mb-1">Status</label>
+                                             <select name="status" id="status" class="form-control">
+                                             <option value="#">Status</option>
+                                             <?php
+                                             $sql =  mysqli_query($conn, "SELECT * FROM status_mahasiswa");
+                                             while ($row = mysqli_fetch_assoc($sql)) :
+                                             ?>
+                                                  <option value="<?php echo $row['id_status_mahasiswa']; ?>"><?php $row['id_status_mahasiswa'];
+                                                  echo $row['status']; ?></option>
+                                             <?php endwhile; ?>
+                                        </select>
+                                        </div>
                                         <div>
                                              <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
                                         </div>

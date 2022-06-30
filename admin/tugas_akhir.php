@@ -1,11 +1,6 @@
 <?php
 
-require "../config.php";
-$query1 =  "SELECT * FROM data_ta";
-$sql1 = mysqli_query($conn, $query1);
-
-
-
+require "../connect.php";
 
 ?>
 
@@ -65,8 +60,7 @@ $sql1 = mysqli_query($conn, $query1);
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -102,30 +96,24 @@ $sql1 = mysqli_query($conn, $query1);
                                              </thead>
                                              <tbody>
                                                   <?php $i = 1;
-                                                  while ($data1 = mysqli_fetch_assoc($sql1)) :
-                                                       $id_dosen_pembimbing = $data1['id_dosen_pembimbing1'];
-                                                       $id_dosen_penguji_1 = $data1['id_dosen_penguji_1'];
-                                                       $id_dosen_penguji_2 = $data1['id_dosen_penguji_2'];
-                                                       $query2 =
-                                                            "SELECT * FROM dosen WHERE id_dosen = '$id_dosen_pembimbing'";
-                                                       $sql2  = mysqli_query($conn, $query2);
-                                                       $data2 = mysqli_fetch_assoc($sql2);
-                                                       $sql3  = mysqli_query($conn, "SELECT * FROM dosen WHERE id_dosen = '$id_dosen_penguji_1'");
-                                                       $data3 = mysqli_fetch_assoc($sql3);
-                                                       $sql4  = mysqli_query($conn, "SELECT * FROM dosen WHERE id_dosen = '$id_dosen_penguji_2'");
-                                                       $data4 = mysqli_fetch_assoc($sql4);
+                                                  $query1 =   "SELECT * FROM data_ta 
+                                                  INNER JOIN m_dosen ON data_ta.id_dosen_pembimbing1 = m_dosen.id_dosen
+                                                  AND data_ta.id_dosen_penguji_1 = m_dosen.id_dosen
+                                                  ";
+                                                  $sql1 = mysqli_query($connection, $query1);
+                                                  while ($data= mysqli_fetch_assoc($sql1)):
                                                   ?>
                                                        <tr>
                                                             <td><?php echo $i; ?>.</td>
-                                                            <td><?php echo $data2['nama_dosen']; ?></td>
+                                                            <td><?php echo $data['nama_dosen']; ?></td>
                                                             </td>
-                                                            <td><?php echo $data1['jumlah_yg_dibimbing']; ?></td>
-                                                            <td><?php echo $data3['nama_dosen']; ?><br>
+                                                            <td><?php echo $data['jumlah_yg_dibimbing']; ?></td>
+                                                            <td><?php echo $data['nama_dosen']; ?><br>
                                                             </td>
-                                                            <td><?php echo $data4['nama_dosen']; ?> <br>
+                                                            <td><?php echo $data['nama_dosen']; ?> <br>
                                                             </td>
-                                                            <td><?php echo $data1['tahun_ajaran']; ?></td>
-                                                            <td><?php echo $data1['judul'] ?></td>
+                                                            <td><?php echo $data['tahun_ajaran']; ?></td>
+                                                            <td><?php echo $data['judul'] ?></td>
                                                        </tr>
                                                   <?php $i++;
                                                   endwhile; ?>

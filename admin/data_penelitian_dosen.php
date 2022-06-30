@@ -1,14 +1,6 @@
 <?php
 
-require "../config.php";
-$query1 =  "SELECT * FROM peneltian_dosen";
-$sql1 = mysqli_query($conn, $query1);
-
-$query2 =  "SELECT * FROM peneltian_dosen";
-$sql2 = mysqli_query($conn, $query2);
-
-
-
+require "../connect.php";
 
 ?>
 
@@ -70,8 +62,7 @@ $sql2 = mysqli_query($conn, $query2);
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -98,27 +89,27 @@ $sql2 = mysqli_query($conn, $query2);
                                                   <th>No.</th>
                                                   <th>Nama Dosen</th>
                                                   <th>Tahun</th>
-                                                  <th>Jenis Peneltian</th>
+                                                  <!-- <th>Jenis Peneltian</th> -->
                                                   <th>Judul Penelitian</th>
                                              </tr>
                                         </thead>
                                         <tbody>
                                              <?php $i = 1;
-                                             while ($data1 = mysqli_fetch_assoc($sql1)) :
-                                                  $id_dosen = $data1['id_dosen'];
-                                                  $query2 =
-                                                       "SELECT * FROM dosen WHERE id_dosen = '$id_dosen'";
-                                                  $sql2  = mysqli_query($conn, $query2);
-                                                  $data2 = mysqli_fetch_assoc($sql2);
+                                             $sql = "SELECT * FROM m_penelitian INNER JOIN m_dosen ON m_penelitian.id_dosen = m_dosen.id_dosen 
+                                             INNER JOIN m_pembiayaan ON m_penelitian.id_pembiayaan = m_pembiayaan.id_pembiayaan 
+                                             INNER JOIN r_tahun_akademik ON m_penelitian.tahun_akademik = r_tahun_akademik.id_tahun_akademik
+                                             INNER JOIN r_tahun ON m_penelitian.tahun_ajaran = r_tahun.id_tahun";
+                                             $data = mysqli_query($connection,$sql);
+                                             while ($row = mysqli_fetch_assoc($data)) :
                                              ?>
                                                   <tr>
                                                        <td><?php echo $i; ?>.</td>
-                                                       <td><?php echo $data2['nama_dosen']; ?></td>
+                                                       <td><?php echo $row['nama_dosen']; ?></td>
                                                        </td>
-                                                       <td><?php echo $data1['tahun']; ?></td>
-                                                       <td><?php echo $data1['jenis_peneltian']; ?> <br>
+                                                       <td><?php echo $row['tahun']; ?></td>
+                                                       <!-- <td><?php //echo $row['jenis_peneltian']; ?> <br> -->
                                                        </td>
-                                                       <td><?php echo $data1['judul_penelitian']; ?><br>
+                                                       <td><?php echo $row['judul_penelitian']; ?><br>
                                                        </td>
 
                                                   </tr>

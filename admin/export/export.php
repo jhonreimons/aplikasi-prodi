@@ -4,11 +4,12 @@ $koneksi = mysqli_connect("localhost","root","","operasional_prodi");
 // mysqli_select_db("penjualan");
 
 // nama file
-$filename="data-mahasiswa".".csv";
+// $filename="data-mahasiswa".".xlsx";
 
-//header info for browser
+// //header info for browser
 header("Content-Type: application/vnd-ms-excel"); 
-header('Content-Disposition: attachment; filename="' . $filename . '";');
+header("Content-Disposition: attachment; filename=data-mbkm.csv");
+// header('Content-Disposition: attachment; filename="' . $filename . '";');
 
    //menampilkan data sebagai array dari tabel produk
 $out=array();

@@ -1,9 +1,8 @@
 <?php
-
-require "../connect.php";
-
-
+require "../../connect.php";
+require "function.php";
 ?>
+
 <!doctype html>
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="">
@@ -12,7 +11,7 @@ require "../connect.php";
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Penugasan Dosen</title>
+     <title>Update Data MBKM</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -21,8 +20,8 @@ require "../connect.php";
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-     <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="../../assets/css/cs-skin-elastic.css">
+     <link rel="stylesheet" href="../../assets/css/style.css">
      <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
      <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
@@ -74,7 +73,10 @@ require "../connect.php";
 
 <body>
      <!-- Left Panel -->
-     <?php include "dashboard.php"; ?>
+     <?php 
+          require "dashboard.php"; 
+          ?>
+     
      <!-- /#left-panel -->
      <!-- Right Panel -->
      <div id="right-panel" class="right-panel">
@@ -102,10 +104,10 @@ require "../connect.php";
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -114,37 +116,101 @@ require "../connect.php";
           <!-- /#header -->
           <!-- Content -->
           <div class="content">
+               <?php 
+// function update($data){
+//      global $connection;
+
+//      $id = $data['id'];
+//      $nama = $data['nama'];
+//      $nim = $data['nim'];
+//      $angkatan = $data['angkatan'];
+//      $semester = $data['semester'];
+//      $perusahaan = $data['perusahaan'];
+//      $tahun_ajaran = $data['tahun_ajaran'];
+//      $status = $data['status'];
+
+//      $sql = "UPDATE data_mbkm SET  nama = '$nama',
+//                                    nim = '$nim',
+//                                    angkatan = '$angkatan',
+//                                    perusahaan = '$perusahaan',
+//                                    semester = '$semester',
+//                                    tahun_ajaran = '$tahun_ajaran',
+//                                    status = '$status'
+//                                    WHERE id_mbkm  = '$id'";
+//                     mysqli_query($connection,$sql);
+
+//                          return mysqli_affected_rows($connection);
+          
+// }
+               if(isset($_POST['submit'])):
+               if (update($_POST) > 0) : ?>
+                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                         <span class="badge badge-pill badge-success">Success</span>
+                         <span class="ml-4">Data berhasil di Ubah</span>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+               <?php endif; ?>
+               <?php endif; ?>
+
+
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
-                    <div class="d-flex justify-content-end">
-                         <button class="btn btn-success ml-5 pl-3" onclick="myFunction()">Buat Penugasan Dosen</button>
-                    </div>
                     <div class="row">
                          <div class="content">
-                              <div class="card-header col-6">
-                                   <strong class="card-title">Penugasan Dosen</strong>
+                              <div class="card-header">
+                                   <strong class="card-title">Ubah Data Mahasiswa</strong>
                               </div>
-                              <div id="bootstrap-data-table" class="table table-striped table-bordered col-6">
-                                   <table class="bootstrap-data-table">
-                                        <thead>
-                                             <tr>
-                                                  <th class="serial">NIDN</th>
-                                                  <th class="avatar">Nama Dosen</th>
-                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                             <?php $i = 1;
-                                             $sql  = mysqli_query($connection, "SELECT * FROM m_dosen");
-                                             while ($data = mysqli_fetch_assoc($sql)) : ?>
-                                                  <tr>
-                                                       <td class="serial"><?php echo $data['nidn']; ?>.</td>
-                                                       <td><a href="view_data_tugas.php?id=<?= $data['id_dosen']; ?>"><?php echo $data['nama_dosen']; ?></a></td>
-                                                  </tr>
-                                             <?php $i++;
-                                             endwhile; ?>
-                                        </tbody>
-                                   </table>
+                              <?php 
+                              $id = $_GET['id'];
+                              $query = "SELECT * FROM data_mbkm WHERE id_mbkm = '$id'";
+                              $sql =  mysqli_query($connection,$query);
+                              $data = mysqli_fetch_assoc($sql);
+
+                              ?>
+                              <div class="card-body">
+                                   <form action="" method="post" novalidate="novalidate">
+                                   <div class="card-body">
+                                   <div class="form-group">
+                                        <form action="" method="post" class="pt-3">
+                                             <label id="nama" for="nama" class="control-label mb-1">Nama</label>
+                                             <input id="nama" value="<?php echo $data['nama']; ?>" name="nama" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                             <input id="id" value="<?php echo $data['id_mbkm']; ?>" name="id" type="hidden" class="form-control" aria-required="true" aria-invalid="false">
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="nim" class="control-label mb-1">NIM</label>
+                                        <input id="nim" name="nim" value="<?php echo $data['nim']; ?>" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="angkatan" class="control-label mb-1">Angkatan</label>
+                                        <input id="angkatan" name="angkatan" value="<?php echo $data['angkatan']; ?>" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="perusahaan" class="control-label mb-1">Perusahaan</label>
+                                        <input id="perusahaan" name="perusahaan" value="<?php echo $data['perusahaan']; ?>" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                   </div>
+                                   <div class="form-group">
+                                        <label id="semester" for="semester" class="control-label mb-1">Semester</label>
+                                        <input id="persuhaan" name="semester" value="<?php echo $data['semester']; ?>" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                   </div>
+                                   <div class="form-group">
+                                        <label id="tahun_ajaran" for="tahun_ajaran" class="control-label mb-1">Tahun Ajaran</label>
+                                        <input id="tahun_ajaran" name="tahun_ajaran" value="<?php echo $data['tahun_ajaran']; ?>" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                   </div>
+                                   <div class="form-group">
+                                        <label id="status" for="status" class="control-label mb-1">Status</label>
+                                        <select name="status" id="status" class="form-control">
+                                             <option value="">Status</option>
+                                             <option value="selesai">Selesai</option>
+                                             <option value="Belum">Belum</option>
+                                        </select>
+                                   </div>
+                                   <div>
+                                        <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Update Data</button>
+                                   </div>
+                                   </form>
                               </div><!-- .animated -->
                          </div><!-- .content -->
                     </div>
@@ -156,7 +222,7 @@ require "../connect.php";
                <footer class="site-footer">
                     <div class="footer-inner bg-white">
                          <div class="row">
-                              <div class="col-sm-6"> Copyright &copy; 2018 Kel 05 </div>
+                              <div class="col-sm-6"> Copyright &copy; 2022 Kel 05 </div>
                               <div class="col-sm-6 text-right"> Designed by <a href="https://colorlib.com">Kel 05</a>
                               </div>
                          </div>
@@ -170,7 +236,7 @@ require "../connect.php";
           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-          <script src="../assets/js/main.js"></script>
+          <script src="../../assets/js/main.js"></script>
           <!--  Chart js -->
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
           <!--Chartist Chart-->
@@ -180,15 +246,10 @@ require "../connect.php";
           <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-          <script src="../assets/js/init/weather-init.js"></script>
+          <script src="./../assets/js/init/weather-init.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-          <script src="../assets/js/init/fullcalendar-init.js"></script>
-          <script>
-               function myFunction() {
-                    location.replace("buat_penugasan_dosen.php");
-               }
-          </script>
+          <script src="../../assets/js/init/fullcalendar-init.js"></script>
           <!--Local Stuff-->
 </body>
 

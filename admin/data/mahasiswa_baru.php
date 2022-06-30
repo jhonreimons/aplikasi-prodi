@@ -1,6 +1,8 @@
 <?php
 
-require "../../connect.php";
+require "../../config.php";
+$query1 =  "SELECT * FROM bph_himpunan";
+$sql1 = mysqli_query($conn, $query1);
 
 
 
@@ -15,7 +17,7 @@ require "../../connect.php";
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Karya Ilmiah</title>
+     <title>Seleksi Mahasiswa Baru</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -60,11 +62,11 @@ require "../../connect.php";
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
                                    <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -83,30 +85,33 @@ require "../../connect.php";
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Kerjasama</strong>
+                                        <strong class="card-title">Seleksi Mahasiswa Baru</strong>
                                    </div>
-                                   <div class="card-body">
+                                   <div class="card-body col-6">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                              <thead>
                                                   <tr>
-                                                       <th >No.</th>
-                                                       <th >Nama Dosen</th>
-                                                       <th >Judul(Jurnal, volume, Tahun, Nomor, Halaman)</th>
-                                                       <th >Jumlah Sitasi</th>
+                                                       <th>Tahun Akademik</th> 
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                                  <?php 
+                                                       
+                                                       require "../../connect.php";
+                                                       $query  = "SELECT * FROM r_tahun";
+                                                       $sql = mysqli_query($connection,$query);
+                                                       while ($row = mysqli_fetch_assoc($sql)):
+                                                  ?>
                                                   <tr>
-                                                       <td>1</td>
-                                                       <td>2</td>
-                                                       <td>3</td>
-                                                       <td>4</td>
-                                                  </tr>
+                                                  <td><a href="seleksi_mahasiswa_baru.php?tahun_akademik=<?php echo $row['tahun']; ?>"><?php echo $row['tahun']; ?></a></td>     
+                                                  <?php endwhile; ?>
+                                             </tr>
                                              </tbody>
                                         </table>
                                    </div>
                                    <!-- .animated -->
                               </div><!-- .content -->
+
                               <!-- .animated -->
                          </div>
                          <!-- /.content -->
@@ -152,7 +157,7 @@ require "../../connect.php";
                     </script>
                     <script>
                          function myFunction() {
-                              location.replace("buat_data_himpunan.php")
+                              location.replace("../buat_data/buat_data_maba.php")
                          }
                     </script>
                     <!--Local Stuff-->

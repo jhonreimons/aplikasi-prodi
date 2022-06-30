@@ -1,11 +1,6 @@
 <?php
 
-require "../../config.php";
-$query1 =  "SELECT * FROM bph_himpunan";
-$sql1 = mysqli_query($conn, $query1);
-
-
-
+require "../../connect.php";
 
 ?>
 
@@ -62,11 +57,10 @@ $sql1 = mysqli_query($conn, $query1);
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -104,21 +98,17 @@ $sql1 = mysqli_query($conn, $query1);
 
                                              </tr>
                                              </thead>
+                                             <?php 
+                                             $sql = "SELECT * FROM m_dosen INNER JOIN r_status_dosen ON m_dosen.status = r_status_dosen.id_status"; 
+                                             $query = mysqli_query($connection,$sql);
+                                             ?>
                                              <tbody>
                                                   <tr>
-                                                   <td>1</td>     
-                                                   <td>2</td> 
-                                                   <td>3</td> 
-                                                   <td>4</td> 
-                                                   <td>5</td> 
-                                                   <td>6</td>
-                                                   <td>7</td>
-                                                   <td>8</td>
-                                                   <td>9</td>
-                                                   <td>10</td>
-                                                  
-                                                  
-                                                   
+                                                  <?php while ($row = mysqli_fetch_assoc($query)):?>
+                                                  <td><?php echo $row['nama_dosen']; ?></td>   
+                                                  <td><?php echo $row['nidn']; ?></td>   
+                                                  <td><?php echo $row['bidang_keahlian']; ?></td>   
+                                                  <?php endwhile;?>
                                              </tr>
                                              </tbody>
                                         </table>

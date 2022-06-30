@@ -1,13 +1,13 @@
 <?php
 
-require "../config.php";
+require "../connect.php";
 if (isset($_POST['submit'])) {
      $dosen_pengampuh = $_POST['dosen_pengampuh'];
      $tahun_ajaran = $_POST['tahun_ajaran'];
      $semester = $_POST['semester'];
      $matakuliah = $_POST['matakuliah'];
 
-     $query = "INSERT INTO mtk_dosen(id_mk_dosen,	tahun_ajaran,semester,id_dosen,id_matakuliah)
+     $query = "INSERT INTO r_pengajaran(id_mk_dosen,tahun_ajaran,semester,id_dosen,id_matakuliah)
           VALUE('','$tahun_ajaran','$semester','$dosen_pengampuh','$matakuliah')";
      mysqli_query($conn, $query);
 }
@@ -125,7 +125,7 @@ if (isset($_POST['submit'])) {
           <!-- /#header -->
           <!-- Content -->
           <div class="content">
-               <?php $row = mysqli_affected_rows($conn);
+               <?php $row = mysqli_affected_rows($connection);
                if ($row > 0) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                          <span class="badge badge-pill badge-success">Success</span>
@@ -152,12 +152,12 @@ if (isset($_POST['submit'])) {
                                              <select name="dosen_pengampuh" id="dosen_pengampuh" class="form-control">
                                                   <option value="#">Pilih Dosen Pengampuh</option>
                                                   <?php
-                                                  $sql =  mysqli_query($conn, "SELECT * FROM dosen");
+                                                  $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
                                                   while ($row = mysqli_fetch_assoc($sql)) :
                                                   ?>
                                                        <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                                                                         echo $row['nama_dosen'];
-                                                                                                         ?></option>
+                                                       echo $row['nama_dosen'];
+                                                       ?></option>
                                                   <?php
                                                   endwhile;
                                                   ?>
@@ -176,12 +176,11 @@ if (isset($_POST['submit'])) {
                                         <select name="matakuliah" id="matakuliah" class="form-control">
                                              <option value="#">Pilih Matakuliah</option>
                                              <?php
-                                             $sql =  mysqli_query($conn, "SELECT * FROM matakuliah");
+                                             $sql =  mysqli_query($connection, "SELECT * FROM m_matakuliah");
                                              while ($row = mysqli_fetch_assoc($sql)) :
                                              ?>
                                                   <option value="<?php echo $row['id_matakuliah']; ?>"><?php $row['id_matakuliah'];
-
-                                                                                                         echo $row['matakuliah']; ?></option>
+                                                  echo $row['kode_matakuliah']." ".$row['nama_matakuliah']; ?></option>
                                              <?php endwhile; ?>
                                         </select>
                                    </div>

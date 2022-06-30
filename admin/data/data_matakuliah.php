@@ -1,10 +1,6 @@
 <?php
 
 require "../../connect.php";
-
-
-
-
 ?>
 
 <!doctype html>
@@ -15,7 +11,7 @@ require "../../connect.php";
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Karya Ilmiah</title>
+     <title>Matakuliah</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -60,10 +56,9 @@ require "../../connect.php";
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
                                    <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
@@ -83,25 +78,32 @@ require "../../connect.php";
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Kerjasama</strong>
+                                        <strong class="card-title">Dosen Industri</strong>
                                    </div>
                                    <div class="card-body">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                              <thead>
                                                   <tr>
-                                                       <th >No.</th>
-                                                       <th >Nama Dosen</th>
-                                                       <th >Judul(Jurnal, volume, Tahun, Nomor, Halaman)</th>
-                                                       <th >Jumlah Sitasi</th>
+                                                       <th>Kode Matakuliah</th>
+                                                       <th>Matakuliah</th>
+                                                       <th>Semester</th>
+                                                       <th>SKS</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                             <?php
+                                                       $query1 =  "SELECT * FROM m_matakuliah";
+                                                       $sql1 = mysqli_query($connection, $query1);
+                                                       $i = 1;
+                                                       while ($row = mysqli_fetch_assoc($sql1)):
+                                                       ?>
                                                   <tr>
-                                                       <td>1</td>
-                                                       <td>2</td>
-                                                       <td>3</td>
-                                                       <td>4</td>
+                                                       <td><?php echo $row['kode_matakuliah']; ?></td>
+                                                       <td><?php echo $row['nama_matakuliah']; ?></td>
+                                                       <td><?php echo $row['semester']; ?></td>
+                                                       <td><?php echo $row['sks']; ?></td>
                                                   </tr>
+                                                  <?php $i++; endwhile; ?>
                                              </tbody>
                                         </table>
                                    </div>
@@ -152,7 +154,7 @@ require "../../connect.php";
                     </script>
                     <script>
                          function myFunction() {
-                              location.replace("buat_data_himpunan.php")
+                              location.replace("../buat_data/buat_matakuliah.php");
                          }
                     </script>
                     <!--Local Stuff-->

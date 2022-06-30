@@ -1,7 +1,5 @@
 <?php
-require "../config.php";
-
-$sql = mysqli_query($conn, "SELECT * FROM dosen");
+require "../connect.php";
 ?>
 <!doctype html>
 <!--[if gt IE 8]><!-->
@@ -104,8 +102,7 @@ $sql = mysqli_query($conn, "SELECT * FROM dosen");
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -117,6 +114,9 @@ $sql = mysqli_query($conn, "SELECT * FROM dosen");
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
+                    <div class="d-flex justify-content-end">
+                         <button class="btn btn-success ml-5 pl-3 " onclick="myFunction()">+ Tambah Data</button>
+                    </div>
                     <div class="row">
                          <div class="content col-7">
                               <div class="card-header">
@@ -128,14 +128,19 @@ $sql = mysqli_query($conn, "SELECT * FROM dosen");
                                              <tr>
                                                   <th class="serial">NIDN</th>
                                                   <th class="avatar">Nama</th>
+                                                  <th class="avatar">Edit</th>
+                                                  <th class="avatar">Hapus</th>
                                              </tr>
                                         </thead>
                                         <tbody>
                                              <tr>
                                                   <?php
+                                                  $sql = mysqli_query($connection, "SELECT * FROM m_dosen");
                                                   while ($data =  mysqli_fetch_assoc($sql)) : ?>
                                                        <td class="serial"><?php echo $data['nidn']; ?></td>
                                                        <td class="text-primary"><a href="detail_data_dosen.php?id=<?php echo $data['id_dosen']; ?>"> <?php echo $data['nama_dosen']; ?></td>
+                                                       <td class="text-primary"><button class="btn btn-warning">Edit</button></td>
+                                                       <td class="text-primary"><a href="hapus/hapus_dosen.php?id-dosen=<?php echo $data['id_dosen']; ?>"><button class="btn btn-danger">Hapus</a></button></td>
                                              </tr>
                                         <?php endwhile; ?>
                                         </tbody>
@@ -181,6 +186,11 @@ $sql = mysqli_query($conn, "SELECT * FROM dosen");
           <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
           <script src="../assets/js/init/fullcalendar-init.js"></script>
           <!--Local Stuff-->
-</body>
+<script>
+                         function myFunction() {
+                         location.replace("buat_data/buat_data_dosen.php")
+                    }
+</script>
+     </body>
 
 </html>

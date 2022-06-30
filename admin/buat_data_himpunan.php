@@ -87,64 +87,64 @@ if (isset($_POST['submit'])) {
 <body>
      <!-- Left Panel -->
      <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="../admin"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
-                    </li>
-                    <li class="menu-title">Data Mahasiswa </li><!-- /.menu-title -->
-                    <li>
-                        <a href="data_mahasiswa.php"> <i class="menu-icon fa fa-user-md"></i>Data mahasiswa</a>
-                    </li>
-                    <li>
-                        <a href="data_mbkm.php"> <i class="menu-icon fa fa-user-md"></i>MBKM</a>
-                    </li>
-                    <li class="menu-title">Data Dosen</li><!-- /.menu-title -->
-                    <li>
-                        <a href="data_dosen.php"> <i class="menu-icon ti-user"></i>Data dosen</a>
-                    </li>
-                    <li class="data-toggle">
-                        <a href="tugas_akhir.php" class=" data-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Tugas Akhir</a>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Proyek Akhir</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="proyek_akhir_1.php">Proyek Akhir I</a></li>
-                            <li><i class="fa fa-table"></i><a href="proyek_akhir_2.php">Proyek Akhir II</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-title">Data Kegiatan</li>
-                    <li>
-                        <a href="jadwal_kegiatan.php"> <i class="menu-icon fa fa-bar-chart"></i>Jadwal Kegiatan</a>
-                    </li>
-                    
-                    <li>
-                        <a href="data_penelitian_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Penelitian Dosen</a>
-                    </li>
-                    <li>
-                        <a href="penugasan_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Penugasan Dosen</a>
-                    </li>
-                    <li class="menu-title">HIMPUNAN MAHASISWA</li>
-                    <li>
-                        <a href="visi_misi.php"> <i class="menu-icon fa fa-bar-chart"></i>Visi Misi</a>
-                    </li>
-                    <li>
-                        <a href="bph_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>BPH Himpunan</a>
-                    </li>
-                    <li>
-                        <a href="divisi_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>Divisi Himpunan</a>
-                    </li>
-                    <li>
-                        <a href="kpu_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>KPU Himpunan</a>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </aside>
-                   </ul>
+          <nav class="navbar navbar-expand-sm navbar-default">
+               <div id="main-menu" class="main-menu collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                         <li class="active">
+                              <a href="../admin"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                         </li>
+                         <li class="menu-title">Data Mahasiswa </li><!-- /.menu-title -->
+                         <li>
+                              <a href="data_mahasiswa.php"> <i class="menu-icon fa fa-user-md"></i>Data mahasiswa</a>
+                         </li>
+                         <li>
+                              <a href="data_mbkm.php"> <i class="menu-icon fa fa-user-md"></i>MBKM</a>
+                         </li>
+                         <li class="menu-title">Data Dosen</li><!-- /.menu-title -->
+                         <li>
+                              <a href="data_dosen.php"> <i class="menu-icon ti-user"></i>Data dosen</a>
+                         </li>
+                         <li class="data-toggle">
+                              <a href="tugas_akhir.php" class=" data-toggle" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Tugas Akhir</a>
+                         </li>
+                         <li class="menu-item-has-children dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Proyek Akhir</a>
+                              <ul class="sub-menu children dropdown-menu">
+                                   <li><i class="fa fa-table"></i><a href="proyek_akhir_1.php">Proyek Akhir I</a></li>
+                                   <li><i class="fa fa-table"></i><a href="proyek_akhir_2.php">Proyek Akhir II</a></li>
+                              </ul>
+                         </li>
+                         <li class="menu-title">Data Kegiatan</li>
+                         <li>
+                              <a href="jadwal_kegiatan.php"> <i class="menu-icon fa fa-bar-chart"></i>Jadwal Kegiatan</a>
+                         </li>
+
+                         <li>
+                              <a href="data_penelitian_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Penelitian Dosen</a>
+                         </li>
+                         <li>
+                              <a href="penugasan_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Penugasan Dosen</a>
+                         </li>
+                         <li class="menu-title">HIMPUNAN MAHASISWA</li>
+                         <li>
+                              <a href="visi_misi.php"> <i class="menu-icon fa fa-bar-chart"></i>Visi Misi</a>
+                         </li>
+                         <li>
+                              <a href="bph_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>BPH Himpunan</a>
+                         </li>
+                         <li>
+                              <a href="divisi_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>Divisi Himpunan</a>
+                         </li>
+                         <li>
+                              <a href="kpu_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>KPU Himpunan</a>
+                         </li>
+                    </ul>
                </div><!-- /.navbar-collapse -->
           </nav>
+     </aside>
+     </ul>
+     </div><!-- /.navbar-collapse -->
+     </nav>
      </aside>
      <!-- /#left-panel -->
      <!-- Right Panel -->
@@ -206,70 +206,70 @@ if (isset($_POST['submit'])) {
                               <div class="card-header">
                                    <strong class="card-title">Data BPH HIMATEK</strong>
                               </div>
-                                   <div class="form-group">
-                                        <label for="Jumlah Mahasiswa" class="control-label mb-1">Ketua</label>
-                                        <input id="Jumlah Mahasiswa" name="jumlah_mahasiswa" type="text" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="tahun_ajaran" class="control-label mb-1">Wakil Ketua</label>
-                                        <input id="tahun_ajaran" name="tahun_ajaran" type="text" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="judul_tugas_akhir" class="control-label mb-1">Sekretaris</label>
-                                        <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="text" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="judul_tugas_akhir" class="control-label mb-1">Tahun Menjabat</label>
-                                        <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="judul_tugas_akhir" class="control-label mb-1">Tahun Selesai Menjabat</label>
-                                        <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div>
-                                        <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
-                                   </div>
-                                   </form>
-                              </div><!-- .animated -->
-                         </div><!-- .content -->
-                    </div>
-                    <!-- .animated -->
-               </div>
-               <!-- /.content -->
-               <div class="clearfix"></div>
-               <!-- Footer -->
-               <footer class="site-footer">
-                    <div class="footer-inner bg-white">
-                         <div class="row">
-                              <div class="col-sm-6"> Copyright &copy; 2022 Kel 05 </div>
-                              <div class="col-sm-6 text-right"> Designed by <a href="https://colorlib.com">Kel 05</a>
+                              <div class="form-group">
+                                   <label for="Jumlah Mahasiswa" class="control-label mb-1">Ketua</label>
+                                   <input id="Jumlah Mahasiswa" name="jumlah_mahasiswa" type="text" class="form-control" aria-required="true" aria-invalid="false">
                               </div>
+                              <div class="form-group">
+                                   <label for="tahun_ajaran" class="control-label mb-1">Wakil Ketua</label>
+                                   <input id="tahun_ajaran" name="tahun_ajaran" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                              </div>
+                              <div class="form-group">
+                                   <label for="judul_tugas_akhir" class="control-label mb-1">Sekretaris</label>
+                                   <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                              </div>
+                              <div class="form-group">
+                                   <label for="judul_tugas_akhir" class="control-label mb-1">Tahun Menjabat</label>
+                                   <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                              </div>
+                              <div class="form-group">
+                                   <label for="judul_tugas_akhir" class="control-label mb-1">Tahun Selesai Menjabat</label>
+                                   <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                              </div>
+                              <div>
+                                   <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
+                              </div>
+                              </form>
+                         </div><!-- .animated -->
+                    </div><!-- .content -->
+               </div>
+               <!-- .animated -->
+          </div>
+          <!-- /.content -->
+          <div class="clearfix"></div>
+          <!-- Footer -->
+          <footer class="site-footer">
+               <div class="footer-inner bg-white">
+                    <div class="row">
+                         <div class="col-sm-6"> Copyright &copy; 2022 Kel 05 </div>
+                         <div class="col-sm-6 text-right"> Designed by <a href="https://colorlib.com">Kel 05</a>
                          </div>
                     </div>
-               </footer>
-               <!-- /.site-footer -->
-          </div>
-          <!-- /#right-panel -->
-          <!-- Scripts -->
-          <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-          <script src="../assets/js/main.js"></script>
-          <!--  Chart js -->
-          <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
-          <!--Chartist Chart-->
-          <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-          <script src="../assets/js/init/weather-init.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-          <script src="../assets/js/init/fullcalendar-init.js"></script>
-          <!--Local Stuff-->
+               </div>
+          </footer>
+          <!-- /.site-footer -->
+     </div>
+     <!-- /#right-panel -->
+     <!-- Scripts -->
+     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+     <script src="../assets/js/main.js"></script>
+     <!--  Chart js -->
+     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+     <!--Chartist Chart-->
+     <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
+     <script src="../assets/js/init/weather-init.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+     <script src="../assets/js/init/fullcalendar-init.js"></script>
+     <!--Local Stuff-->
 </body>
 
 </html>

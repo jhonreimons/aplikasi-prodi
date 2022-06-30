@@ -1,5 +1,5 @@
 <?php
-require "../../config.php";
+require "../../connect.php";
 
 if (isset($_POST['submit'])) {
 
@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     foreach ($Reader as $Key => $Row) {
         // import data excel mulai baris ke-2 (karena ada header pada baris 1)
         if ($Key < 1) continue;
-        $query = mysqli_query($conn, "INSERT INTO data_mbkm(nama, nim, angkatan, perusahaan, semester, tahun_ajaran, status) VALUES ('" . $Row[0] . "', '" . $Row[1] . "','" . $Row[2] . "','" . $Row[3] . "','" . $Row[4] . "', '" . $Row[5] . "','" . $Row[6] . "')");
+        $query = mysqli_query($connection, "INSERT INTO data_mbkm(nama, nim, angkatan, perusahaan, semester, tahun_ajaran, status) VALUES ('" . $Row[0] . "', '" . $Row[1] . "','" . $Row[2] . "','" . $Row[3] . "','" . $Row[4] . "', '" . $Row[5] . "','" . $Row[6] . "')");
     }
     if ($query) {
         echo "Import data berhasil";
@@ -144,9 +144,6 @@ header("location:../data_mbkm.php");
                         <a href="penugasan_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Penugasan Dosen</a>
                     </li>
                     <li class="menu-title">HIMPUNAN MAHASISWA</li>
-                    <li>
-                        <a href="visi_misi.php"> <i class="menu-icon fa fa-bar-chart"></i>Visi Misi</a>
-                    </li>
                     <li>
                         <a href="bph_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>BPH Himpunan</a>
                     </li>

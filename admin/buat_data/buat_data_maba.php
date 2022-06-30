@@ -1,18 +1,24 @@
 <?php
 
-require "../connect.php";
+require "../../connect.php";
 if (isset($_POST['submit'])) {
-     $id_dosen_pembimbing1 = $_POST['dosen_pembimbing1'];
-     $id_dosen_pembimbing2 = $_POST['dosen_pembimbing2'];
-     $id_dosen_penguji_1 = $_POST['dosen_penguji_1'];
-     $id_dosen_penguji_2 = $_POST['dosen_penguji_2'];
-     $kelompok = $_POST['jumlah_mahasiswa'];
-     $judul = $_POST['judul_tugas_akhir'];
-     $tahun_ajaran = $_POST['tahun_ajaran'];
+     $daya_tampung = $_POST['daya_tampung'];
+     $jumlah_pendaftar = $_POST['jumlah_pendaftar'];
+     $jumlah_yang_lulus = $_POST['jumlah_yang_lulus'];
+     $mahasiswa_baru_reguler = $_POST['mahasiswa_baru_reguler'];
+     $mahasiswa_baru_transfer = $_POST['mahasiswa_baru_transfer'];
+     $mahasiswa_aktif_reguler = $_POST['mahasiswa_aktif_reguler'];
+     $mahasiswa_aktif_transfer = $_POST['mahasiswa_aktif_transfer'];
+     $tahun_akademik = $_POST['tahun_akademik'];
+     $ts = $_POST['ts'];
 
-     $query = "INSERT INTO data_ta(id_data_ta,id_dosen_pembimbing1,id_dosen_pembimbing2,jumlah_yg_dibimbing,judul,id_dosen_penguji_1,id_dosen_penguji_2, tahun_ajaran)
-          VALUE('','$id_dosen_pembimbing1','$id_dosen_pembimbing2','$kelompok','$judul','$id_dosen_penguji_1','$id_dosen_penguji_2','$tahun_ajaran')";
-     mysqli_query($connection, $query);
+     $query = "INSERT INTO m_maba(id_maba
+     ,daya_tampung,pendaftar,lulus_seleksi,
+     maba_reguler,maba_transfer,matif_reguler,matif_transfer,tahun_akademik,id_ts)
+          VALUE('','$daya_tampung','$jumlah_pendaftar',
+          '$jumlah_yang_lulus','$mahasiswa_baru_reguler','$mahasiswa_baru_transfer',
+          '$mahasiswa_aktif_reguler','$mahasiswa_aktif_transfer','$tahun_akademik','$ts')";
+          mysqli_query($connection, $query);
 }
 
 ?>
@@ -25,7 +31,7 @@ if (isset($_POST['submit'])) {
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Buat data tugas akhir</title>
+     <title>Buat data Kerjasama</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -34,8 +40,8 @@ if (isset($_POST['submit'])) {
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-     <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="../../assets/css/cs-skin-elastic.css">
+     <link rel="stylesheet" href="../../assets/css/style.css">
      <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
      <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
@@ -115,11 +121,11 @@ if (isset($_POST['submit'])) {
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
                                    <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -146,92 +152,58 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                          <div class="content">
                               <div class="card-header">
-                                   <strong class="card-title">Data Tugas Akhir</strong>
+                                   <strong class="card-title">Buat Data Seleksi Mahasiswa Baru</strong>
                               </div>
                               <div class="card-body">
-                                   <div class="form-group">
-                                        <form action="" method="post" class="pt-3">
-                                             <label id="dosen_pembimbing1" for="dosen_pembimbing1" class="control-label mb-1">Dosen Pembimbing I</label>
-                                             <select name="dosen_pembimbing1" id="dosen_pembimbing1" class="form-control">
-                                                  <option value="0">Pilih Dosen Pembimbing</option>
-                                                  <?php
-                                                  $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
-                                                  while ($row = mysqli_fetch_assoc($sql)) :
-                                                  ?>
-                                                       <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                                                                         echo "$row[nama_dosen]"; ?></option>
-                                                  <?php
-                                                  endwhile;
-                                                  ?>
-                                             </select>
-                                   </div>
-                                   <div class="form-group">
-                                        <form action="" method="post" class="pt-3">
-                                             <label id="dosen_pembimbing2" for="dosen_pembimbing2" class="control-label mb-1">Dosen Pembimbing</label>
-                                             <select name="dosen_pembimbing2" id="dosen_pembimbing2" class="form-control">
-                                                  <option value="0">Pilih Dosen Pembimbing II</option>
-                                                  <?php
-                                                  $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
-                                                  while ($row = mysqli_fetch_assoc($sql)) :
-                                                  ?>
-                                                       <option value="<?php echo $row['nama_dosen'];  ?>"><?php
-                                                       echo "$row[nama_dosen]"; ?></option>
-                                                  <?php
-                                                  endwhile;
-                                                  ?>
-                                             </select>
-                                   </div>
-
-                                   <div class="form-group">
-                                        <label for="Jumlah Mahasiswa" class="control-label mb-1">Jumlah Mahasiswa</label>
-                                        <input id="Jumlah Mahasiswa" name="jumlah_mahasiswa" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="tahun_ajaran" class="control-label mb-1">Tahun Ajaran</label>
-                                        <select name="tahun_ajaran" id="tahun_ajaran" class="form-control">
-                                             <option value="0">Pilih Tahun Ajaran</option>
+                                   <form action="" method="post" novalidate="novalidate">
+                                        <div class="form-group">
+                                             <label id="daya_tampung" for="daya_tampung" class="control-label mb-1">Daya Tampung</label>
+                                             <input id="daya_tampung" name="daya_tampung" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="jumlah_pendaftar" for="jumlah_pendaftar" class="control-label mb-1">Jumlah Pendaftar</label>
+                                             <input id="jumlah_pendaftar" name="jumlah_pendaftar" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="jumlah_yang_lulus" for="jumlah_yang_lulus" class="control-label mb-1">Jumlah Yang Lulus Seleksi</label>
+                                             <input id="jumlah_yang_lulus" name="jumlah_yang_lulus" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="mahasiswa_baru_reguler" for="mahasiswa_baru_reguler" class="control-label mb-1">Jumlah mahasiswa baru reguler</label>
+                                             <input id="mahasiswa_baru_reguler" name="mahasiswa_baru_reguler" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="mahasiswa_baru_transfer" for="mahasiswa_baru_transfer" class="control-label mb-1">Jumlah mahasiswa baru transfer</label>
+                                             <input id="mahasiswa_baru_transfer" name="mahasiswa_baru_transfer" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="mahasiswa_aktif_reguler" for="mahasiswa_aktif_reguler" class="control-label mb-1">Jumlah mahasiswa aktif reguler</label>
+                                             <input id="mahasiswa_aktif_reguler" name="mahasiswa_aktif_reguler" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="mahasiswa_aktif_transfer" for="mahasiswa_aktif_transfer" class="control-label mb-1">Jumlah mahasiswa aktif transfer</label>
+                                             <input id="mahasiswa_aktif_transfer" name="mahasiswa_aktif_transfer" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="tahun_akademik" for="tahun_akademik" class="control-label mb-1">Tahun Akademik</label>
+                                             <input id="tahun_akademik" name="tahun_akademik" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label for="ts" class="control-label mb-1">Data TS</label>
+                                             <select name="ts" id="ts" class="form-control">
+                                             <option value="">Pilih TS</option>
                                              <?php
-                                             $sql =  mysqli_query($connection, "SELECT * FROM r_tahun");
+                                             $sql =  mysqli_query($connection, "SELECT * FROM r_tahun_akademik");
                                              while ($row = mysqli_fetch_assoc($sql)) :
                                              ?>
-                                                  <option value="<?php echo $row['id_tahun']; ?>"><?php $row['id_tahun'];
-                                                                                                    echo $row['tahun']; ?></option>
+                                                  <option value="<?php echo $row['id_tahun_akademik']; ?>"><?php $row['id_tahun_akademik'];
+                                                  echo $row['tahun']; ?></option>
                                              <?php endwhile; ?>
                                         </select>
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="judul_tugas_akhir" class="control-label mb-1">Judul Tugas Akhir</label>
-                                        <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="text" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label id="dosen_penguji_1" for="dosen_penguji_1" class="control-label mb-1">Dosen Penguji I</label>
-                                        <select name="dosen_penguji_1" id="dosen_penguji_1" class="form-control">
-                                             <option value="0">Pilih Dosen Penguji</option>
-                                             <?php
-                                             $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
-                                             while ($row = mysqli_fetch_assoc($sql)) :
-                                             ?>
-                                                  <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                                                                    echo $row['nama_dosen']; ?></option>
-                                             <?php endwhile; ?>
-                                        </select>
-                                   </div>
-                                   <div class="form-group">
-                                        <label id="dosen_penguji_2" for="dosen_penguji_2" class="control-label mb-1">Dosen Penguji II</label>
-                                        <select name="dosen_penguji_2" id="dosen_penguji_2" class="form-control">
-                                             <option value="0">Pilih Dosen Penguji</option>
-                                             <?php
-                                             $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
-                                             while ($row = mysqli_fetch_assoc($sql)) :
-                                             ?>
-                                                  <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                                                                    echo $row['nama_dosen']; ?></option>
-                                             <?php endwhile; ?>
-                                        </select>
-                                   </div>
-                                   <div>
-                                        <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
-                                   </div>
+                                        </div>
+                                        <div>
+                                             <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
+                                        </div>
                                    </form>
                               </div><!-- .animated -->
                          </div><!-- .content -->
@@ -258,7 +230,7 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-          <script src="../assets/js/main.js"></script>
+          <script src="../../assets/js/main.js"></script>
           <!--  Chart js -->
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
           <!--Chartist Chart-->
@@ -268,10 +240,10 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-          <script src="../assets/js/init/weather-init.js"></script>
+          <script src="./../assets/js/init/weather-init.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-          <script src="../assets/js/init/fullcalendar-init.js"></script>
+          <script src="../../assets/js/init/fullcalendar-init.js"></script>
           <!--Local Stuff-->
 </body>
 

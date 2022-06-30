@@ -1,6 +1,6 @@
 <?php
 
-require "../config.php";
+require "../connect.php";
 if (isset($_POST['submit'])) {
      $nama = $_POST['nama'];
      $nim = $_POST['nim'];
@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
      $query = "INSERT INTO data_mbkm
      (id_mbkm,nama,nim,angkatan,perusahaan,semester,tahun_ajaran,status)
      VALUE('','$nama','$nim','$angkatan','$perusahaan','$semester','$tahun_ajaran','$status')";
-     mysqli_query($conn, $query);
+     mysqli_query($connection, $query);
 }
 
 ?>
@@ -177,17 +177,18 @@ if (isset($_POST['submit'])) {
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
                </div>
           </header>
+          
           <!-- /#header -->
           <!-- Content -->
           <div class="content">
-               <?php $row = mysqli_affected_rows($conn);
+          <?php  
+               $row = mysqli_affected_rows($connection);
                if ($row > 0) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                          <span class="badge badge-pill badge-success">Success</span>
@@ -197,7 +198,6 @@ if (isset($_POST['submit'])) {
                          </button>
                     </div>
                <?php endif; ?>
-
 
                <!-- Animated -->
                <div class="animated fadeIn">
@@ -210,10 +210,10 @@ if (isset($_POST['submit'])) {
                               <div class="card-body">
                                    <div class="form-group">
                                         <form action="" method="post" class="pt-3">
+                                        <input type="hidden" name="id" value="<?php echo $result['id_mbkm']; ?>">
                                              <label id="nama" for="nama" class="control-label mb-1">Nama</label>
                                              <input id="nama" name="nama" type="text" class="form-control" aria-required="true" aria-invalid="false">
                                    </div>
-
                                    <div class="form-group">
                                         <label for="nim" class="control-label mb-1">NIM</label>
                                         <input id="nim" name="nim" type="text" class="form-control" aria-required="true" aria-invalid="false">
@@ -228,7 +228,7 @@ if (isset($_POST['submit'])) {
                                    </div>
                                    <div class="form-group">
                                         <label id="semester" for="semester" class="control-label mb-1">Semester</label>
-                                        <input id="persuhaan" name="persuhaan" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        <input id="semester" name="semester" type="number" class="form-control" aria-required="true" aria-invalid="false">
                                    </div>
                                    <div class="form-group">
                                         <label id="tahun_ajaran" for="tahun_ajaran" class="control-label mb-1">Tahun Ajaran</label>

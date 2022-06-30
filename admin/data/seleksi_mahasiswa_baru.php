@@ -62,11 +62,11 @@ $sql1 = mysqli_query($conn, $query1);
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
                                    <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -107,17 +107,25 @@ $sql1 = mysqli_query($conn, $query1);
                                                   </tr>
                                              </thead>
                                              <tbody>
+                                                  <?php 
+                                                       
+                                                       require "../../connect.php";
+                                                       $id = $_GET['tahun_akademik'];
+                                                       $query  = "SELECT * FROM m_maba INNER JOIN r_tahun_akademik ON m_maba.id_ts = r_tahun_akademik.id_tahun_akademik WHERE m_maba.tahun_akademik  = '$id'";
+                                                       $sql = mysqli_query($connection,$query);
+                                                       while ($row = mysqli_fetch_assoc($sql)):
+                                                            
+                                                  ?>
                                                   <tr>
-                                                   <td>1</td>     
-                                                   <td>2</td> 
-                                                   <td>3</td> 
-                                                   <td>4</td> 
-                                                   <td>5</td> 
-                                                   <td>6</td>
-                                                   <td>7</td>
-                                                   <td>8</td>
-                                                  
-                                                   
+                                                  <td><?php echo $row['tahun']; ?></td>     
+                                                  <td><?php echo $row['daya_tampung']; ?></td> 
+                                                  <td><?php echo $row['pendaftar']; ?></td> 
+                                                  <td><?php echo $row['lulus_seleksi']; ?></td> 
+                                                  <td><?php echo $row['maba_reguler']; ?></td> 
+                                                  <td><?php echo $row['maba_transfer']; ?></td>
+                                                  <td><?php echo $row['matif_reguler']; ?></td>
+                                                  <td><?php echo $row['matif_transfer']; ?></td>
+                                                  <?php endwhile; ?>
                                              </tr>
                                              </tbody>
                                         </table>
@@ -170,7 +178,7 @@ $sql1 = mysqli_query($conn, $query1);
                     </script>
                     <script>
                          function myFunction() {
-                              location.replace("buat_data_himpunan.php")
+                              location.replace("../buat_data/buat_data_maba.php")
                          }
                     </script>
                     <!--Local Stuff-->

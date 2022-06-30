@@ -1,7 +1,6 @@
 <?php
 require "../config.php";
-$query = "SELECT * FROM mahasiswa_keluar";
-$sql = mysqli_query($conn, $query);
+
 
 ?>
 <!doctype html>
@@ -100,8 +99,7 @@ $sql = mysqli_query($conn, $query);
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -139,6 +137,11 @@ $sql = mysqli_query($conn, $query);
                                              </thead>
                                              <tbody>
                                                   <?php $i = 1;
+                                                  $query = "SELECT * FROM mahasiswa_keluar INNER JOIN
+                                                  status_mahasiswa ON 
+                                                  mahasiswa_keluar.status = status_mahasiswa.id_status_mahasiswa
+                                                  ";
+                                                  $sql = mysqli_query($conn, $query);
                                                   while ($data = mysqli_fetch_assoc($sql)) : ?>
                                                        <tr>
                                                             <td class="serial"><?php echo $i; ?>.</td>

@@ -181,7 +181,8 @@ $sql  = mysqli_query($conn, "SELECT * FROM dosen WHERE id_dosen ='$id'");
                                    <tbody>
                                         <tr>
                                              <?php $i = 1;
-                                             $sql2 = mysqli_query($conn, "SELECT * FROM  dosen INNER JOIN mtk_dosen INNER JOIN matakuliah WHERE dosen.id_dosen = '$id' AND mtk_dosen.id_matakuliah  = matakuliah.id_matakuliah");
+                                             $sql2 = mysqli_query($conn, "SELECT * FROM  dosen INNER JOIN mtk_dosen INNER JOIN matakuliah 
+                                             WHERE dosen.id_dosen = '$id' AND mtk_dosen.id_matakuliah  = matakuliah.id_matakuliah");
                                              while ($data1 = mysqli_fetch_assoc($sql2)) :
                                              ?>
                                                   <td><?php echo $i; ?>.</td>

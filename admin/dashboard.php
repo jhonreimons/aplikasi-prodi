@@ -27,13 +27,15 @@
                               </ul>
                          </li>
                          <li>
-                              <a href="data_publikasi_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Publikasi Dosen</a>
+                              <a href="data_publikasi_dosen.php"> <i class="menu-icon fa fa-book"></i>Publikasi Dosen</a>
                          </li>
                          <li class="menu-title">Data Kegiatan</li>
                          <li>
+                              <a href="data/data_matakuliah.php"> <i class="menu-icon fa fa-area-chart"></i>Matakuliah</a>
+                         </li>
+                         <li>
                               <a href="jadwal_kegiatan.php"> <i class="menu-icon fa fa-bar-chart"></i>Jadwal Kegiatan</a>
                          </li>
-
                          <li>
                               <a href="data_penelitian_dosen.php"> <i class="menu-icon fa fa-area-chart"></i>Penelitian Dosen</a>
                          </li>
@@ -50,47 +52,45 @@
                          </li>
                          <li class="menu-title">Tambahan</li>
                          <li>
-                              <a href="data/kerjasama.php"> <i class="menu-icon fa fa-bar-chart"></i>Kerjasama</a>
+                              <a href="data/kerjasama.php"> <i class="menu-icon fa fa-user"></i>Kerjasama</a>
                          </li>
                          <li>
-                              <a href="data/seleksi_mahasiswa_baru.php"> <i class="menu-icon fa fa-bar-chart"></i>Seleksi Mahasiswa Baru</a>
+                              <a href="data/mahasiswa_baru.php"> <i class="menu-icon fa fa-bar-chart"></i>Seleksi Mahasiswa Baru</a>
                          </li>
                          <li>
                               <a href="data/karya_ilmiah_sistasi.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
                          <li>
-
                               <a href="data/produk_diadopsi_masyarakat.php"> <i class="menu-icon fa fa-bar-chart"></i>Karya Ilimah Sitasi</a>
                          </li>
-                          <li>
+                         <li>
                               <a href="data/dosen_tidak_tetap.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Tidak Tetap</a>
                          </li>
                          <li>
-                      
                               <a href="data/dosen_tetap.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Tetap</a>
                          </li>
                          <li>
-                      
+                    
                               <a href="data/dosen_industri.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Industri</a>
                          </li>
                          <li>
-                      
+                    
                               <a href="data/dosen_pembimbing_TA.php"> <i class="menu-icon fa fa-bar-chart"></i>Dosen Pembimbing TA</a>
                          </li>
                          <li>
-                      
+                    
                               <a href="data/ekuivalen_waktu.php"> <i class="menu-icon fa fa-bar-chart"></i>Ekuivalen Waktu</a>
                          </li>
                          <li>
-                      
+                    
                               <a href="data/luaran_penelitian.php"> <i class="menu-icon fa fa-bar-chart"></i>Luaran Penelitian</a>
                          </li>
                          <li>
-                      
+                    
                               <a href="data/mahasiswa_asing.php"> <i class="menu-icon fa fa-bar-chart"></i>Mahasiswa Asing</a>
                          </li>
                          <li>
-                      
+                    
                               <a href="data/pengakuan.php"> <i class="menu-icon fa fa-bar-chart"></i>Pengakuan</a>
                          </li>
                          <li>
@@ -171,7 +171,6 @@
                          <li>
                               <a href="../data/publikasi_ilmiah_DTPS.php"> <i class="menu-icon fa fa-bar-chart"></i>Publikasi Ilmiah DTPS</a>
                          </li>
-
                     </ul>
                </div><!-- /.navbar-collapse -->
           </nav>
