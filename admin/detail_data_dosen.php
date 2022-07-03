@@ -240,7 +240,7 @@ $id  = $_GET['id'];
                                              <td><?php echo $i; ?>.</td>
                                              <td><?php echo $data['nama_dosen']; ?></td>
                                              </td>
-                                             <td><?php echo $data['id_dosen_pembimbing']; ?></td>
+                                             <td><?php echo $data['id_dosen_pembimbing2']; ?></td>
                                              </td>
                                              <td><?php echo $data['jumlah_yg_dibimbing']; ?></td>
                                              <td><?php echo $data['id_dosen_penguji1']; ?><br>

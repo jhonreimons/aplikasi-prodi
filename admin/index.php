@@ -1,8 +1,8 @@
 <?php
-require "../config.php";
+require "../connect.php";
 date_default_timezone_set("Asia/Jakarta");
-$tgl_sekarang = date("Y-m-d ");
-$sql = mysqli_query($conn, "SELECT * FROM jadwal_kegiatan WHERE tanggal = '$tgl_sekarang'");
+$tgl_sekarang = date("Y-m-d");
+
 ?>
 
 <!doctype html>
@@ -113,6 +113,16 @@ $sql = mysqli_query($conn, "SELECT * FROM jadwal_kegiatan WHERE tanggal = '$tgl_
             </div>
         </header>
         <!-- /#header -->
+        <?php
+        if (isset($_GET['aksi']) == "tertandai") : ?>
+            <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                <span class="badge badge-pill badge-success">Tertandai</span>
+                <span class="ml-4">Kegiatan berhasil ditandai</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php endif; ?>
         <!-- Content -->
         <div class="content">
             <!-- Animated -->
@@ -131,10 +141,12 @@ $sql = mysqli_query($conn, "SELECT * FROM jadwal_kegiatan WHERE tanggal = '$tgl_
                                         <th class="avatar">Jam</th>
                                         <th>Kegiatan</th>
                                         <th>Keterangan</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1;
+                                    $sql = mysqli_query($connection, "SELECT * FROM jadwal_kegiatan WHERE tanggal = '$tgl_sekarang'");
                                     while ($data = mysqli_fetch_assoc($sql)) : ?>
                                         <tr>
                                             <td class="serial"><?php echo $i; ?>.</td>
@@ -142,6 +154,15 @@ $sql = mysqli_query($conn, "SELECT * FROM jadwal_kegiatan WHERE tanggal = '$tgl_
                                             </td>
                                             <td><?php echo "$data[nama_kegiatan]"; ?> </td>
                                             <td><?php echo "$data[keterangan]"; ?></td>
+                                            <?php if ($data['status'] == "") : ?>
+                                                <td><a href="ubah/tandai_kegiatan.php?id-jadwal=<?php echo $data['id_jadwal']; ?>"><button class="btn btn-success">Tandai</button></a></td>
+                                            <?php endif; ?>
+                                            <?php if ($data['status'] == "Terlaksana") : ?>
+                                                <td><button class="btn btn-primary" disabled>Terlaksana</button></a></td>
+                                            <?php endif; ?>
+                                            <?php if ($data['status'] == "Tidak Terlaksana") : ?>
+                                                <td><button class="btn btn-danger" disabled>Tidak Terlaksana</button></a></td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php $i++;
                                     endwhile; ?>

@@ -1,5 +1,5 @@
 <?php
-require "../config.php";
+require "../connect.php";
 
 
 ?>
@@ -11,7 +11,7 @@ require "../config.php";
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Data Mahasiswa</title>
+     <title>Data Mahasiswa Keluar</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -106,6 +106,16 @@ require "../config.php";
                </div>
           </header>
           <!-- /#header -->
+          <?php
+          if (isset($_GET['aksi']) == "hapus" ) : ?>
+                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                         <span class="badge badge-pill badge-success">Success</span>
+                         <span class="ml-4">Data berhasil dihapus</span>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+               <?php endif; ?>
           <!-- Content -->
           <div class="content">
                <!-- Animated -->
@@ -122,10 +132,10 @@ require "../config.php";
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Data Mahasiswa</strong>
+                                        <strong class="card-title">Data Mahasiswa Keluar</strong>
                                    </div>
                                    <div class="card-body">
-                                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                        <table id="bootstrap-data-table" class="table table-striped">
                                              <thead>
                                                   <tr>
                                                        <th class="serial">No.</th>
@@ -133,6 +143,8 @@ require "../config.php";
                                                        <th>Nama</th>
                                                        <th>Tanggal Keluar</th>
                                                        <th>Status</th>
+                                                       <th>Edit</th>
+                                                       <th>Hapus</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
@@ -141,7 +153,7 @@ require "../config.php";
                                                   status_mahasiswa ON 
                                                   mahasiswa_keluar.status = status_mahasiswa.id_status_mahasiswa
                                                   ";
-                                                  $sql = mysqli_query($conn, $query);
+                                                  $sql = mysqli_query($connection, $query);
                                                   while ($data = mysqli_fetch_assoc($sql)) : ?>
                                                        <tr>
                                                             <td class="serial"><?php echo $i; ?>.</td>
@@ -150,6 +162,8 @@ require "../config.php";
                                                             <td> <?php echo $data['nama_mahasiswa']; ?></td>
                                                             <td><?php echo $data['tanggal_keluar'] ?></td>
                                                             <td><?php echo $data['status'] ?></td>
+                                                            <td><a href="ubah/update_mahasiswa.php?id-mahasiswa=<?php echo $data['id_mahasiswa_keluar']; ?>"><button class="btn btn-warning">Edit</button></td>
+                                                            <td><a href="hapus/hapus_mahasiswa.php?id-mahasiswa=<?php echo $data['id_mahasiswa_keluar']; ?>"><button class="btn btn-danger">Hapus</button></td>
                                                        </tr>
                                                   <?php $i++;
                                                   endwhile; ?>
@@ -194,12 +208,7 @@ require "../config.php";
                <script src="../assets/js/init/datatables-init.js"></script>
                <script type="text/javascript">
                     $(document).ready(function() {
-                         $('#bootstrap-data-table-export').DataTable();
-                    });
-               </script>
-               <script type="text/javascript">
-                    $(document).ready(function() {
-                         $('#bootstrap-data-table-export').DataTable();
+                         $('#bootstrap-data-table').DataTable();
                     });
                </script>
                <script>

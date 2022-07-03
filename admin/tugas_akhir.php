@@ -67,6 +67,16 @@ require "../connect.php";
                </div>
           </header>
           <!-- /#header -->
+          <?php               
+          if (isset($_GET['aksi']) == "hapus" ) : ?>
+                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                         <span class="badge badge-pill badge-success">Success</span>
+                         <span class="ml-4">Data berhasil dihapus</span>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+               <?php endif; ?>
           <!-- Content -->
           <div class="content">
                <!-- Animated -->
@@ -86,34 +96,56 @@ require "../connect.php";
                                              <thead>
                                                   <tr>
                                                        <th>No.</th>
-                                                       <th>Dosen Pembimbing</th>
+                                                       <th>Dosen Pembimbing 1</th>
+                                                       <th>Dosen Pembimbing 2</th>
                                                        <th>Yang di bimbing</th>
                                                        <th>Dosen Penguji 1</th>
                                                        <th>Dosen Penguji 2</th>
                                                        <th>Tahun Ajaran</th>
                                                        <th>Judul PA</th>
+                                                       <th>Edit</th>
+                                                       <th>Hapus</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
                                                   <?php $i = 1;
-                                                  $query1 =   "SELECT * FROM data_ta 
-                                                  INNER JOIN m_dosen ON data_ta.id_dosen_pembimbing1 = m_dosen.id_dosen
-                                                  AND data_ta.id_dosen_penguji_1 = m_dosen.id_dosen
+                                                  $query1 ="SELECT * FROM m_dosen INNER JOIN data_ta
+                                                  ON m_dosen.id_dosen = data_ta.id_dosen_pembimbing1 INNER JOIN r_tahun
+                                                  ON data_ta.tahun_ajaran = r_tahun.id_tahun
                                                   ";
                                                   $sql1 = mysqli_query($connection, $query1);
                                                   while ($data= mysqli_fetch_assoc($sql1)):
+
+                                                  $query2 ="SELECT * FROM m_dosen INNER JOIN data_ta
+                                                  ON m_dosen.nama_dosen = data_ta.id_dosen_pembimbing2";
+                                                  $sql2 = mysqli_query($connection, $query2);
+                                                  $data2= mysqli_fetch_assoc($sql2);
+
+                                                  $query3 ="SELECT * FROM m_dosen INNER JOIN data_ta
+                                                  ON m_dosen.id_dosen = data_ta.id_dosen_penguji_1";
+                                                  $sql3 = mysqli_query($connection, $query3);
+                                                  $data3= mysqli_fetch_assoc($sql3);
+
+                                                  $query4 ="SELECT * FROM m_dosen INNER JOIN data_ta
+                                                  ON m_dosen.id_dosen = data_ta.id_dosen_penguji_2";
+                                                  $sql4 = mysqli_query($connection, $query4);
+                                                  $data4= mysqli_fetch_assoc($sql4);
                                                   ?>
                                                        <tr>
                                                             <td><?php echo $i; ?>.</td>
                                                             <td><?php echo $data['nama_dosen']; ?></td>
                                                             </td>
+                                                            <td><?php echo $data2['nama_dosen']; ?></td>
+                                                            </td>
                                                             <td><?php echo $data['jumlah_yg_dibimbing']; ?></td>
-                                                            <td><?php echo $data['nama_dosen']; ?><br>
+                                                            <td><?php echo $data3['nama_dosen']; ?><br>
                                                             </td>
-                                                            <td><?php echo $data['nama_dosen']; ?> <br>
+                                                            <td><?php echo $data4['nama_dosen']; ?> <br>
                                                             </td>
-                                                            <td><?php echo $data['tahun_ajaran']; ?></td>
+                                                            <td><?php echo $data['tahun']; ?></td>
                                                             <td><?php echo $data['judul'] ?></td>
+                                                            <td><a href="ubah/update_ta.php?id-ta=<?php echo $data['id_data_ta'];?>"><button class="btn btn-warning">Edit</button></td>
+                                                            <td><a href="hapus/hapus_ta.php?id-ta=<?php echo $data['id_data_ta'];?>"><button class="btn btn-danger">Hapus</button></td>
                                                        </tr>
                                                   <?php $i++;
                                                   endwhile; ?>
@@ -142,25 +174,20 @@ require "../connect.php";
                     <!-- /#right-panel -->
                     <!-- Scripts -->
                     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-                    <script src="../assets/js/main.js"></script>
-                    <script src="../assets/js/lib/data-table/datatables.min.js"></script>
-                    <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-                    <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-                    <script src="../assets/js/lib/data-table/jszip.min.js"></script>
-                    <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
-                    <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
-                    <script src="../assets/js/init/datatables-init.js"></script>
-                    <script type="text/javascript">
-                         $(document).ready(function() {
-                              $('#bootstrap-data-table-export').DataTable();
-                         });
-                    </script>
+               <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+               <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+               <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+               <script src="../assets/js/main.js"></script>
+               <script src="../assets/js/lib/data-table/datatables.min.js"></script>
+               <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+               <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+               <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+               <script src="../assets/js/lib/data-table/jszip.min.js"></script>
+               <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
+               <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
+               <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
+               <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
+               <script src="../assets/js/init/datatables-init.js"></script>
                     <script type="text/javascript">
                          $(document).ready(function() {
                               $('#bootstrap-data-table-export').DataTable();

@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Buat data tugas akhir</title>
+     <title>Buat data proyek akhir I</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -158,7 +158,7 @@ if (isset($_POST['submit'])) {
                                                   while ($row = mysqli_fetch_assoc($sql)) :
                                                   ?>
                                                        <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                                                                         echo "$row[nama_dosen]"; ?></option>
+                                                       echo "$row[nama_dosen]"; ?></option>
                                                   <?php
                                                   endwhile;
                                                   ?>

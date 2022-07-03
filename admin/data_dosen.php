@@ -109,6 +109,16 @@ require "../connect.php";
                </div>
           </header>
           <!-- /#header -->
+          <?php
+          if (isset($_GET['aksi']) == "hapus" ) : ?>
+                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                         <span class="badge badge-pill badge-success">Success</span>
+                         <span class="ml-4">Data berhasil dihapus</span>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&ties;</span>
+                         </button>
+                    </div>
+               <?php endif; ?>
           <!-- Content -->
           <div class="content">
                <!-- Animated -->
@@ -139,8 +149,8 @@ require "../connect.php";
                                                   while ($data =  mysqli_fetch_assoc($sql)) : ?>
                                                        <td class="serial"><?php echo $data['nidn']; ?></td>
                                                        <td class="text-primary"><a href="detail_data_dosen.php?id=<?php echo $data['id_dosen']; ?>"> <?php echo $data['nama_dosen']; ?></td>
-                                                       <td class="text-primary"><button class="btn btn-warning">Edit</button></td>
-                                                       <td class="text-primary"><a href="hapus/hapus_dosen.php?id-dosen=<?php echo $data['id_dosen']; ?>"><button class="btn btn-danger">Hapus</a></button></td>
+                                                       <td class="text-primary"><a href="ubah/update_dosen.php?id-dosen=<?php echo $data['id_dosen']; ?>"><button class="btn btn-warning">Edit</button></td>
+                                                       <td class="text-primary"><a href="hapus/hapus_dosen.php?id-dosen=<?php echo $data['id_dosen']; ?>"><button class="btn btn-danger">Hapus</button></td>
                                              </tr>
                                         <?php endwhile; ?>
                                         </tbody>

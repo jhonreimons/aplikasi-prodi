@@ -1,16 +1,6 @@
 <?php
 
-require "../connect.php";
-if (isset($_POST['submit'])) {
-     $dosen_pengampuh = $_POST['dosen_pengampuh'];
-     $tahun_ajaran = $_POST['tahun_ajaran'];
-     $semester = $_POST['semester'];
-     $matakuliah = $_POST['matakuliah'];
-
-     $query = "INSERT INTO t_pengajaran(id_mk_dosen,tahun_ajaran,semester,id_dosen,id_matakuliah)
-          VALUE('','$tahun_ajaran','$semester','$dosen_pengampuh','$matakuliah')";
-     mysqli_query($connection, $query);
-}
+require "../../connect.php";
 
 ?>
 
@@ -22,7 +12,7 @@ if (isset($_POST['submit'])) {
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Buat Penugasan Dosen</title>
+     <title>Buat data proyek akhir I</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -31,8 +21,8 @@ if (isset($_POST['submit'])) {
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-     <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="../../assets/css/cs-skin-elastic.css">
+     <link rel="stylesheet" href="../../assets/css/style.css">
      <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
      <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
@@ -105,14 +95,14 @@ if (isset($_POST['submit'])) {
                               <button class="search-trigger"><i class="fa fa-search"></i></button>
                               <div class="form-inline">
                                    <form class="search-form">
-                                        <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                        <input class="form-control mr-sm-2" type="text" placeholder="Search ../..." aria-label="Search">
                                         <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                                    </form>
                               </div>
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
                                    <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
@@ -123,64 +113,123 @@ if (isset($_POST['submit'])) {
                </div>
           </header>
           <!-- /#header -->
-          <!-- Content -->
-          <div class="content">
-               <?php $row = mysqli_affected_rows($connection);
-               if ($row > 0) : ?>
+          <?php 
+function update($data){
+     global $connection;
+
+     $id = $data['id'];
+     $judul_pa = $data['judul_pa1'];
+     $tahun_ajaran = $data['tahun_ajaran'];
+     $jumlah_yg_dibimbing = $data['jumlah_mahasiswa'];
+     $id_dosen_pembimbing = $data['dosen_pembimbing'];
+     $id_dosen_penguji1 = $data['dosen_penguji_1'];
+     $id_dosen_penguji2 = $data['dosen_penguji_2'];
+
+     $sql = "UPDATE pa1 SET  judul_pa = '$judul_pa',
+                                   tahun_ajaran = '$tahun_ajaran',
+                                   jumlah_yg_dibimbing = '$jumlah_yg_dibimbing',
+                                   id_dosen_pembimbing = '$id_dosen_pembimbing',
+                                   id_dosen_penguji1 = '$id_dosen_penguji1',
+                                   id_dosen_penguji2 = '$id_dosen_penguji2'
+                                   WHERE id_pa1  = '$id'";
+                    mysqli_query($connection,$sql);
+
+                         return mysqli_affected_rows($connection);
+          
+}
+               if(isset($_POST['submit'])):
+               if (update($_POST) > 0) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                          <span class="badge badge-pill badge-success">Success</span>
-                         <span class="ml-4">Data berhasil dibuat</span>
+                         <span class="ml-4">Data berhasil di Ubah</span>
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                          </button>
                     </div>
                <?php endif; ?>
-
-
+               <?php endif; ?>
+          <!-- Content -->
+          <div class="content">
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
                     <div class="row">
                          <div class="content">
                               <div class="card-header">
-                                   <strong class="card-title">Buat Penugasan Dosen</strong>
+                                   <strong class="card-title">Data Proyek Akhir I</strong>
                               </div>
                               <div class="card-body">
                                    <div class="form-group">
                                         <form action="" method="post" class="pt-3">
-                                             <label id="dosen_pengampuh" for="status" class="control-label mb-1">Dosen Pengampuh</label>
-                                             <select name="dosen_pengampuh" id="dosen_pengampuh" class="form-control">
-                                                  <option value="#">Pilih Dosen Pengampuh</option>
+                                             <label id="dosen_pembimbing" for="status" class="control-label mb-1">Dosen Pembimbing</label>
+                                             <select name="dosen_pembimbing" id="dosen_pembimbing" class="form-control">
+                                                  <option value="">Pilih Dosen Pembimbing</option>
                                                   <?php
                                                   $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
                                                   while ($row = mysqli_fetch_assoc($sql)) :
                                                   ?>
                                                        <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                       echo $row['nama_dosen'];
-                                                       ?></option>
+                                                       echo "$row[nama_dosen]"; ?></option>
+                                                  <?php
+                                                  endwhile;
+                                                  ?>
+                                             </select>
+                                   </div>
+                                   <?php ?>
+                                   <?php
+                                   $id = $_GET['id-pa1'];
+                                   $sql =  mysqli_query($connection, "SELECT * FROM pa1 WHERE id_pa1 = '$id'");
+                                   $data = mysqli_fetch_assoc($sql);
+
+                                   ?>
+                                   <div class="form-group">
+                                        <label for="Jumlah Mahasiswa" class="control-label mb-1">Jumlah Mahasiswa</label>
+                                        <input id="Jumlah Mahasiswa" name="jumlah_mahasiswa" value="<?php echo $data['jumlah_yg_dibimbing']; ?>" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        <input id="Jumlah Mahasiswa" name="id" value="<?php echo $id; ?>" type="hidden" class="form-control">
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="tahun_ajaran" class="control-label mb-1">Tahun Ajaran</label>
+                                        <select name="tahun_ajaran" id="tahun_ajaran" class="form-control">
+                                                  <option value="#">Pilih Tahun Ajaran</option>
+                                                  <?php
+                                                  $query = "SELECT * FROM r_tahun";
+                                                  $sql = mysqli_query($connection,$query);
+                                                  while ($row = mysqli_fetch_assoc($sql)) :
+                                                  ?>
+                                                       <option value="<?php echo $row['id_tahun']; ?>"><?php $row['id_tahun'];
+                                                       echo "$row[tahun]"; ?></option>
                                                   <?php
                                                   endwhile;
                                                   ?>
                                              </select>
                                    </div>
                                    <div class="form-group">
-                                        <label for="tahun_ajaran" class="control-label mb-1">Tahun Ajaran</label>
-                                        <input id="tahun_ajaran" name="tahun_ajaran" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        <label for="judul_pa1" class="control-label mb-1">Judul Proyek Akhir</label>
+                                        <input id="Jumlah Mahasiswa" name="judul_pa1" value="<?php echo $data['judul_pa']; ?>" type="text" class="form-control" aria-required="true" aria-invalid="false">
                                    </div>
                                    <div class="form-group">
-                                        <label for="semester" class="control-label mb-1">Semester</label>
-                                        <input id="semester" name="semester" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label id="matakuliah" for="matakuliah" class="control-label mb-1">Matakuliah</label>
-                                        <select name="matakuliah" id="matakuliah" class="form-control">
-                                             <option value="#">Pilih Matakuliah</option>
+                                        <label id="dosen_penguji_1" for="dosen_penguji_1" class="control-label mb-1">Dosen Penguji I</label>
+                                        <select name="dosen_penguji_1" id="dosen_penguji_1" class="form-control">
+                                             <option value="#">Pilih Dosen Penguji</option>
                                              <?php
-                                             $sql =  mysqli_query($connection, "SELECT * FROM m_matakuliah");
+                                             $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
                                              while ($row = mysqli_fetch_assoc($sql)) :
                                              ?>
-                                                  <option value="<?php echo $row['id_matakuliah']; ?>"><?php $row['id_matakuliah'];
-                                                  echo $row['kode_matakuliah']." ".$row['nama_matakuliah']; ?></option>
+                                                  <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
+                                                  echo $row['nama_dosen']; ?></option>
+                                             <?php endwhile; ?>
+                                        </select>
+                                   </div>
+                                   <div class="form-group">
+                                        <label id="dosen_penguji_2" for="dosen_penguji_2" class="control-label mb-1">Dosen Penguji II</label>
+                                        <select name="dosen_penguji_2" id="dosen_penguji_2" class="form-control">
+                                             <option value="#">Pilih Dosen Penguji</option>
+                                             <?php
+                                             $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
+                                             while ($row = mysqli_fetch_assoc($sql)) :
+                                             ?>
+                                                  <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
+                                                  echo $row['nama_dosen']; ?></option>
                                              <?php endwhile; ?>
                                         </select>
                                    </div>
@@ -213,7 +262,7 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-          <script src="../assets/js/main.js"></script>
+          <script src="../../assets/js/main.js"></script>
           <!--  Chart js -->
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
           <!--Chartist Chart-->
@@ -223,10 +272,10 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-          <script src="../assets/js/init/weather-init.js"></script>
+          <script src="../../assets/js/init/weather-init.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-          <script src="../assets/js/init/fullcalendar-init.js"></script>
+          <script src="../../assets/js/init/fullcalendar-init.js"></script>
           <!--Local Stuff-->
 </body>
 

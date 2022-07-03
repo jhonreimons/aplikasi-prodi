@@ -1,7 +1,5 @@
 <?php
 require "../connect.php";
-$query1 =  "SELECT * FROM pa1";
-$sql1 = mysqli_query($connection, $query1);
 ?>
 <!doctype html>
 <!--[if gt IE 8]><!-->
@@ -67,6 +65,16 @@ $sql1 = mysqli_query($connection, $query1);
                </div>
           </header>
           <!-- /#header -->
+          <?php
+          if (isset($_GET['aksi']) == "hapus") : ?>
+               <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                    <span class="badge badge-pill badge-success">Success</span>
+                    <span class="ml-4">Data berhasil dihapus</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+          <?php endif; ?>
           <!-- Content -->
           <div class="content">
                <!-- Animated -->
@@ -87,41 +95,54 @@ $sql1 = mysqli_query($connection, $query1);
                                              <thead>
                                                   <tr>
                                                        <th>No.</th>
-                                                       <th>Dosen Pembimbing</th>
+                                                       <th>Dosen Pembimbing </th>
                                                        <th>Yang di bimbing</th>
-                                                       <th>Dosen Penguji I</th>
-                                                       <th>Dosen Penguji II</th>
+                                                       <th>Dosen Penguji 1</th>
+                                                       <th>Dosen Penguji 2</th>
                                                        <th>Tahun Ajaran</th>
                                                        <th>Judul PA</th>
+                                                       <th>Edit</th>
+                                                       <th>Hapus</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  <tr>
-                                                       <?php $i = 1;
-                                                       while ($data1 = mysqli_fetch_assoc($sql1)) :
-                                                            $id_dosen_pembimbing = $data1['id_dosen_pembimbing'];
-                                                            $id_dosen_penguji_1 = $data1['id_dosen_penguji1'];
-                                                            $id_dosen_penguji_2 = $data1['id_dosen_penguji2'];
-                                                            $query2 =
-                                                                 "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen_pembimbing'";
-                                                            $sql2  = mysqli_query($connection, $query2);
-                                                            $data2 = mysqli_fetch_assoc($sql2);
-                                                            $sql3  = mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen_penguji_1'");
-                                                            $data3 = mysqli_fetch_assoc($sql3);
-                                                            $sql4  = mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen_penguji_2'");
-                                                            $data4 = mysqli_fetch_assoc($sql4);
-                                                       ?>
+                                                  <?php $i = 1;
+                                                  $query1 ="SELECT * FROM m_dosen INNER JOIN pa1
+                                                  ON m_dosen.id_dosen = pa1.id_dosen_pembimbing INNER JOIN r_tahun
+                                                  ON pa1.tahun_ajaran = r_tahun.id_tahun
+                                                  ";
+                                                  $sql1 = mysqli_query($connection, $query1);
+                                                  while ($data= mysqli_fetch_assoc($sql1)):
+                                                  $query2 = "SELECT * FROM pa1 WHERE id_dosen_pembimbing = $data[id_dosen_pembimbing]";
+                                                  $sql2 = mysqli_query($connection, $query2);
+                                                  $data2 = mysqli_fetch_assoc($sql2);
+                                                  $query3 = "SELECT * FROM m_dosen WHERE id_dosen = $data[id_dosen_penguji1]";
+                                                  $sql3 = mysqli_query($connection, $query3);
+                                                  $data3 = mysqli_fetch_assoc($sql3);
+                                                  $query4 = "SELECT * FROM m_dosen WHERE id_dosen = $data[id_dosen_penguji2]";
+                                                  $sql4 = mysqli_query($connection, $query4);
+                                                  $data4 = mysqli_fetch_assoc($sql4);
+                                                  $query5 = "SELECT * FROM r_tahun WHERE id_tahun = $data[tahun_ajaran]";
+                                                  $sql5 = mysqli_query($connection, $query5);
+                                                  $data5 = mysqli_fetch_assoc($sql5);
+                                                  ?>
+                                                       <tr>
                                                             <td><?php echo $i; ?>.</td>
-                                                            <td><?php echo $data2['nama_dosen']; ?></td>
+                                                            <td><?php echo $data['nama_dosen']; ?></td>
                                                             </td>
-                                                            <td><?php echo $data1['jumlah_yg_dibimbing']; ?></td>
-                                                            <td><?php echo $data3['nama_dosen']; ?></td>
-                                                            <td><?php echo $data4['nama_dosen']; ?></td>
-                                                            <td><?php echo $data1['tahun_ajaran']; ?></td>
-                                                            <td><?php echo $data1['judul_pa']; ?></td>
-                                                  </tr>
-                                             <?php $i++;
-                                                       endwhile; ?>
+                                                            </td>
+                                                            <td><?php echo $data['jumlah_yg_dibimbing']; ?></td>
+                                                            <td><?php echo $data3['nama_dosen']; ?><br>
+                                                            </td>
+                                                            <td><?php echo $data4['nama_dosen']; ?> <br>
+                                                            </td>
+                                                            <td><?php echo $data['tahun']; ?></td>
+                                                            <td><?php echo $data2['judul_pa']; ?></td>
+                                                            <td><a href="ubah/update_pa1.php?id-pa1=<?php echo $data['id_pa1'];?>"><button class="btn btn-warning">Edit</button></td>
+                                                            <td><a href="hapus/hapus_pa1.php?id-pa1=<?php echo $data['id_pa1'];?>"><button class="btn btn-danger">Hapus</button></td>
+                                                       </tr>
+                                                  <?php $i++;
+                                                  endwhile; ?>
                                              </tbody>
                                         </table>
                                    </div>
@@ -162,15 +183,10 @@ $sql1 = mysqli_query($connection, $query1);
                <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
                <script src="../assets/js/init/datatables-init.js"></script>
                <script type="text/javascript">
-                    $(document).ready(function() {
-                         $('#bootstrap-data-table-export').DataTable();
-                    });
-               </script>
-               <script type="text/javascript">
-                    $(document).ready(function() {
-                         $('#bootstrap-data-table-export').DataTable();
-                    });
-               </script>
+                         $(document).ready(function() {
+                              $('#bootstrap-data-table-export').DataTable();
+                         });
+                    </script>
                <script>
                     function myFunction() {
                          location.replace("buat_data_pa1.php")

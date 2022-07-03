@@ -117,31 +117,31 @@ require "function.php";
           <!-- Content -->
           <div class="content">
                <?php 
-// function update($data){
-//      global $connection;
+function update($data){
+     global $connection;
 
-//      $id = $data['id'];
-//      $nama = $data['nama'];
-//      $nim = $data['nim'];
-//      $angkatan = $data['angkatan'];
-//      $semester = $data['semester'];
-//      $perusahaan = $data['perusahaan'];
-//      $tahun_ajaran = $data['tahun_ajaran'];
-//      $status = $data['status'];
+     $id = $data['id'];
+     $nama = $data['nama'];
+     $nim = $data['nim'];
+     $angkatan = $data['angkatan'];
+     $semester = $data['semester'];
+     $perusahaan = $data['perusahaan'];
+     $tahun_ajaran = $data['tahun_ajaran'];
+     $status = $data['status'];
 
-//      $sql = "UPDATE data_mbkm SET  nama = '$nama',
-//                                    nim = '$nim',
-//                                    angkatan = '$angkatan',
-//                                    perusahaan = '$perusahaan',
-//                                    semester = '$semester',
-//                                    tahun_ajaran = '$tahun_ajaran',
-//                                    status = '$status'
-//                                    WHERE id_mbkm  = '$id'";
-//                     mysqli_query($connection,$sql);
+     $sql = "UPDATE data_mbkm SET  nama = '$nama',
+                                   nim = '$nim',
+                                   angkatan = '$angkatan',
+                                   perusahaan = '$perusahaan',
+                                   semester = '$semester',
+                                   tahun_ajaran = '$tahun_ajaran',
+                                   status = '$status'
+                                   WHERE id_mbkm  = '$id'";
+                    mysqli_query($connection,$sql);
 
-//                          return mysqli_affected_rows($connection);
+                         return mysqli_affected_rows($connection);
           
-// }
+}
                if(isset($_POST['submit'])):
                if (update($_POST) > 0) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
@@ -208,7 +208,7 @@ require "function.php";
                                         </select>
                                    </div>
                                    <div>
-                                        <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Update Data</button>
+                                        <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Ubah Data</button>
                                    </div>
                                    </form>
                               </div><!-- .animated -->

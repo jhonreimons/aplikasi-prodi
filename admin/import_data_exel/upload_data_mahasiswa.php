@@ -17,9 +17,17 @@ if (isset($_POST['submit'])) {
     foreach ($Reader as $Key => $Row) {
         // import data excel mulai baris ke-2 (karena ada header pada baris 1)
         if ($Key < 1) continue;
-        $query = mysqli_query($connection, "INSERT INTO data_mbkm(nama, nim, angkatan, perusahaan, semester, tahun_ajaran, status) VALUES ('" . $Row[0] . "', '" . $Row[1] . "','" . $Row[2] . "','" . $Row[3] . "','" . $Row[4] . "', '" . $Row[5] . "','" . $Row[6] . "')");
+        $query1 = mysqli_query($connection, "INSERT INTO status_mahasiswa(status) VALUES ('" . $Row[3] . "')");
+        $s = $Row[3];
+        $query2 = mysqli_query($connection, "SELECT * FORM status_mahasiswa WHERE status = '$s'");
+        
+        while ($data = mysqli_fetch_assoc($query2))
+        {
+            $status= $data['id_status_mahasiswa'];
+            $query2 = mysqli_query($connection, "INSERT INTO mahasiswa_keluar(nama_mahasiswa, tanggal_keluar, nim,status) VALUES ('" . $Row[0] . "', '" . $Row[1] . "','" . $Row[2] . "','" . $status . "')");    
+        }
     }
-    if ($query) {
+    if ($query1) {
         echo "Import data berhasil";
     } else {
         echo "Import data gagal";
@@ -150,7 +158,7 @@ header("location:../data_mbkm.php");
                 <div class="row">
                     <div class="content">
                         <div class="card-header">
-                            <strong class="card-title">Upload File Data MBKM</strong>
+                            <strong class="card-title">Upload File Data Data Mahasiswa</strong>
                         </div>
                         <div class="card-body">
                             <div class="form-group">

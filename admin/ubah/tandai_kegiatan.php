@@ -1,16 +1,6 @@
 <?php
-
-require "../connect.php";
-if (isset($_POST['submit'])) {
-     $nama = $_POST['nama'];
-     $tahun = $_POST['tahun'];
-     $nim  = $_POST['nim'];
-     $status  = $_POST['status'];
-     $query = "INSERT INTO mahasiswa_keluar(id_mahasiswa_keluar,nama_mahasiswa,tanggal_keluar,nim,status)
-          VALUE('','$nama','$tahun','$nim','$status')";
-     mysqli_query($connection, $query);
-}
-
+require "../../connect.php";
+require "function.php";
 ?>
 
 <!doctype html>
@@ -21,7 +11,7 @@ if (isset($_POST['submit'])) {
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Buat Data Mahasiswa</title>
+     <title>Update Data MBKM</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -30,8 +20,8 @@ if (isset($_POST['submit'])) {
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-     <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="../../assets/css/cs-skin-elastic.css">
+     <link rel="stylesheet" href="../../assets/css/style.css">
      <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
      <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
@@ -83,7 +73,10 @@ if (isset($_POST['submit'])) {
 
 <body>
      <!-- Left Panel -->
-     <?php include "dashboard.php"; ?>
+     <?php
+     require "dashboard.php";
+     ?>
+
      <!-- /#left-panel -->
      <!-- Right Panel -->
      <div id="right-panel" class="right-panel">
@@ -111,10 +104,10 @@ if (isset($_POST['submit'])) {
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -123,55 +116,73 @@ if (isset($_POST['submit'])) {
           <!-- /#header -->
           <!-- Content -->
           <div class="content">
-               <?php $row = mysqli_affected_rows($connection);
-               if ($row > 0) : ?>
-                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
-                         <span class="badge badge-pill badge-success">Success</span>
-                         <span class="ml-4">Data berhasil dibuat</span>
-                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                         </button>
-                    </div>
-               <?php endif; ?>
+               <?php
+               function update($data){
+                    global $connection;
+          
+                    $id = $data['id'];
+                    $nama = $data['nama'];
+                    $nim = $data['nim'];
+                    $angkatan = $data['angkatan'];
+                    $semester = $data['semester'];
+                    $perusahaan = $data['perusahaan'];
+                    $tahun_ajaran = $data['tahun_ajaran'];
+                    $status = $data['status'];
+          
+                    $sql = "UPDATE data_mbkm SET  nama = '$nama',
+                                                  nim = '$nim',
+                                                  angkatan = '$angkatan',
+                                                  perusahaan = '$perusahaan',
+                                                  semester = '$semester',
+                                                  tahun_ajaran = '$tahun_ajaran',
+                                                  status = '$status'
+                                                  WHERE id_mbkm  = '$id'";
+                                   mysqli_query($connection,$sql);
+          
+                                        return mysqli_affected_rows($connection);
+                         
+               }
+               if (isset($_POST['submit'])) {
+                         $id = $_POST['id'];
+                         $status = $_POST['status'];
+                         $sql = "UPDATE jadwal_kegiatan SET status = '$status' WHERE id_jadwal  = '$id'";
+                         mysqli_query($connection, $sql);
+                         header("location:../index.php?aksi=tertandai");
+               }
 
+               ?>
+
+               a
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
                     <div class="row">
                          <div class="content">
                               <div class="card-header">
-                                   <strong class="card-title">Buat Data Mahasiswa</strong>
+                                   <strong class="card-title">Ubah Data Mahasiswa</strong>
                               </div>
+                              <?php
+                              $id = $_GET['id-jadwal'];
+                              $query = "SELECT * FROM jadwal_kegiatan WHERE id_jadwal = '$id'";
+                              $sql =  mysqli_query($connection, $query);
+                              $data = mysqli_fetch_assoc($sql);
+                              ?>
                               <div class="card-body">
                                    <form action="" method="post" novalidate="novalidate">
-                                        <div class="form-group">
-                                             <label for="nama" class="control-label mb-1">Nama</label>
-                                             <input id="nama" name="nama" type="text" class="form-control" aria-required="true" aria-invalid="false">
-                                        </div>
-                                        <div class="form-group">
-                                             <label for="nim" class="control-label mb-1">NIM</label>
-                                             <input id="nim" name="nim" type="text" class="form-control mahasiswa keluar valid" data-val="true" data-val-required="Please enter mahasiswa keluar on card" autocomplete="mahasiswa keluar" aria-required="true" aria-invalid="false" aria-describedby="mahasiswa keluar">
-                                        </div>
-                                        <div class="form-group">
-                                             <label for="tahun" class="control-label mb-1">Tanggal Keluar</label>
-                                             <input id="tahun" name="tahun" type="date" class="form-control" aria-required="true" aria-invalid="false">
-                                        </div>
-                                        <div class="form-group">
-                                             <label for="status" class="control-label mb-1">Status</label>
-                                             <select name="status" id="status" class="form-control">
-                                             <option value="#">Status</option>
-                                             <?php
-                                             $sql =  mysqli_query($connection, "SELECT * FROM status_mahasiswa");
-                                             while ($row = mysqli_fetch_assoc($sql)) :
-                                             ?>
-                                                  <option value="<?php echo $row['id_status_mahasiswa']; ?>"><?php $row['id_status_mahasiswa'];
-                                                  echo $row['status']; ?></option>
-                                             <?php endwhile; ?>
-                                        </select>
-                                        </div>
-                                        <div>
-                                             <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
-                                        </div>
+                                        <div class="card-body">
+                                             <div class="form-group">
+                                                  <form action="" method="post" class="pt-3">
+                                                       <label id="status" for="status" class="control-label mb-1">Status</label>
+                                                       <select name="status" id="status" class="form-control">
+                                                            <option value="">Status</option>
+                                                            <option value="Terlaksana">Terlaksana</option>
+                                                            <option value="Tidak Terlaksana">Tidak Terlaksana</option>
+                                                       </select>
+                                                       <input id="id" value="<?php echo $data['id_jadwal']; ?>" name="id" type="hidden" class="form-control" aria-required="true" aria-invalid="false">
+                                             </div>
+                                             <div>
+                                                  <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Update Data</button>
+                                             </div>
                                    </form>
                               </div><!-- .animated -->
                          </div><!-- .content -->
@@ -198,7 +209,7 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-          <script src="../assets/js/main.js"></script>
+          <script src="../../assets/js/main.js"></script>
           <!--  Chart js -->
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
           <!--Chartist Chart-->
@@ -208,10 +219,10 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-          <script src="../assets/js/init/weather-init.js"></script>
+          <script src="./../assets/js/init/weather-init.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-          <script src="../assets/js/init/fullcalendar-init.js"></script>
+          <script src="../../assets/js/init/fullcalendar-init.js"></script>
           <!--Local Stuff-->
 </body>
 
