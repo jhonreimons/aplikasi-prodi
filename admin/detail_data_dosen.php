@@ -335,6 +335,47 @@ $id  = $_GET['id'];
                                    </tbody>
                               </table>
                          </div>
+                         <div class="card-header mt-3">
+                                   <strong class="card-title">Data Penelitian Dosen</strong>
+                              </div>
+                              <div class="card-body">
+                                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                        <thead>
+                                             <tr>
+                                                  <th>No.</th>
+                                                  <th>Nama Dosen</th>
+                                                  <th>Tahun</th>
+                                                  <!-- <th>Jenis Peneltian</th> -->
+                                                  <th>Judul Penelitian</th>
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                             <?php $i = 1;
+                                             $sql = "SELECT * FROM m_penelitian INNER JOIN m_dosen
+                                             ON m_penelitian.id_dosen = m_dosen.id_dosen";
+                                             $data = mysqli_query($connection,$sql);
+                                             while ($row = mysqli_fetch_assoc($data)) :
+                                                  // $id_dosen = $row['id_dosen'];
+                                                  // $tahun_ajaran = $row['tahun_ajaran'];
+                                                  // $sql2 = "SELECT * FROM r_tahun WHERE id_tahun = '$tahun_ajaran'";
+                                                  // $qury2 = mysqli_query($connection,$slq2); 
+                                                  // $data2 = mysqli_fetch_assoc($qury2);
+                                             ?>
+                                                  <tr>
+                                                       <td><?php echo $i; ?>.</td>
+                                                       <td><?php echo $data['nama_dosen']; ?></td>
+                                                       </td>
+                                                       <td><?php echo $data2['tahun']; ?></td>
+                                                       <!-- <td><?php //echo $row['jenis_peneltian']; ?> <br> -->
+                                                       </td>
+                                                       <td><?php echo $row['judul_penelitian']; ?><br>
+                                                       </td>
+                                                  </tr>
+                                             <?php $i++;
+                                             endwhile; ?>
+                                        </tbody>
+                                   </table>
+                              </div>
                          <!-- .animated -->
                     </div><!-- .content -->
 

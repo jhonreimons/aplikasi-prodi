@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "config.php";
+require "connect.php";
 
 ?>
 <!doctype html>
@@ -55,7 +55,7 @@ require "config.php";
                             $username = $_POST["username"];
                             $password = $_POST["password"];
                         
-                            $admin = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username' AND password ='$password'");
+                            $admin = mysqli_query($connection, "SELECT * FROM admin WHERE username = '$username' AND password ='$password'");
                             mysqli_num_rows($admin);
                             if (mysqli_num_rows($admin) == 1) {
                                 $_SESSION['username'] = $username;
@@ -64,7 +64,7 @@ require "config.php";
                                 header("Location: admin");
                                 exit;
                             } elseif (mysqli_num_rows($admin) == 0) {
-                                $dosen = mysqli_query($conn, "SELECT * FROM dosen WHERE username = '$username' AND password = '$password'");
+                                $dosen = mysqli_query($connection, "SELECT * FROM dosen WHERE username = '$username' AND password = '$password'");
                                 mysqli_num_rows($dosen);
                                 if (mysqli_num_rows($dosen) == 1) {
                                     $_SESSION['username'] = $username;
