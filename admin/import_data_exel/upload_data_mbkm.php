@@ -113,7 +113,7 @@ header("location:../data_mbkm.php");
             <div class="top-left">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="./">
-                        <h4>D3 Teknologi K"omputer</h4>
+                        <h4>D3 Teknologi Komputer</h4>
                     </a>
                     <!-- <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a> -->
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>

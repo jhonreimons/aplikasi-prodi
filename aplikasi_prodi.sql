@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2022 at 03:40 AM
+-- Generation Time: Jul 05, 2022 at 11:05 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -68,7 +68,7 @@ CREATE TABLE `data_mbkm` (
 --
 
 INSERT INTO `data_mbkm` (`id_mbkm`, `nama`, `nim`, `angkatan`, `perusahaan`, `semester`, `tahun_ajaran`, `status`) VALUES
-(76, 'Indra Sinaga Andre', '13319024', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', ''),
+(76, 'Indra Sinaga Andre', '13319024', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', 'Belum'),
 (77, 'Angggiat', '13319025', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', 'Belum'),
 (78, 'Andree', '13319022', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', 'Belum');
 
@@ -88,6 +88,21 @@ CREATE TABLE `data_ta` (
   `id_dosen_penguji_2` int(11) NOT NULL,
   `tahun_ajaran` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `data_ta`
+--
+
+INSERT INTO `data_ta` (`id_data_ta`, `id_dosen_pembimbing1`, `id_dosen_pembimbing2`, `judul`, `jumlah_yg_dibimbing`, `id_dosen_penguji_1`, `id_dosen_penguji_2`, `tahun_ajaran`) VALUES
+(49, 27, 'Eka Stephani Sinambela, SST., M.Sc.', '\"Sistem Perawatan Tanaman Cabai  dan Pendeteksi Kematangan Cabai berbasis Internet of Things (IoT)\"', 3, 26, 29, 5),
+(50, 32, '0', 'Weather recognition with Convolutional Neural Network (CNN)', 3, 33, 28, 5),
+(51, 26, 'Sari Muthia Silalahi, S.Pd., M.Ed', 'Sistem Monitoring Pengunjung Menggunakan 2 Faktor Autentikasi', 3, 32, 29, 5),
+(52, 26, '0', 'Threat Detection System Berbasis Integrasi IDS dan File Integrity Checker', 3, 28, 29, 5),
+(53, 29, 'Sari Muthia Silalahi, S.Pd., M.Ed', 'Agricultural Monitoring using LoRa', 3, 27, 31, 5),
+(54, 29, '0', 'Truck Tracking system using LoRA', 3, 33, 27, 5),
+(55, 27, '0', 'Automated Nutrition Doser for Hydroponic Based on IoT', 3, 31, 32, 5),
+(57, 28, '0', 'Comparative Study of Different Load Balancing and Failover Techniques in Web Server Cluster', 3, 26, 31, 5),
+(58, 31, 'Gerry Italiano Wowiling, S.Tr.Kom., M.T.', 'Implementasi Private Cloud Menggunakan OpenStack', 3, 28, 29, 5);
 
 -- --------------------------------------------------------
 
@@ -179,13 +194,13 @@ CREATE TABLE `m_dosen` (
 --
 
 INSERT INTO `m_dosen` (`id_dosen`, `nama_dosen`, `nidn`, `status`, `jabatan_akademik`, `pascasarjana`, `universitas_s2`, `bidang_keahlian`, `foto`) VALUES
-(26, 'Gerry Italiano Wowiling, S.Tr.Kom., M.T.', '0125059003', 1, 2, 'Teknik Elektro', 'Universitas Indonesia', '', ''),
-(27, 'Ahmad Zatnika Purwalaksana, S.Si., M.Si.', '0103029402', 1, 1, 'Fisika', 'Institut Teknologi Bandung', '', ''),
-(28, 'Eka Stephani Sinambela, SST., M.Sc.', '0117078706', 1, 1, 'Computer Science', 'VU University of Amsterdam', '', ''),
-(29, 'Istas Manalu, S.Si., M.Sc', '0104088902', 1, 2, ' Mechanical Engineering', 'Chang Gung University', '', ''),
-(31, 'Marojahan MT. Sigiro, ST., M.Sc', '0108098301', 1, 1, 'Computer science', 'Delft University of Technology, Belanda', '', ''),
+(26, 'Gerry Italiano Wowiling, S.Tr.Kom., M.T.         ', '0125059003', 1, 1, 'Teknik Elektro', 'Universitas Indonesia', '', '62c3f62aa8cf8.png'),
+(27, 'Ahmad Zatnika Purwalaksana, S.Si., M.Si.  ', '0103029402', 1, 1, 'Fisika', 'Institut Teknologi Bandung', '', '62c3f61fc6115.png'),
+(28, 'Eka Stephani Sinambela, SST., M.Sc. ', '0117078706', 1, 1, 'Computer Science', 'VU University of Amsterdam', '', '62c3f8827108a.jpg'),
+(29, 'Istas Manalu, S.Si., M.Sc ', '0104088902', 1, 1, ' Mechanical Engineering', 'Chang Gung University', '', '62c3f88e0b7f4.png'),
+(31, 'Marojahan MT. Sigiro, ST., M.Sc ', '0108098301', 1, 1, 'Computer science', 'Delft University of Technology, Belanda', '', '62c3f8990c9be.png'),
 (32, 'Pandapotan Siagian, ST, M.Eng', '1018037401', 1, 3, 'Tenik Elektro', 'UGM', '', ''),
-(33, 'Sari Muthia Silalahi, S.Pd., M.Ed', '0117109301', 1, 1, 'Matematika', 'National Taiwan University', '', '');
+(33, 'Sari Muthia Silalahi, S.Pd., M.Ed ', '0117109301', 1, 1, 'Matematika', 'National Taiwan University', '', '62c3fb40842f3.jpeg');
 
 -- --------------------------------------------------------
 
@@ -314,8 +329,50 @@ CREATE TABLE `m_matakuliah` (
 --
 
 INSERT INTO `m_matakuliah` (`id_matakuliah`, `nama_matakuliah`, `kode_matakuliah`, `semester`, `sks`) VALUES
-(6, 'sdfdsf', 'sdfnsd', 4, 4),
-(7, 'Inovasi Digital', '1232KFDUD', 6, 4);
+(8, 'Bahasa Inggris I', 'KU31101', 1, 2),
+(9, 'Inovasi Digital', 'TI31101', 1, 2),
+(10, 'Pembentukan Karakter Del', 'KU31102', 1, 2),
+(11, 'Dasar Pemrograman', '1031101', 1, 3),
+(12, 'Matematika Diskrit', '1031102', 1, 3),
+(13, 'Arsitektur dan Organisasi Komputer', '1031103', 1, 2),
+(14, 'Pengembangan Situs Web I', '1331104', 1, 3),
+(15, 'Pengenalan Rekayasa Perangkat Lunak', '1331105', 1, 3),
+(16, 'Bahasa Inggris II', 'KU31201', 2, 2),
+(17, 'Algoritma & Struktur Data', '1031201', 2, 3),
+(18, 'Sistem Operasi', '1031202', 2, 3),
+(19, 'Aljabar Linier', '1031203', 2, 3),
+(20, 'Pengembangan Aplikasi Berbasis Internet', '1331204', 2, 3),
+(21, 'Proyek Akhir Tahun I', '1331205', 2, 3),
+(22, 'Pengenalan Basisdata', '1331206', 2, 2),
+(23, 'Bahasa Inggris III', 'KU32101', 3, 2),
+(24, 'Probabilitas dan Statistika', 'MA32101', 3, 3),
+(25, 'Jaringan Komputer', '1032101', 3, 3),
+(26, 'Pemrograman Sistem', '1332102', 3, 3),
+(27, 'Perancangan Antarmuka Pengguna', '1332103', 3, 3),
+(28, 'Virtualisasi Komputer', '1332104', 3, 3),
+(29, 'Dasar Elektronika', '1332105', 3, 2),
+(30, 'Bahasa Inggris IV', 'KU32201', 4, 2),
+(31, 'Penulisan Karya Ilmiah', 'KU32202', 4, 2),
+(32, 'Antar Jaringan', '1332201', 4, 3),
+(33, 'Perangkat Lunak Sistem Jaringan', '1332202', 4, 3),
+(34, 'Proyek Akhir Tahun II', '1332203', 4, 3),
+(35, 'Sistem Terdistribusi', '1332204', 4, 3),
+(36, 'Sistem Tertanam', '1332205', 4, 3),
+(37, 'Bahasa Inggris V', 'KU33101', 5, 2),
+(38, 'Keteknowiraan', 'TI33101', 5, 2),
+(39, 'Administrasi Jaringan', '1333101', 5, 3),
+(40, 'Keamanan Jaringan', '1333102', 5, 3),
+(41, 'Penerapan Infrastruktur Cloud', '1333103', 5, 3),
+(42, 'Teknologi IoT', '1333104', 5, 3),
+(43, 'Tugas Akhir I', '1333105', 5, 3),
+(45, 'Bahasa Inggris VI', 'KU33201', 6, 2),
+(46, 'Agama & Etika', 'KU33202', 6, 2),
+(47, 'KU33203	', 'Pancasila ', 6, 2),
+(48, 'Kerja Praktik', '1333290', 6, 4),
+(49, 'Tugas Akhir II', '1333201', 6, 4),
+(50, 'Etika Profesi', '1333202', 6, 2),
+(52, 'Komunikasi Data', '1333203', 6, 2),
+(53, 'Pengembangan Profesi', '1333204', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -386,6 +443,14 @@ CREATE TABLE `m_penelitian` (
   `id_pembiayaan` int(11) DEFAULT NULL,
   `tahun_ajaran` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `m_penelitian`
+--
+
+INSERT INTO `m_penelitian` (`id_penelitian`, `id_dosen`, `judul_penelitian`, `tahun_akademik`, `id_pembiayaan`, `tahun_ajaran`) VALUES
+(7, 26, 'Sistem Monitoring Tanaman Tomat', NULL, 2, 4),
+(8, 27, 'iot', NULL, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -484,6 +549,32 @@ CREATE TABLE `pa1` (
   `id_dosen_penguji2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pa1`
+--
+
+INSERT INTO `pa1` (`id_pa1`, `judul_pa`, `tahun_ajaran`, `jumlah_yg_dibimbing`, `id_dosen_pembimbing`, `id_dosen_penguji1`, `id_dosen_penguji2`) VALUES
+(11, 'Website Kemahasiswaan', 5, 2, 27, 33, 26),
+(12, 'Website Profile Kelurahan Sangkar Nihuta', 5, 3, 32, 29, 28),
+(13, 'website pengenalan hardware', 5, 3, 26, 31, 27),
+(14, 'Sistem Booking Jadwal Dosen', 5, 3, 29, 28, 33),
+(15, 'Klinik IT Del', 5, 3, 31, 33, 28),
+(16, 'Sistem Administrasi Kelurahan Sangkar Nihuta', 5, 3, 32, 29, 26),
+(17, 'Marsiajar STEM', 5, 3, 33, 28, 27),
+(18, '', 5, 3, 33, 28, 27),
+(19, 'Peminjaman Alat Laboratorium IT DEL', 5, 3, 29, 32, 26),
+(20, 'Website Keasramaan IT Del', 5, 3, 31, 27, 31),
+(21, 'kelembagaan dan bantuan sosial sangkar nihuta', 5, 3, 32, 27, 31),
+(22, 'Omni Present', 5, 3, 33, 26, 28),
+(23, 'Pelayanan Jasa Laundry', 5, 3, 27, 31, 29),
+(24, 'Website Technology Computer', 5, 3, 26, 28, 32),
+(25, 'Pemesanan Tiket Kapal Kalimantung', 5, 3, 27, 27, 32),
+(26, 'Jasa Titip Instan', 5, 3, 31, 26, 33),
+(27, 'Tarombo Batak Toba', 5, 3, 28, 31, 29),
+(28, 'Koperasi jual beli IT Del berbasis web', 5, 3, 26, 32, 33),
+(29, 'Toba Belajar', 5, 3, 33, 27, 31),
+(30, 'Website Sistem Booking Mobil IT Del', 5, 3, 27, 32, 31);
+
 -- --------------------------------------------------------
 
 --
@@ -499,6 +590,27 @@ CREATE TABLE `pa2` (
   `id_dosen_penguji1` int(11) NOT NULL,
   `id_dosen_penguji2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pa2`
+--
+
+INSERT INTO `pa2` (`id_pa2`, `judul_pa`, `tahun_ajaran`, `jumlah_yg_dibimbing`, `id_dosen_pembimbing`, `id_dosen_penguji1`, `id_dosen_penguji2`) VALUES
+(23, 'Automatic Door Unlock System by Voice Command Via Android with Arduino', 5, 3, 27, 28, 29),
+(24, 'Mesin pencacah rumput', 5, 3, 32, 31, 29),
+(26, 'Transfer Data Menggunakan Wi-Fi', 5, 3, 29, 26, 31),
+(27, 'Aplikasi Operasional Kerja Program Studi - Studi Kasus D3TK', 5, 3, 28, 29, 26),
+(28, 'Smart Garage Door', 5, 3, 31, 32, 27),
+(29, 'Detektor Penggunaaan Masker Wajah dan Temperatur Suhu Badan', 5, 3, 33, 29, 32),
+(30, 'Jemuran Otomatis Portable', 5, 3, 27, 26, 32),
+(31, 'Monitoring Kualitas Air Danau Toba Berbasis Web Aplikasi', 5, 3, 29, 33, 31),
+(32, 'Web-based Informatics Learning Application - Scope of Class VII', 5, 3, 28, 27, 33),
+(33, 'Fruit Sorter', 5, 3, 32, 27, 26),
+(34, 'Aplikasi Database Proyek IoT', 5, 3, 31, 26, 27),
+(35, 'Aplikasi Klik Del', 5, 3, 28, 31, 33),
+(36, 'Sistem Monitoring Suhu dan Kelembaban dalam Pembudidayaan Jamur Tiram', 5, 3, 33, 27, 28),
+(37, 'IoT Sistem Keamanan Pintu Menggunakan Sensor Reed Switch dengan Notifikasi Telegram', 5, 3, 26, 28, 29),
+(38, 'Sistem Kontrol Pakan Ikan dan Kekeruhan Air Berbasis Internet of Things', 5, 3, 27, 31, 33);
 
 -- --------------------------------------------------------
 
@@ -731,6 +843,15 @@ CREATE TABLE `t_pengajaran` (
   `matakuliah_prodi_lain` varchar(100) NOT NULL,
   `tahun_ajaran` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_pengajaran`
+--
+
+INSERT INTO `t_pengajaran` (`id_pengajaran`, `matakuliah`, `nama_dosen`, `kesesuaian_kompetensi`, `sertifikat_pendidik`, `sertifikat_kompetensi`, `kesesuaian_bidang`, `matakuliah_prodi_lain`, `tahun_ajaran`) VALUES
+(8, 18, 28, 0, '', '', '', '', 5),
+(9, 28, 26, 0, '', '', '', '', 4),
+(10, 13, 29, 0, '', '', '', '', 5);
 
 --
 -- Indexes for dumped tables
@@ -1038,7 +1159,7 @@ ALTER TABLE `data_mbkm`
 -- AUTO_INCREMENT for table `data_ta`
 --
 ALTER TABLE `data_ta`
-  MODIFY `id_data_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_data_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `d_pkm`
@@ -1062,7 +1183,7 @@ ALTER TABLE `mahasiswa_keluar`
 -- AUTO_INCREMENT for table `m_dosen`
 --
 ALTER TABLE `m_dosen`
-  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `m_ipk_lulusan`
@@ -1098,7 +1219,7 @@ ALTER TABLE `m_mahasiswa_asing`
 -- AUTO_INCREMENT for table `m_matakuliah`
 --
 ALTER TABLE `m_matakuliah`
-  MODIFY `id_matakuliah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_matakuliah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `m_mitra`
@@ -1122,7 +1243,7 @@ ALTER TABLE `m_pembimbing`
 -- AUTO_INCREMENT for table `m_penelitian`
 --
 ALTER TABLE `m_penelitian`
-  MODIFY `id_penelitian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_penelitian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `m_pkm`
@@ -1164,13 +1285,13 @@ ALTER TABLE `m_recognisi`
 -- AUTO_INCREMENT for table `pa1`
 --
 ALTER TABLE `pa1`
-  MODIFY `id_pa1` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pa1` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pa2`
 --
 ALTER TABLE `pa2`
-  MODIFY `id_pa2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_pa2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `r_jabatan_akademik`
@@ -1248,7 +1369,7 @@ ALTER TABLE `status_mahasiswa`
 -- AUTO_INCREMENT for table `t_pengajaran`
 --
 ALTER TABLE `t_pengajaran`
-  MODIFY `id_pengajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

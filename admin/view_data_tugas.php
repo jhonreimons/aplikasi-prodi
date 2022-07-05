@@ -61,8 +61,7 @@ require "../connect.php";
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -76,6 +75,16 @@ require "../connect.php";
                     <!-- Widgets  -->
                     <div class="row">
                          <div class="content">
+                              <?php
+                              if (isset($_GET['aksi']) == "hapus") : ?>
+                                   <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                                        <span class="badge badge-pill badge-success">Success</span>
+                                        <span class="ml-4">Data berhasil dihapus</span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                             <span aria-hidden="true">&times;</span>
+                                        </button>
+                                   </div>
+                              <?php endif; ?>
                               <div class="card">
                                    <div class="card-header">
                                         <strong class="card-title">Penugasan Dosen</strong>
@@ -90,16 +99,18 @@ require "../connect.php";
                                                        <th>SKS</th>
                                                        <th>Semester</th>
                                                        <th>Tahun Ajaran</th>
+                                                       <th>Edit</th>
+                                                       <th>Hapus</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  <?php 
+                                                  <?php
+                                                  
                                                   $id = $_GET['id'];
                                                   $query1 =  "SELECT * FROM t_pengajaran WHERE nama_dosen = '$id'";
                                                   $sql1 = mysqli_query($connection, $query1);
                                                   $i = 1;
                                                   while ($data1 = mysqli_fetch_assoc($sql1)) :
-                    
                                                        $id_matakuliah = $data1['matakuliah'];
                                                        $id_tahun = $data1['tahun_ajaran'];
                                                        $query2 =
@@ -121,6 +132,10 @@ require "../connect.php";
                                                             <td><?php echo $data2['sks']; ?><br>
                                                             </td>
                                                             <td><?php echo $data3['tahun']; ?> <br>
+                                                            </td>
+                                                            <td><a href="ubah/ubah_tugas.php?id-tugas=<?php echo $data1['id_pengajaran']; ?>"><button class="btn btn-warning">Edit</button><br>
+                                                            </td>
+                                                            <td><a href="hapus/hapus_tugas.php?id-tugas=<?php echo $data1['id_pengajaran']; ?>"><button class="btn btn-danger">Hapus</button> <br>
                                                             </td>
                                                        </tr>
                                                   <?php $i++;

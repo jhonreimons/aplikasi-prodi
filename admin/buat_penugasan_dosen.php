@@ -4,7 +4,6 @@ require "../connect.php";
 if (isset($_POST['submit'])) {
      $dosen_pengampuh = $_POST['dosen_pengampuh'];
      $tahun_ajaran = $_POST['tahun_ajaran'];
-     $semester = $_POST['semester'];
      $matakuliah = $_POST['matakuliah'];
 
      $query = "INSERT INTO t_pengajaran(id_pengajaran,tahun_ajaran,nama_dosen,matakuliah)
@@ -115,8 +114,7 @@ if (isset($_POST['submit'])) {
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -183,7 +181,7 @@ if (isset($_POST['submit'])) {
                                         <select name="matakuliah" id="matakuliah" class="form-control">
                                              <option value="#">Pilih Matakuliah</option>
                                              <?php
-                                             $sql =  mysqli_query($connection, "SELECT * FROM m_matakuliah");
+                                             $sql =  mysqli_query($connection, "SELECT * FROM m_matakuliah ORDER BY semester ASC");
                                              while ($row = mysqli_fetch_assoc($sql)) :
                                              ?>
                                                   <option value="<?php echo $row['id_matakuliah']; ?>"><?php $row['id_matakuliah'];

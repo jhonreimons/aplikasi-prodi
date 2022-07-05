@@ -99,8 +99,8 @@ require "../connect.php";
                                                   <th>No.</th>
                                                   <th>Nama Dosen</th>
                                                   <th>Tahun</th>
-                                                  <!-- <th>Jenis Peneltian</th> -->
                                                   <th>Judul Penelitian</th>
+                                                  <th>Sumber Pembiayaan</th>
                                                   <th>Edit</th>
                                                   <th>Hapus</th>
                                              </tr>
@@ -112,10 +112,13 @@ require "../connect.php";
                                              while ($row = mysqli_fetch_assoc($data)) :
                                                   $id_dosen = $row['id_dosen'];
                                                   $id_tahun = $row['tahun_ajaran'];
+                                                  $pembiayaan = $row['id_pembiayaan'];
                                                   $sql =  mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen'");
                                                   $data1 = mysqli_fetch_assoc($sql);
                                                   $sql2 =  mysqli_query($connection, "SELECT * FROM r_tahun WHERE id_tahun = '$id_tahun'");
                                                   $data2 = mysqli_fetch_assoc($sql2);
+                                                  $sql3 =  mysqli_query($connection, "SELECT * FROM m_pembiayaan WHERE id_pembiayaan = '$pembiayaan'");
+                                                  $data3 = mysqli_fetch_assoc($sql3);
                                              ?>
                                                   <tr>
                                                        <td><?php echo $i; ?>.</td>
@@ -125,6 +128,9 @@ require "../connect.php";
                                                        <!-- <td><?php //echo $row['jenis_peneltian']; ?> <br> -->
                                                        </td>
                                                        <td><?php echo $row['judul_penelitian']; ?><br>
+                                                       </td>
+                                                       </td>
+                                                       <td><?php echo $data3['sumber_pembiyaan']; ?><br>
                                                        </td>
                                                        <td><a href="ubah/hapus_peneltian.php?id-penelitian=<?php echo $row['id_penelitian']; ?>"><button class="btn btn-warning">Edit</button></td>
                                                        <td><a href="hapus/hapus_peneltian.php?id-penelitian=<?php echo $row['id_penelitian']; ?>"><button class="btn btn-danger">Hapus</button></td>

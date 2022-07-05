@@ -1,23 +1,6 @@
 <?php
 
 require "../../connect.php";
-if (isset($_POST['submit'])) {
-     $nama_dosen = $_POST['nama_dosen'];
-     $nidn = $_POST['nidn'];
-     $status = $_POST['status'];
-     $jabatan_akademik = $_POST['jabatan_akademik'];
-     $pascasarjana = $_POST['pascasarjana'];
-     $universitas = $_POST['universitas'];
-     $bidang_keahlian = $_POST['bidang_keahlian'];
-     $query = "INSERT INTO m_dosen(id_dosen
-     ,nama_dosen,nidn,status,
-     jabatan_akademik,pascasarjana,universitas_s2,bidang_keahlian)
-          VALUE('','$nama_dosen','$nidn',
-          '$status','$jabatan_akademik','$pascasarjana','$universitas',
-          '$bidang_keahlian')";
-          mysqli_query($connection, $query);
-}
-
 ?>
 
 <!doctype html>
@@ -28,7 +11,7 @@ if (isset($_POST['submit'])) {
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Buat data dosen</title>
+     <title>Ubah data dosen</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -132,31 +115,7 @@ if (isset($_POST['submit'])) {
           
           <!-- Content -->
 <?php
-     function update($data){
-     global $connection;
-
-     $id = $data['id'];
-     $nama_dosen = $data['nama_dosen'];
-     $nidn = $data['nidn'];
-     $status = $data['status'];
-     $jabatan_akademik = $data['jabatan_akademik'];
-     $pascasarjana = $data['pascasarjana'];
-     $universitas_s2 = $data['universitas'];
-     $bidang_keahlian = $data['bidang_keahlian'];
-
-     $sql = "UPDATE m_dosen SET  nama_dosen = '$nama_dosen',
-                                   nidn = '$nidn',
-                                   status = '$status',
-                                   jabatan_akademik = '$jabatan_akademik',
-                                   universitas_s2 = '$universitas_s2',
-                                   pascasarjana = '$pascasarjana',
-                                   bidang_keahlian = '$bidang_keahlian'
-                                   WHERE id_dosen  = '$id'";
-                    mysqli_query($connection,$sql);
-
-                         return mysqli_affected_rows($connection);
-          
-}
+     require "function.php";
 ?>
 
 
@@ -184,14 +143,15 @@ if (isset($_POST['submit'])) {
                               <div class="card-body">
                                    <?php 
                                    $id = $_GET['id-dosen'];
-                                   $query = mysqli_query($connection, "SELECT * FROM m_dosen");
+                                   $query = mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id'");
                                    $data = mysqli_fetch_assoc($query);
                                    ?>
-                                   <form action="" method="post" novalidate="novalidate">
+                                   <form role="form"  action=""  method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                              <label for="nama_dosen" class="control-label mb-1">Nama Dosen</label>
                                              <input id="nama_dosen" name="nama_dosen" value="<?php echo $data['nama_dosen']; ?> "type="text" class="form-control" aria-required="true" placeholder="Nama Lengkap beserta gelar" aria-invalid="false">
                                              <input id="id" name="id" value="<?php echo $data['id_dosen']; ?> "type="hidden" class="form-control">
+                                             <input id="id" name="fotoLama" value="<?php echo $data['foto']; ?> "type="hidden" class="form-control">
                                         </div>
                                         <div class="form-group">
                                              <label for="nidn" class="control-label mb-1">NIDN</label>
@@ -232,6 +192,10 @@ if (isset($_POST['submit'])) {
                                         <div class="form-group">
                                              <label for="bidang_keahlian" class="control-label mb-1">Bidang Keahlian</label>
                                              <input id="bidang_keahlian" name="bidang_keahlian" value="<?php echo $data['bidang_keahlian']; ?>" type="text" class="form-control" aria-required="true" aria-invalid="false" placeholder="Bidang Keahlian">
+                                        </div>
+                                        <div class="form-group">
+                                             <label for="foto" class="control-label mb-1">Upload Foto</label>
+                                             <input id="foto" name="foto" type="file" class="form-control" >
                                         </div>
                                         <div>
                                              <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Ubah Data</button>

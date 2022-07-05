@@ -156,12 +156,21 @@ $id  = $_GET['id'];
                                                             </tr>
                                                             <tr>
                                                                  <td>S2</td>
-                                                                 <td><?php //$foto =  $data['foto'];
+                                                                 <td><?php $foto =  $data['foto'];
                                                                       echo "$data[pascasarjana], $data[universitas_s2]"; ?></td>
                                                             </tr>
                                                        </tbody>
-                                                  <?php endwhile; ?>
-                                                  <!-- <img class="card-img-right col-2" src="../images/Foto Dosen/<?php //echo $data1['foto']; ?>"align="right" alt="Card image cap"> -->
+                                                  <?php endwhile; 
+                                                  $query2 = mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id'");
+                                                  $data1 = mysqli_fetch_assoc($query2);
+                                                  if($data1['foto'] == NULL)
+                                                  {
+                                                       
+                                                  }
+                                             else { 
+                                                  ?>
+                                                  <img class="card-img-right col-2" src="../images/<?php echo "foto".$data1['foto']; ?>" align="right" alt="Card image cap">
+                                             <?php } ?>
                                              </table>
                                         </div>
                                    </div>
@@ -201,8 +210,8 @@ $id  = $_GET['id'];
                                              <td><?php echo $data3['kode_matakuliah']; ?></td>
                                              <td><?php echo $data3['nama_matakuliah']; ?></td>
                                              <td><?php echo $data3['sks']; ?></td>
-                                             <td><?php echo $data1['semester']; ?></td>
-                                             <td><?php echo $data4['tahun_ajaran']; ?></td>
+                                             <td><?php echo $data3['semester']; ?></td>
+                                             <td><?php echo $data4['tahun']; ?></td>
                                    </tr>
                               <?php $i++;
                                         endwhile; ?>
@@ -286,20 +295,30 @@ $id  = $_GET['id'];
                                    <tbody>
                                         <tr>
                                              <?php $i = 1;
-                                             $query1 =  "SELECT * FROM pa2 
-                                             INNER JOIN m_dosen ON pa2.id_dosen_pembimbing = m_dosen.id_dosen 
-                                             AND  pa2.id_dosen_penguji1  = m_dosen.id_dosen WHERE pa2.id_dosen_pembimbing = '$id'
-                                             ";
-                                             $sql1 = mysqli_query($connection, $query1);
-                                             while ($data1 = mysqli_fetch_assoc($sql1)) :
+                                             $query2 =  "SELECT * FROM pa2 WHERE id_dosen_pembimbing = '$id'";
+                                             $sql2 = mysqli_query($connection, $query2);
+                                             while ($data1 = mysqli_fetch_assoc($sql2)) :
+                                                  $dosen_pembimbing = $data1['id_dosen_pembimbing'];
+                                                  $penguji1 = $data1['id_dosen_penguji1'];
+                                                  $penguji2 = $data1['id_dosen_penguji2'];
+                                                  $tahun = $data1['tahun_ajaran'];
+                                                  $sql3 = mysqli_query($connection,"SELECT * FROM m_dosen WHERE id_dosen = '$dosen_pembimbing'");
+                                                  $data3 = mysqli_fetch_assoc($sql3);
+                                                  $sql4 = mysqli_query($connection,"SELECT * FROM m_dosen WHERE id_dosen = '$penguji1'");
+                                                  $data4 = mysqli_fetch_assoc($sql4);
+                                                  $sql5 = mysqli_query($connection,"SELECT * FROM m_dosen WHERE id_dosen = '$penguji2'");
+                                                  $data5 = mysqli_fetch_assoc($sql5);
+                                                  $sql6 = mysqli_query($connection,"SELECT * FROM r_tahun WHERE id_tahun = '$tahun'");
+                                                  $data6 = mysqli_fetch_assoc($sql6);
+                                                  
                                              ?>
                                                   <td><?php echo $i; ?>.</td>
-                                                  <td><?php echo $data1['nama_dosen']; ?></td>
+                                                  <td><?php echo $data3['nama_dosen']; ?></td>
                                                   </td>
                                                   <td><?php echo $data1['jumlah_yg_dibimbing']; ?></td>
-                                                  <td><?php echo $data1['id_dosen_penguji1']; ?></td>
-                                                  <td><?php echo $data1['id_dosen_penguji2']; ?></td>
-                                                  <td><?php echo $data1['tahun_ajaran']; ?></td>
+                                                  <td><?php echo $data4['nama_dosen']; ?></td>
+                                                  <td><?php echo $data5['nama_dosen']; ?></td>
+                                                  <td><?php echo $data6['tahun']; ?></td>
                                                   <td><?php echo $data1['judul_pa']; ?></td>
                                         </tr>
                                    <?php $i++;
@@ -326,24 +345,36 @@ $id  = $_GET['id'];
                                    <tbody>
                                         <tr>
                                              <?php $i = 1;
-                                             $query2 =  "SELECT * FROM pa1 
-                                             INNER JOIN m_dosen ON pa1.id_dosen_pembimbing = m_dosen.id_dosen
-                                             WHERE id_dosen_pembimbing = '$id'";
+                                             $query2 =  "SELECT * FROM pa1 WHERE id_dosen_pembimbing = '$id'";
                                              $sql2 = mysqli_query($connection, $query2);
                                              while ($data1 = mysqli_fetch_assoc($sql2)) :
+                                                  $dosen_pembimbing = $data1['id_dosen_pembimbing'];
+                                                  $penguji1 = $data1['id_dosen_penguji1'];
+                                                  $penguji2 = $data1['id_dosen_penguji2'];
+                                                  $tahun = $data1['tahun_ajaran'];
+                                                  $sql3 = mysqli_query($connection,"SELECT * FROM m_dosen WHERE id_dosen = '$dosen_pembimbing'");
+                                                  $data3 = mysqli_fetch_assoc($sql3);
+                                                  $sql4 = mysqli_query($connection,"SELECT * FROM m_dosen WHERE id_dosen = '$penguji1'");
+                                                  $data4 = mysqli_fetch_assoc($sql4);
+                                                  $sql5 = mysqli_query($connection,"SELECT * FROM m_dosen WHERE id_dosen = '$penguji2'");
+                                                  $data5 = mysqli_fetch_assoc($sql5);
+                                                  $sql6 = mysqli_query($connection,"SELECT * FROM r_tahun WHERE id_tahun = '$tahun'");
+                                                  $data6 = mysqli_fetch_assoc($sql6);
+                                                  
                                              ?>
                                                   <td><?php echo $i; ?>.</td>
-                                                  <td><?php echo $data2['nama_dosen']; ?></td>
+                                                  <td><?php echo $data3['nama_dosen']; ?></td>
                                                   </td>
                                                   <td><?php echo $data1['jumlah_yg_dibimbing']; ?></td>
-                                                  <td><?php echo $data3['nama_dosen']; ?></td>
                                                   <td><?php echo $data4['nama_dosen']; ?></td>
-                                                  <td><?php echo $data1['tahun_ajaran']; ?></td>
+                                                  <td><?php echo $data5['nama_dosen']; ?></td>
+                                                  <td><?php echo $data6['tahun']; ?></td>
                                                   <td><?php echo $data1['judul_pa']; ?></td>
                                         </tr>
                                    <?php $i++;
                                              endwhile; ?>
                                    </tbody>
+                              
                               </table>
                          </div>
                          <div class="card-header mt-3">
@@ -362,8 +393,7 @@ $id  = $_GET['id'];
                                         </thead>
                                         <tbody>
                                              <?php $i = 1;
-                                             $sql = "SELECT * FROM m_penelitian INNER JOIN m_dosen
-                                             ON m_penelitian.id_dosen = m_dosen.id_dosen";
+                                             $sql = "SELECT * FROM m_penelitian WHERE id_dosen = '$id'";
                                              $data = mysqli_query($connection,$sql);
                                              while ($row = mysqli_fetch_assoc($data)) :
                                                   $id_dosen = $row['id_dosen'];
@@ -371,7 +401,6 @@ $id  = $_GET['id'];
                                                   $sql2 = "SELECT * FROM r_tahun WHERE id_tahun = '$tahun_ajaran'";
                                                   $qury2 = mysqli_query($connection,$sql2); 
                                                   $data2 = mysqli_fetch_assoc($qury2);
-                                                  $tahun_ajaran = $row['tahun_ajaran'];
                                                   $sql3 = "SELECT * FROM m_dosen WHERE id_dosen  = '$id_dosen'";
                                                   $qury3 = mysqli_query($connection,$sql3); 
                                                   $data3 = mysqli_fetch_assoc($qury3);

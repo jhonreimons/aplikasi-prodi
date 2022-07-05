@@ -47,9 +47,6 @@
                               <a href="../bph_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>BPH Himpunan</a>
                          </li>
                          <li>
-                              <a href="../divisi_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>Divisi Himpunan</a>
-                         </li>
-                         <li>
                               <a href="../kpu_himpunan.php"> <i class="menu-icon fa fa-bar-chart"></i>KPU Himpunan</a>
                          </li>
                          <li class="menu-title">Tambahan</li>

@@ -113,7 +113,9 @@ require "../../connect.php";
                </div>
           </header>
           <!-- /#header -->
-     <?php
+     <!-- Content -->
+          <div class="content">
+          <?php
      
      function update($data){
      global $connection;
@@ -150,8 +152,7 @@ require "../../connect.php";
                     </div>
                <?php endif; ?>
                <?php endif; ?>
-          <!-- Content -->
-          <div class="content">
+          
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->

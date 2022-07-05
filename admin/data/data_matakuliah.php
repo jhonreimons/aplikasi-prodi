@@ -105,7 +105,7 @@ require "../../connect.php";
                                              </thead>
                                              <tbody>
                                              <?php
-                                                       $query1 =  "SELECT * FROM m_matakuliah";
+                                                       $query1 =  "SELECT * FROM m_matakuliah ORDER BY semester ASC";
                                                        $sql1 = mysqli_query($connection, $query1);
                                                        $i = 1;
                                                        while ($row = mysqli_fetch_assoc($sql1)):
