@@ -1,12 +1,6 @@
 <?php
 
-require "../config.php";
-
-$query =  "SELECT * FROM publikasi_dosen INNER JOIN dosen ON publikasi_dosen.id_dosen = dosen.id_dosen";
-$sql = mysqli_query($conn, $query);
-
-
-
+require "../connect.php";
 
 ?>
 
@@ -67,8 +61,7 @@ $sql = mysqli_query($conn, $query);
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -77,8 +70,21 @@ $sql = mysqli_query($conn, $query);
           <!-- /#header -->
           <!-- Content -->
           <div class="content">
+          <?php
+          if (isset($_GET['aksi'] )== "hapus") : ?>
+               <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                    <span class="badge badge-pill badge-success">Success</span>
+                    <span class="ml-4">Data berhasil dihapus</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+          <?php endif; ?>
                <!-- Animated -->
                <div class="animated fadeIn">
+               <div class="d-flex justify-content-end">
+                    <button class="btn btn-success ml-5 pl-3 " onclick="myFunction()">+ Tambah Data</button>
+               </div>
                     <!-- Widgets  -->
                     <div class="row">
                          <div class="content">
@@ -93,21 +99,30 @@ $sql = mysqli_query($conn, $query);
                                                   <th>Nama Dosen</th>
                                                   <th>Tahun Publikasi</th>
                                                   <th>Judul</th>
+                                                  <th>Edit</th>
+                                                  <th>Hapus</th>
                                              </tr>
                                         </thead>
                                         <tbody>
-                                             <?php $i = 1;
+                                             <?php 
+                                             $i = 1;
+                                             $query =  "SELECT * FROM m_publikasi";
+                                             $sql = mysqli_query($connection, $query);
                                              while ($data = mysqli_fetch_assoc($sql)) :
+                                                  $id_dosen = $data['id_dosen'];
+                                                  $query2 = "SELECT * FROM m_dosen WHERE id_dosen='$id_dosen'";
+                                                  $sql2 = mysqli_query($connection, $query2);
+                                                  $data2 = mysqli_fetch_assoc($sql2);
                                              ?>
                                                   <tr>
                                                        <td><?php echo $i; ?>.</td>
-                                                       <td><?php echo $data['nama_dosen']; ?></td>
+                                                       <td><?php echo $data2['nama_dosen']; ?></td>
                                                        </td>
-                                                       <td><?php echo $data['tahun_publish']; ?></td>
-                                                       <td><?php echo $data['judul']; ?> <br>
+                                                       <td><?php echo $data['id_tahun_akademik']; ?></td>
+                                                       <td><?php echo $data['judul_publikasi']; ?> <br>
                                                        </td>
-                                                       </td>
-
+                                                       <td><a href="ubah/update_publikasi.php?id-publikasi<?php echo $data['id_dosen']; ?>"><button class="btn btn-warning">Edit</button></td>
+                                                       <td><a href="hapus/hapus_publikasi.php?id-publikasi=<?php echo $data['id_dosen']; ?>"><button class="btn btn-danger">Hapus</button></td>
                                                   </tr>
                                              <?php $i++;
                                              endwhile; ?>
@@ -163,7 +178,7 @@ $sql = mysqli_query($conn, $query);
           </script>
           <script>
                function myFunction() {
-                    location.replace("buat_data_penelitian.php")
+                    location.replace("buat_data/buat_data_publikasi.php");
                }
           </script>
           <!--Local Stuff-->

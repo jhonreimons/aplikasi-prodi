@@ -1,17 +1,16 @@
 <?php
 
-require "../connect.php";
+require "../../connect.php";
 if (isset($_POST['submit'])) {
-     $id_dosen_pembimbing = $_POST['dosen_pembimbing'];
-     $id_dosen_penguji_1 = $_POST['dosen_penguji_1'];
-     $id_dosen_penguji_2 = $_POST['dosen_penguji_2'];
-     $kelompok = $_POST['jumlah_mahasiswa'];
-     $judul = $_POST['judul_proyek_akhir'];
-     $tahun_ajaran = $_POST['tahun_ajaran'];
+     $nama_dosen = $_POST['nama_dosen'];
+     $judul_publikasi = $_POST['judul_publikasi'];
+     $tahun_akademik = $_POST['tahun_akademik'];
 
-     $query = "INSERT INTO pa1(id_pa1,id_dosen_pembimbing,jumlah_yg_dibimbing,judul_pa,id_dosen_penguji1,id_dosen_penguji2,tahun_ajaran)
-          VALUE('','$id_dosen_pembimbing','$kelompok','$judul','$id_dosen_penguji_1','$id_dosen_penguji_2','$tahun_ajaran')";
-     mysqli_query($connection, $query);
+     $query = "INSERT INTO m_publikasi(id_publikasi
+     ,id_dosen,judul_publikasi,id_tahun_akademik)
+          VALUE('','$nama_dosen','$judul_publikasi',
+          '$tahun_akademik')";
+          mysqli_query($connection, $query);
 }
 
 ?>
@@ -24,7 +23,7 @@ if (isset($_POST['submit'])) {
 <head>
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <title>Buat data proyek akhir I</title>
+     <title>Buat data publikasi</title>
      <meta name="description" content="Ela Admin - HTML5 Admin Template">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
@@ -33,8 +32,8 @@ if (isset($_POST['submit'])) {
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-     <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="../../assets/css/cs-skin-elastic.css">
+     <link rel="stylesheet" href="../../assets/css/style.css">
      <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
      <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
@@ -114,10 +113,11 @@ if (isset($_POST['submit'])) {
                          </div>
                          <div class="user-area dropdown float-right">
                               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
+                                   <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -144,65 +144,14 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                          <div class="content">
                               <div class="card-header">
-                                   <strong class="card-title">Data Proyek Akhir I</strong>
+                                   <strong class="card-title">Buat Data Publikasi</strong>
                               </div>
                               <div class="card-body">
-                                   <div class="form-group">
-                                        <form action="" method="post" class="pt-3">
-                                             <label id="dosen_pembimbing" for="status" class="control-label mb-1">Dosen Pembimbing</label>
-                                             <select name="dosen_pembimbing" id="dosen_pembimbing" class="form-control">
-                                                  <option value="#">Pilih Dosen Pembimbing</option>
-                                                  <?php
-                                                  $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
-                                                  while ($row = mysqli_fetch_assoc($sql)) :
-                                                  ?>
-                                                       <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                       echo "$row[nama_dosen]"; ?></option>
-                                                  <?php
-                                                  endwhile;
-                                                  ?>
-                                             </select>
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="Jumlah Mahasiswa" class="control-label mb-1">Jumlah Mahasiswa</label>
-                                        <input id="Jumlah Mahasiswa" name="jumlah_mahasiswa" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="tahun_ajaran" class="control-label mb-1">Tahun Ajaran</label>
-                                        <select name="tahun_ajaran" id="tahun_ajaran" class="form-control">
-                                                  <option value="#">Pilih Dosen Pembimbing</option>
-                                                  <?php
-                                                  $sql =  mysqli_query($connection, "SELECT * FROM r_tahun");
-                                                  while ($row = mysqli_fetch_assoc($sql)) :
-                                                  ?>
-                                                       <option value="<?php echo $row['id_tahun']; ?>"><?php $row['id_tahun'];
-                                                                                                         echo "$row[tahun]"; ?></option>
-                                                  <?php
-                                                  endwhile;
-                                                  ?>
-                                             </select>
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="judul_proyek_akhir" class="control-label mb-1">Judul Proyek Akhir</label>
-                                        <input id="proyek_akhir" name="judul_proyek_akhir" type="text" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label id="dosen_penguji_1" for="dosen_penguji_1" class="control-label mb-1">Dosen Penguji I</label>
-                                        <select name="dosen_penguji_1" id="dosen_penguji_1" class="form-control">
-                                             <option value="#">Pilih Dosen Penguji</option>
-                                             <?php
-                                             $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
-                                             while ($row = mysqli_fetch_assoc($sql)) :
-                                             ?>
-                                                  <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                                                                    echo $row['nama_dosen']; ?></option>
-                                             <?php endwhile; ?>
-                                        </select>
-                                   </div>
-                                   <div class="form-group">
-                                        <label id="dosen_penguji_2" for="dosen_penguji_2" class="control-label mb-1">Dosen Penguji II</label>
-                                        <select name="dosen_penguji_2" id="dosen_penguji_2" class="form-control">
-                                             <option value="#">Pilih Dosen Penguji</option>
+                                   <form action="" method="post" novalidate="novalidate">
+                                        <div class="form-group">
+                                             <label id="nama_dosen" for="nama_dosen" class="control-label mb-1">Nama Dosen</label>
+                                             <select name="nama_dosen" id="ts" class="form-control">
+                                             <option value="">Pilih Nama Dosen</option>
                                              <?php
                                              $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
                                              while ($row = mysqli_fetch_assoc($sql)) :
@@ -210,11 +159,18 @@ if (isset($_POST['submit'])) {
                                                   <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
                                                   echo $row['nama_dosen']; ?></option>
                                              <?php endwhile; ?>
-                                        </select>
-                                   </div>
-                                   <div>
-                                        <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
-                                   </div>
+                                        </select></div>
+                                        <div class="form-group">
+                                             <label id="judul_publikasi" for="judul_publikasi" class="control-label mb-1">Judul Publikasi</label>
+                                             <input id="judul_publikasi" name="judul_publikasi" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div class="form-group">
+                                             <label id="tahun_akademik" for="tahun_akademik" class="control-label mb-1">Tahun Akademik</label>
+                                             <input id="tahun_akademik" name="tahun_akademik" type="number" class="form-control" aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div>
+                                             <button id="payment-button" name="submit" type="submit" class="btn btn-lg btn-primary btn-block">Buat Data</button>
+                                        </div>
                                    </form>
                               </div><!-- .animated -->
                          </div><!-- .content -->
@@ -241,7 +197,7 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-          <script src="../assets/js/main.js"></script>
+          <script src="../../assets/js/main.js"></script>
           <!--  Chart js -->
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
           <!--Chartist Chart-->
@@ -251,10 +207,10 @@ if (isset($_POST['submit'])) {
           <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-          <script src="../assets/js/init/weather-init.js"></script>
+          <script src="./../assets/js/init/weather-init.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-          <script src="../assets/js/init/fullcalendar-init.js"></script>
+          <script src="../../assets/js/init/fullcalendar-init.js"></script>
           <!--Local Stuff-->
 </body>
 

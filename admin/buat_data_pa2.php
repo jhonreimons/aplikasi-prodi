@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
      $id_dosen_penguji_1 = $_POST['dosen_penguji_1'];
      $id_dosen_penguji_2 = $_POST['dosen_penguji_2'];
      $kelompok = $_POST['jumlah_mahasiswa'];
-     $judul = $_POST['judul_tugas_akhir'];
+     $judul = $_POST['judul_proyek_akhir'];
      $tahun_ajaran = $_POST['tahun_ajaran'];
 
      $query = "INSERT INTO pa2(id_pa2,id_dosen_pembimbing,jumlah_yg_dibimbing,judul_pa,id_dosen_penguji1,id_dosen_penguji2,tahun_ajaran)
@@ -182,8 +182,8 @@ if (isset($_POST['submit'])) {
                                         </select>
                                    </div>
                                    <div class="form-group">
-                                        <label for="judul_tugas_akhir" class="control-label mb-1">Judul Tugas Akhir</label>
-                                        <input id="Jumlah Mahasiswa" name="judul_tugas_akhir" type="text" class="form-control" aria-required="true" aria-invalid="false">
+                                        <label for="judul_proyek_akhir" class="control-label mb-1">Judul Poryek Akhir</label>
+                                        <input id="judul_proyek_akhir" name="judul_proyek_akhir" type="text" class="form-control" aria-required="true" aria-invalid="false">
                                    </div>
                                    <div class="form-group">
                                         <label id="dosen_penguji_1" for="dosen_penguji_1" class="control-label mb-1">Dosen Penguji I</label>
@@ -194,7 +194,7 @@ if (isset($_POST['submit'])) {
                                              while ($row = mysqli_fetch_assoc($sql)) :
                                              ?>
                                                   <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
-                                                                                                    echo $row['nama_dosen']; ?></option>
+                                                  echo $row['nama_dosen']; ?></option>
 
                                              <?php endwhile; ?>
                                         </select>

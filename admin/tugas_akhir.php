@@ -109,40 +109,53 @@ require "../connect.php";
                                              </thead>
                                              <tbody>
                                                   <?php $i = 1;
-                                                  $query1 ="SELECT * FROM m_dosen INNER JOIN data_ta
-                                                  ON m_dosen.id_dosen = data_ta.id_dosen_pembimbing1 INNER JOIN r_tahun
-                                                  ON data_ta.tahun_ajaran = r_tahun.id_tahun
+                                                  $query1 ="SELECT * FROM data_ta;
                                                   ";
                                                   $sql1 = mysqli_query($connection, $query1);
                                                   while ($data= mysqli_fetch_assoc($sql1)):
-
-                                                  $query2 ="SELECT * FROM m_dosen INNER JOIN data_ta
-                                                  ON m_dosen.nama_dosen = data_ta.id_dosen_pembimbing2";
+                                                       $dosen_pembimbing = $data['id_dosen_pembimbing1'];
+                                                       $penguji1 = $data['id_dosen_penguji_1'];
+                                                       $penguji2 = $data['id_dosen_penguji_2'];
+                                                       $tahun = $data['tahun_ajaran'];
+                                                  $query2 ="SELECT * FROM m_dosen WHERE id_dosen = '$dosen_pembimbing'";
                                                   $sql2 = mysqli_query($connection, $query2);
                                                   $data2= mysqli_fetch_assoc($sql2);
 
-                                                  $query3 ="SELECT * FROM m_dosen INNER JOIN data_ta
-                                                  ON m_dosen.id_dosen = data_ta.id_dosen_penguji_1";
+                                                  $query3 ="SELECT * FROM m_dosen WHERE 
+                                                  id_dosen = '$penguji1'";
                                                   $sql3 = mysqli_query($connection, $query3);
                                                   $data3= mysqli_fetch_assoc($sql3);
 
-                                                  $query4 ="SELECT * FROM m_dosen INNER JOIN data_ta
-                                                  ON m_dosen.id_dosen = data_ta.id_dosen_penguji_2";
+                                                  $query4 ="SELECT * FROM m_dosen WHERE 
+                                                  id_dosen = '$penguji1'";
                                                   $sql4 = mysqli_query($connection, $query4);
                                                   $data4= mysqli_fetch_assoc($sql4);
+
+                                                  $query5 ="SELECT * FROM r_tahun WHERE 
+                                                  id_tahun = '$tahun'";
+                                                  $sql5 = mysqli_query($connection, $query5);
+                                                  $data5= mysqli_fetch_assoc($sql5);
                                                   ?>
                                                        <tr>
                                                             <td><?php echo $i; ?>.</td>
-                                                            <td><?php echo $data['nama_dosen']; ?></td>
-                                                            </td>
                                                             <td><?php echo $data2['nama_dosen']; ?></td>
+                                                            </td>
+                                                            
+                                                            <td><?php 
+                                                            if($data['id_dosen_pembimbing2'] == 0){
+                                                                 echo "-";
+                                                            }
+                                                            else{
+                                                                 echo $data['id_dosen_pembimbing2'];
+                                                            }
+                                                            ?></td>
                                                             </td>
                                                             <td><?php echo $data['jumlah_yg_dibimbing']; ?></td>
                                                             <td><?php echo $data3['nama_dosen']; ?><br>
                                                             </td>
                                                             <td><?php echo $data4['nama_dosen']; ?> <br>
                                                             </td>
-                                                            <td><?php echo $data['tahun']; ?></td>
+                                                            <td><?php echo $data5['tahun']; ?></td>
                                                             <td><?php echo $data['judul'] ?></td>
                                                             <td><a href="ubah/update_ta.php?id-ta=<?php echo $data['id_data_ta'];?>"><button class="btn btn-warning">Edit</button></td>
                                                             <td><a href="hapus/hapus_ta.php?id-ta=<?php echo $data['id_data_ta'];?>"><button class="btn btn-danger">Hapus</button></td>

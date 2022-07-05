@@ -59,13 +59,16 @@ require "../../connect.php";
                                    <img class="user-avatar rounded-circle" src="../../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
                </div>
           </header>
           <!-- /#header -->
+
+          <!-- Content -->
+          <div class="content">
           <?php
           if (isset($_GET['aksi']) == "hapus" ) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
@@ -76,8 +79,6 @@ require "../../connect.php";
                          </button>
                     </div>
                <?php endif; ?>
-          <!-- Content -->
-          <div class="content">
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
@@ -114,7 +115,7 @@ require "../../connect.php";
                                                        <td><?php echo $row['nama_matakuliah']; ?></td>
                                                        <td><?php echo $row['semester']; ?></td>
                                                        <td><?php echo $row['sks']; ?></td>
-                                                       <td><button  class="btn btn-warning">Edit</button></td>
+                                                       <td><a href="../ubah/update_matakuliah.php?id-matakuliah=<?php echo $row['id_matakuliah']?>"><button  class="btn btn-warning">Edit</button></td>
                                                        <td><a href="../hapus/hapus_matakuliah.php?id-matakuliah=<?php echo $row['id_matakuliah']?>"><button class="btn btn-danger">Hapus</button></td>
                                                   </tr>
                                                   <?php $i++; endwhile; ?>

@@ -108,18 +108,19 @@ $sql = mysqli_query($connection, "SELECT * FROM data_mbkm");
             </div>
         </header>
         <!-- /#header -->
+
+        <!-- Content -->
+        <div class="content">
         <?php
             if (isset($_GET['aksi'] )== "hapus") : ?>
                 <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                     <span class="badge badge-pill badge-success">Success</span>
-                    <span class="ml-4">Data berhasil di hpuas</span>
+                    <span class="ml-4">Data berhasil dihapus</span>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             <?php endif; ?>
-        <!-- Content -->
-        <div class="content">
             <!-- Animated -->
             <div class="animated fadeIn">
 

@@ -95,13 +95,14 @@ require "../connect.php";
                                              </thead>
                                              <tbody>
                                                   <?php $i = 1;
-                                                  $query1 ="SELECT * FROM m_dosen INNER JOIN pa2
-                                                  ON m_dosen.id_dosen = pa2.id_dosen_pembimbing INNER JOIN r_tahun
-                                                  ON pa2.tahun_ajaran = r_tahun.id_tahun
+                                                  $query1 ="SELECT * FROM pa2;
                                                   ";
                                                   $sql1 = mysqli_query($connection, $query1);
                                                   while ($data= mysqli_fetch_assoc($sql1)):
-                                                  $query2 = "SELECT * FROM pa2 WHERE id_dosen_pembimbing = $data[id_dosen_pembimbing]";
+                                                       $dosen_pembimbing = $data['id_dosen_pembimbing'];
+                                                       $penguji1 = $data['id_dosen_penguji1'];
+                                                       $penguji2 = $data['id_dosen_penguji2'];
+                                                  $query2 = "SELECT * FROM m_dosen WHERE id_dosen = '$dosen_pembimbing'";
                                                   $sql2 = mysqli_query($connection, $query2);
                                                   $data2 = mysqli_fetch_assoc($sql2);
                                                   $query3 = "SELECT * FROM m_dosen WHERE id_dosen = $data[id_dosen_penguji1]";
@@ -116,7 +117,7 @@ require "../connect.php";
                                                   ?>
                                                        <tr>
                                                             <td><?php echo $i; ?>.</td>
-                                                            <td><?php echo $data['nama_dosen']; ?></td>
+                                                            <td><?php echo $data2['nama_dosen']; ?></td>
                                                             </td>
                                                             </td>
                                                             <td><?php echo $data['jumlah_yg_dibimbing']; ?></td>
@@ -124,10 +125,10 @@ require "../connect.php";
                                                             </td>
                                                             <td><?php echo $data4['nama_dosen']; ?> <br>
                                                             </td>
-                                                            <td><?php echo $data['tahun']; ?></td>
-                                                            <td><?php echo $data2['judul_pa']; ?></td>
-                                                            <td><a href="ubah/update_pa2.php?id-pa2=<?php echo $data['id_pa2'];?>"><button class="btn btn-warning">Edit</button></td>
-                                                            <td><a href="hapus/hapus_pa2.php?id-pa2=<?php echo $data['id_pa2'];?>"><button class="btn btn-danger">Hapus</button></td>
+                                                            <td><?php echo $data5['tahun']; ?></td>
+                                                            <td><?php echo $data['judul_pa']; ?></td>
+                                                            <td><a href="ubah/update_pa1.php?id-pa1=<?php echo $data['id_pa2'];?>"><button class="btn btn-warning">Edit</button></td>
+                                                            <td><a href="hapus/hapus_pa1.php?id-pa1=<?php echo $data['id_pa2'];?>"><button class="btn btn-danger">Hapus</button></td>
                                                        </tr>
                                                   <?php $i++;
                                                   endwhile; ?>
