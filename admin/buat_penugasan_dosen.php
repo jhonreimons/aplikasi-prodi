@@ -7,8 +7,8 @@ if (isset($_POST['submit'])) {
      $semester = $_POST['semester'];
      $matakuliah = $_POST['matakuliah'];
 
-     $query = "INSERT INTO t_pengajaran(id_mk_dosen,tahun_ajaran,semester,id_dosen,id_matakuliah)
-          VALUE('','$tahun_ajaran','$semester','$dosen_pengampuh','$matakuliah')";
+     $query = "INSERT INTO t_pengajaran(id_pengajaran,tahun_ajaran,nama_dosen,matakuliah)
+          VALUE('','$tahun_ajaran','$dosen_pengampuh','$matakuliah')";
      mysqli_query($connection, $query);
 }
 
@@ -165,12 +165,19 @@ if (isset($_POST['submit'])) {
                                    </div>
                                    <div class="form-group">
                                         <label for="tahun_ajaran" class="control-label mb-1">Tahun Ajaran</label>
-                                        <input id="tahun_ajaran" name="tahun_ajaran" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
-                                   <div class="form-group">
-                                        <label for="semester" class="control-label mb-1">Semester</label>
-                                        <input id="semester" name="semester" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
+                                        <select name="tahun_ajaran" id="tahun_ajaran" class="form-control">
+                                                  <option value="#">Pilih Tahun Ajaran</option>
+                                                  <?php
+                                                  $sql =  mysqli_query($connection, "SELECT * FROM r_tahun");
+                                                  while ($row = mysqli_fetch_assoc($sql)) :
+                                                  ?>
+                                                       <option value="<?php echo $row['id_tahun']; ?>"><?php $row['id_tahun'];
+                                                       echo $row['tahun'];
+                                                       ?></option>
+                                                  <?php
+                                                  endwhile;
+                                                  ?>
+                                             </select></div>
                                    <div class="form-group">
                                         <label id="matakuliah" for="matakuliah" class="control-label mb-1">Matakuliah</label>
                                         <select name="matakuliah" id="matakuliah" class="form-control">

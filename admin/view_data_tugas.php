@@ -1,9 +1,7 @@
 <?php
 
-require "../config.php";
-$id = $_GET['id'];
-$query1 =  "SELECT * FROM mtk_dosen WHERE id_dosen = '$id'";
-$sql1 = mysqli_query($conn, $query1);
+require "../connect.php";
+
 
 ?>
 
@@ -80,7 +78,7 @@ $sql1 = mysqli_query($conn, $query1);
                          <div class="content">
                               <div class="card">
                                    <div class="card-header">
-                                        <strong class="card-title">Tugas Akhir</strong>
+                                        <strong class="card-title">Penugasan Dosen</strong>
                                    </div>
                                    <div class="card-body">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -89,28 +87,40 @@ $sql1 = mysqli_query($conn, $query1);
                                                        <th>No.</th>
                                                        <th>Kode Matakuliah</th>
                                                        <th>Matakuliah</th>
+                                                       <th>SKS</th>
                                                        <th>Semester</th>
                                                        <th>Tahun Ajaran</th>
                                                   </tr>
                                              </thead>
                                              <tbody>
-                                                  <?php $i = 1;
+                                                  <?php 
+                                                  $id = $_GET['id'];
+                                                  $query1 =  "SELECT * FROM t_pengajaran WHERE nama_dosen = '$id'";
+                                                  $sql1 = mysqli_query($connection, $query1);
+                                                  $i = 1;
                                                   while ($data1 = mysqli_fetch_assoc($sql1)) :
-                                                       $id_dosen = $data1['id_dosen'];
-                                                       $id_matakuliah = $data1['id_matakuliah'];
+                    
+                                                       $id_matakuliah = $data1['matakuliah'];
+                                                       $id_tahun = $data1['tahun_ajaran'];
                                                        $query2 =
-                                                            "SELECT * FROM matakuliah WHERE id_matakuliah = '$id_matakuliah'";
-                                                       $sql2  = mysqli_query($conn, $query2);
+                                                            "SELECT * FROM m_matakuliah WHERE id_matakuliah = '$id_matakuliah'";
+                                                       $sql2  = mysqli_query($connection, $query2);
                                                        $data2 = mysqli_fetch_assoc($sql2);
+                                                       $query3 =
+                                                            "SELECT * FROM r_tahun WHERE id_tahun = '$id_tahun'";
+                                                       $sql3  = mysqli_query($connection, $query3);
+                                                       $data3 = mysqli_fetch_assoc($sql3);
                                                   ?>
                                                        <tr>
                                                             <td><?php echo $i; ?>.</td>
                                                             <td><?php echo $data2['kode_matakuliah']; ?></td>
                                                             </td>
-                                                            <td><?php echo $data2['matakuliah']; ?></td>
+                                                            <td><?php echo $data2['nama_matakuliah']; ?></td>
                                                             <td><?php echo $data2['semester']; ?><br>
                                                             </td>
-                                                            <td><?php echo $data1['tahun_ajaran']; ?> <br>
+                                                            <td><?php echo $data2['sks']; ?><br>
+                                                            </td>
+                                                            <td><?php echo $data3['tahun']; ?> <br>
                                                             </td>
                                                        </tr>
                                                   <?php $i++;

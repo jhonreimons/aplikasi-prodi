@@ -355,15 +355,19 @@ $id  = $_GET['id'];
                                              ON m_penelitian.id_dosen = m_dosen.id_dosen";
                                              $data = mysqli_query($connection,$sql);
                                              while ($row = mysqli_fetch_assoc($data)) :
-                                                  // $id_dosen = $row['id_dosen'];
-                                                  // $tahun_ajaran = $row['tahun_ajaran'];
-                                                  // $sql2 = "SELECT * FROM r_tahun WHERE id_tahun = '$tahun_ajaran'";
-                                                  // $qury2 = mysqli_query($connection,$slq2); 
-                                                  // $data2 = mysqli_fetch_assoc($qury2);
+                                                  $id_dosen = $row['id_dosen'];
+                                                  $tahun_ajaran = $row['tahun_ajaran'];
+                                                  $sql2 = "SELECT * FROM r_tahun WHERE id_tahun = '$tahun_ajaran'";
+                                                  $qury2 = mysqli_query($connection,$sql2); 
+                                                  $data2 = mysqli_fetch_assoc($qury2);
+                                                  $tahun_ajaran = $row['tahun_ajaran'];
+                                                  $sql3 = "SELECT * FROM m_dosen WHERE id_dosen  = '$id_dosen'";
+                                                  $qury3 = mysqli_query($connection,$sql3); 
+                                                  $data3 = mysqli_fetch_assoc($qury3);
                                              ?>
                                                   <tr>
                                                        <td><?php echo $i; ?>.</td>
-                                                       <td><?php echo $data['nama_dosen']; ?></td>
+                                                       <td><?php echo $data3['nama_dosen']; ?></td>
                                                        </td>
                                                        <td><?php echo $data2['tahun']; ?></td>
                                                        <!-- <td><?php //echo $row['jenis_peneltian']; ?> <br> -->

@@ -109,19 +109,19 @@ require "../connect.php";
                </div>
           </header>
           <!-- /#header -->
-          <?php
+          <!-- Content -->
+          <div class="content">
+               <!-- Animated -->
+               <?php
           if (isset($_GET['aksi']) == "hapus" ) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                          <span class="badge badge-pill badge-success">Success</span>
                          <span class="ml-4">Data berhasil dihapus</span>
                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&ties;</span>
+                              <span aria-hidden="true">&times;</span>
                          </button>
                     </div>
                <?php endif; ?>
-          <!-- Content -->
-          <div class="content">
-               <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
                     <div class="d-flex justify-content-end">

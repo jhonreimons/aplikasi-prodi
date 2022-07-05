@@ -1,15 +1,15 @@
 <?php
 
-require "../config.php";
+require "../connect.php";
 if (isset($_POST['submit'])) {
      $nama_dosen = $_POST['nama_dosen'];
      $tahun_penelitian = $_POST['tahun_penelitian'];
      $sumber_pembiayaan = $_POST['sumber_pembiayaan'];
      $judul_penelitian = $_POST['judul_penelitian'];
 
-     $query = "INSERT INTO peneltian_dosen(id_penelitian_dosen,id_dosen,tahun,sumber_pembiayaan,judul_penelitian)
+     $query = "INSERT INTO m_penelitian(id_penelitian,id_dosen,tahun_ajaran,id_pembiayaan,judul_penelitian)
           VALUE('','$nama_dosen','$tahun_penelitian','$sumber_pembiayaan','$judul_penelitian')";
-     mysqli_query($conn, $query);
+     mysqli_query($connection, $query);
 }
 
 ?>
@@ -115,8 +115,7 @@ if (isset($_POST['submit'])) {
                                    <img class="user-avatar rounded-circle" src="../images/admin1.jpg" alt="User Avatar">
                               </a>
                               <div class="user-menu dropdown-menu">
-                                   <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                                   <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                   <a class="nav-link" href="../"><i class="fa fa-power -off"></i>Logout</a>
                               </div>
                          </div>
                     </div>
@@ -125,7 +124,7 @@ if (isset($_POST['submit'])) {
           <!-- /#header -->
           <!-- Content -->
           <div class="content">
-               <?php $row = mysqli_affected_rows($conn);
+               <?php $row = mysqli_affected_rows($connection);
                if ($row > 0) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                          <span class="badge badge-pill badge-success">Success</span>
@@ -152,7 +151,7 @@ if (isset($_POST['submit'])) {
                                              <select name="nama_dosen" id="nama_dosen" class="form-control">
                                                   <option value="#">Pilih Dosen Yang Melakukan Penelitan</option>
                                                   <?php
-                                                  $sql =  mysqli_query($conn, "SELECT * FROM dosen");
+                                                  $sql =  mysqli_query($connection, "SELECT * FROM m_dosen");
                                                   while ($row = mysqli_fetch_assoc($sql)) :
                                                   ?>
                                                        <option value="<?php echo $row['id_dosen']; ?>"><?php $row['id_dosen'];
@@ -165,12 +164,32 @@ if (isset($_POST['submit'])) {
 
                                    <div class="form-group">
                                         <label for="tahun_penelitian" class="control-label mb-1">Tahun Peneltian</label>
-                                        <input id="tahun_penelitian" name="tahun_penelitian" type="number" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
+                                        <select name="tahun_penelitian" id="tahun_penelitian" class="form-control">
+                                                  <option value="#">Pilih Tahun dilakukan Penelitan</option>
+                                                  <?php
+                                                  $sql =  mysqli_query($connection, "SELECT * FROM r_tahun");
+                                                  while ($row = mysqli_fetch_assoc($sql)) :
+                                                  ?>
+                                                       <option value="<?php echo $row['id_tahun']; ?>"><?php $row['id_tahun'];
+                                                                                                         echo "$row[tahun]"; ?></option>
+                                                  <?php
+                                                  endwhile;
+                                                  ?>
+                                             </select></div>
                                    <div class="form-group">
                                         <label for="sumber_pembiayaan" class="control-label mb-1">Sumber Pembiayaan</label>
-                                        <input id="sumber_pembiayaan" name="sumber_pembiayaan" type="text" class="form-control" aria-required="true" aria-invalid="false">
-                                   </div>
+                                        <select name="sumber_pembiayaan" id="sumber_pembiayaan" class="form-control">
+                                                  <option value="#">Pilih Tahun dilakukan Penelitan</option>
+                                                  <?php
+                                                  $sql =  mysqli_query($connection, "SELECT * FROM m_pembiayaan");
+                                                  while ($row = mysqli_fetch_assoc($sql)) :
+                                                  ?>
+                                                       <option value="<?php echo $row['id_pembiayaan']; ?>"><?php $row['id_pembiayaan'];
+                                                                      echo "$row[sumber_pembiyaan]"; ?></option>
+                                                  <?php
+                                                  endwhile;
+                                                  ?>
+                                             </select></div>
                                    <div class="form-group">
                                         <label for="judul_penelitian" class="control-label mb-1">Judul Penelitian</label>
                                         <input id="judul_penelitian" name="judul_penelitian" type="text" class="form-control" aria-required="true" aria-invalid="false">

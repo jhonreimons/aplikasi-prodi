@@ -71,6 +71,16 @@ require "../connect.php";
           <!-- /#header -->
           <!-- Content -->
           <div class="content">
+               <?php
+          if (isset($_GET['aksi']) == "hapus" ) : ?>
+                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                         <span class="badge badge-pill badge-success">Success</span>
+                         <span class="ml-4">Data berhasil dihapus</span>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+               <?php endif; ?>
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
@@ -91,27 +101,35 @@ require "../connect.php";
                                                   <th>Tahun</th>
                                                   <!-- <th>Jenis Peneltian</th> -->
                                                   <th>Judul Penelitian</th>
+                                                  <th>Edit</th>
+                                                  <th>Hapus</th>
                                              </tr>
                                         </thead>
                                         <tbody>
                                              <?php $i = 1;
-                                             $sql = "SELECT * FROM m_penelitian INNER JOIN m_dosen ON m_penelitian.id_dosen = m_dosen.id_dosen 
-                                             INNER JOIN m_pembiayaan ON m_penelitian.id_pembiayaan = m_pembiayaan.id_pembiayaan 
-                                             INNER JOIN r_tahun_akademik ON m_penelitian.tahun_akademik = r_tahun_akademik.id_tahun_akademik
-                                             INNER JOIN r_tahun ON m_penelitian.tahun_ajaran = r_tahun.id_tahun";
+                                             $sql = "SELECT * FROM m_penelitian";
                                              $data = mysqli_query($connection,$sql);
                                              while ($row = mysqli_fetch_assoc($data)) :
+                                                  $id_dosen = $row['id_dosen'];
+                                                  $id_tahun = $row['tahun_ajaran'];
+                                                  $sql =  mysqli_query($connection, "SELECT * FROM m_dosen WHERE id_dosen = '$id_dosen'");
+                                                  $data1 = mysqli_fetch_assoc($sql);
+                                                  $sql2 =  mysqli_query($connection, "SELECT * FROM r_tahun WHERE id_tahun = '$id_tahun'");
+                                                  $data2 = mysqli_fetch_assoc($sql2);
                                              ?>
                                                   <tr>
                                                        <td><?php echo $i; ?>.</td>
-                                                       <td><?php echo $row['nama_dosen']; ?></td>
+                                                       <td><?php echo $data1['nama_dosen']; ?></td>
                                                        </td>
-                                                       <td><?php echo $row['tahun']; ?></td>
+                                                       <td><?php echo $data2['tahun']; ?></td>
                                                        <!-- <td><?php //echo $row['jenis_peneltian']; ?> <br> -->
                                                        </td>
                                                        <td><?php echo $row['judul_penelitian']; ?><br>
                                                        </td>
-
+                                                       <td><a href="ubah/hapus_peneltian.php?id-penelitian=<?php echo $row['id_penelitian']; ?>"><button class="btn btn-warning">Edit</button></td>
+                                                       <td><a href="hapus/hapus_peneltian.php?id-penelitian=<?php echo $row['id_penelitian']; ?>"><button class="btn btn-danger">Hapus</button></td>
+                                                       </td>
+                                                  </tr>
                                                   </tr>
                                              <?php $i++;
                                              endwhile; ?>

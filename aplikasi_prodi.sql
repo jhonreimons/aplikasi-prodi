@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2022 at 03:29 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.14
+-- Generation Time: Jul 05, 2022 at 03:40 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `aplikasi_prodi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
+  `nama_admin` varchar(100) NOT NULL,
+  `nidn` varchar(100) NOT NULL,
+  `no_telepon` varchar(13) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `lulusan` varchar(100) NOT NULL,
+  `jurusan` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `nama_admin`, `nidn`, `no_telepon`, `email`, `lulusan`, `jurusan`, `username`, `password`) VALUES
+(2, 'Eka Stephani Sinambela, SST., M.Sc.', '0117078706', '+623324234342', 'eka@del.ac.id', 'S2 Vrije Universiteit Amsterdam', 'Software Engineering and Green IT', 'admin123', 'admin123');
 
 -- --------------------------------------------------------
 
@@ -43,7 +68,7 @@ CREATE TABLE `data_mbkm` (
 --
 
 INSERT INTO `data_mbkm` (`id_mbkm`, `nama`, `nim`, `angkatan`, `perusahaan`, `semester`, `tahun_ajaran`, `status`) VALUES
-(76, 'Indra Sinaga', '13319024', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', 'selesai'),
+(76, 'Indra Sinaga Andre', '13319024', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', ''),
 (77, 'Angggiat', '13319025', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', 'Belum'),
 (78, 'Andree', '13319022', '2019', 'PT. Zona Edukasi Nusantara', 6, '2021/2022', 'Belum');
 
@@ -124,6 +149,13 @@ CREATE TABLE `mahasiswa_keluar` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `mahasiswa_keluar`
+--
+
+INSERT INTO `mahasiswa_keluar` (`id_mahasiswa_keluar`, `nama_mahasiswa`, `tanggal_keluar`, `nim`, `status`) VALUES
+(32, 'Andre sirait', '2022-07-03', '13320043', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -147,9 +179,13 @@ CREATE TABLE `m_dosen` (
 --
 
 INSERT INTO `m_dosen` (`id_dosen`, `nama_dosen`, `nidn`, `status`, `jabatan_akademik`, `pascasarjana`, `universitas_s2`, `bidang_keahlian`, `foto`) VALUES
-(20, 'SDFSDF  sdffff  efsdff', 'SDFDSF', 1, 1, 'FSD,JFNSF', 'SDLKFD', 'SDKF', ''),
-(21, 'Purwalaksana', 'SDFDSF', 1, 1, 'FSD,JFNSF', 'SDLKFD', 'SDKF', ''),
-(22, 'Purwalaksana ', '1433432', 1, 1, 'FSD,JFNSF', 'SDLKFD', 'SDKF', '');
+(26, 'Gerry Italiano Wowiling, S.Tr.Kom., M.T.', '0125059003', 1, 2, 'Teknik Elektro', 'Universitas Indonesia', '', ''),
+(27, 'Ahmad Zatnika Purwalaksana, S.Si., M.Si.', '0103029402', 1, 1, 'Fisika', 'Institut Teknologi Bandung', '', ''),
+(28, 'Eka Stephani Sinambela, SST., M.Sc.', '0117078706', 1, 1, 'Computer Science', 'VU University of Amsterdam', '', ''),
+(29, 'Istas Manalu, S.Si., M.Sc', '0104088902', 1, 2, ' Mechanical Engineering', 'Chang Gung University', '', ''),
+(31, 'Marojahan MT. Sigiro, ST., M.Sc', '0108098301', 1, 1, 'Computer science', 'Delft University of Technology, Belanda', '', ''),
+(32, 'Pandapotan Siagian, ST, M.Eng', '1018037401', 1, 3, 'Tenik Elektro', 'UGM', '', ''),
+(33, 'Sari Muthia Silalahi, S.Pd., M.Ed', '0117109301', 1, 1, 'Matematika', 'National Taiwan University', '', '');
 
 -- --------------------------------------------------------
 
@@ -278,7 +314,8 @@ CREATE TABLE `m_matakuliah` (
 --
 
 INSERT INTO `m_matakuliah` (`id_matakuliah`, `nama_matakuliah`, `kode_matakuliah`, `semester`, `sks`) VALUES
-(6, 'sdfdsf', 'sdfnsd', 4, 4);
+(6, 'sdfdsf', 'sdfnsd', 4, 4),
+(7, 'Inovasi Digital', '1232KFDUD', 6, 4);
 
 -- --------------------------------------------------------
 
@@ -342,7 +379,7 @@ CREATE TABLE `m_pembimbing` (
 --
 
 CREATE TABLE `m_penelitian` (
-  `id_peneltian` int(11) NOT NULL,
+  `id_penelitian` int(11) NOT NULL,
   `id_dosen` int(11) DEFAULT NULL,
   `judul_penelitian` varchar(255) DEFAULT NULL,
   `tahun_akademik` int(11) DEFAULT NULL,
@@ -480,7 +517,10 @@ CREATE TABLE `r_jabatan_akademik` (
 
 INSERT INTO `r_jabatan_akademik` (`id_jabatan_akademik`, `nama_jabatan`) VALUES
 (1, 'Asisten Ahli'),
-(2, 'Tenaga Pengajar');
+(2, 'Tenaga Pengajar'),
+(3, 'Lektor'),
+(4, 'Kepala Lektor'),
+(5, 'Profesor');
 
 -- --------------------------------------------------------
 
@@ -672,9 +712,7 @@ CREATE TABLE `status_mahasiswa` (
 
 INSERT INTO `status_mahasiswa` (`id_status_mahasiswa`, `status`) VALUES
 (1, 'Mengundurkan Diri'),
-(2, 'DO'),
-(3, 'do'),
-(4, 'do');
+(2, 'DO');
 
 -- --------------------------------------------------------
 
@@ -697,6 +735,12 @@ CREATE TABLE `t_pengajaran` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `data_mbkm`
@@ -820,7 +864,7 @@ ALTER TABLE `m_pembimbing`
 -- Indexes for table `m_penelitian`
 --
 ALTER TABLE `m_penelitian`
-  ADD PRIMARY KEY (`id_peneltian`),
+  ADD PRIMARY KEY (`id_penelitian`),
   ADD KEY `id_dosen` (`id_dosen`),
   ADD KEY `id_pembiayaan` (`id_pembiayaan`),
   ADD KEY `tahun_akademik` (`tahun_akademik`),
@@ -979,6 +1023,12 @@ ALTER TABLE `t_pengajaran`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `data_mbkm`
 --
 ALTER TABLE `data_mbkm`
@@ -988,7 +1038,7 @@ ALTER TABLE `data_mbkm`
 -- AUTO_INCREMENT for table `data_ta`
 --
 ALTER TABLE `data_ta`
-  MODIFY `id_data_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_data_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `d_pkm`
@@ -1006,13 +1056,13 @@ ALTER TABLE `jadwal_kegiatan`
 -- AUTO_INCREMENT for table `mahasiswa_keluar`
 --
 ALTER TABLE `mahasiswa_keluar`
-  MODIFY `id_mahasiswa_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_mahasiswa_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `m_dosen`
 --
 ALTER TABLE `m_dosen`
-  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `m_ipk_lulusan`
@@ -1048,7 +1098,7 @@ ALTER TABLE `m_mahasiswa_asing`
 -- AUTO_INCREMENT for table `m_matakuliah`
 --
 ALTER TABLE `m_matakuliah`
-  MODIFY `id_matakuliah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_matakuliah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `m_mitra`
@@ -1072,7 +1122,7 @@ ALTER TABLE `m_pembimbing`
 -- AUTO_INCREMENT for table `m_penelitian`
 --
 ALTER TABLE `m_penelitian`
-  MODIFY `id_peneltian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_penelitian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `m_pkm`
@@ -1114,7 +1164,7 @@ ALTER TABLE `m_recognisi`
 -- AUTO_INCREMENT for table `pa1`
 --
 ALTER TABLE `pa1`
-  MODIFY `id_pa1` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pa1` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pa2`
@@ -1126,7 +1176,7 @@ ALTER TABLE `pa2`
 -- AUTO_INCREMENT for table `r_jabatan_akademik`
 --
 ALTER TABLE `r_jabatan_akademik`
-  MODIFY `id_jabatan_akademik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_jabatan_akademik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `r_jenis_pembimbingan`
@@ -1198,7 +1248,7 @@ ALTER TABLE `status_mahasiswa`
 -- AUTO_INCREMENT for table `t_pengajaran`
 --
 ALTER TABLE `t_pengajaran`
-  MODIFY `id_pengajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

@@ -106,6 +106,9 @@ require "../connect.php";
                </div>
           </header>
           <!-- /#header -->
+
+          <!-- Content -->
+          <div class="content">
           <?php
           if (isset($_GET['aksi']) == "hapus" ) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
@@ -116,8 +119,6 @@ require "../connect.php";
                          </button>
                     </div>
                <?php endif; ?>
-          <!-- Content -->
-          <div class="content">
                <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->

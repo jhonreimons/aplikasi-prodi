@@ -157,6 +157,12 @@ if (isset($_POST['submit'])) {
                          return mysqli_affected_rows($connection);
           
 }
+?>
+
+
+          <div class="content">
+               <!-- Animated -->
+               <?php
                if(isset($_POST['submit'])):
                if (update($_POST) > 0) : ?>
                     <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
@@ -168,9 +174,6 @@ if (isset($_POST['submit'])) {
                     </div>
                <?php endif; ?>
                <?php endif; ?>
-
-          <div class="content">
-               <!-- Animated -->
                <div class="animated fadeIn">
                     <!-- Widgets  -->
                     <div class="row">
